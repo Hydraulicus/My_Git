@@ -1,0 +1,409 @@
+
+<!DOCTYPE html>
+<html class=''>
+<head>
+<meta name="author" content="Alexei Zababurin" />
+<meta name="description" content="CSS. CSS3. HTML5. JS. SVG. animation. CSS-animation. SVG-animation. Vector."/>
+<meta charset='UTF-8'>
+<meta name="viewport" content="width=device-width; initial-scale=1.0, minimum-scale=1.0, user-scalable=no"><!-- disable iPhone inital scale -->
+<title>Demo: SVG animation</title>
+<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<style class="cp-pen-styles">
+
+html, body {
+  overflow: hidden;
+   height: 100vh;
+
+  background-image: -webkit-linear-gradient(  top, #0B0B3B, #F5F6CE);
+  background-image: -moz-linear-gradient(  	top, #0B0B3B, #F5F6CE);
+  background-image: linear-gradient(  to top, #0B0B3B, #F5F6CE);
+   background-size: 300% 300%;
+    		  animation: sunrise 30s alternate-reverse ease-in-out infinite;
+     -moz-animation: sunrise 30s alternate-reverse ease-in-out infinite;
+  -webkit-animation: sunrise 30s alternate-reverse ease-in-out infinite;
+
+/*===============RadialGradient background====================*/
+/*  background-image: -webkit-radial-gradient(#fff 25%, #bbb 75%);
+  background-image: radial-gradient(#fff 25%, #bbb 75%);*/
+/*======================================================*/
+
+}
+@-webkit-keyframes sunrise {
+    0%{background-position:45% 0%}
+    50%{background-position:bottom}
+    100%{background-position:45% 0%}
+}
+@-moz-keyframes sunrise {
+    0%{background-position:45% 0%}
+    50%{background-position:bottom}
+    100%{background-position:45% 0%}
+}
+@keyframes sunrise {
+    0%{background-position:45% 0%}
+    50%{background-position:bottom}
+    100%{background-position:45% 0%}
+}
+/*========================================Stars======================================================*/
+/* @keyframes name | duration | timing-function | delay | iteration-count | direction | fill-mode | play-state */
+.fil3 { fill:#FFED00;
+	animation: turnstars 30s alternate-reverse ease-in-out infinite;
+  -moz-animation: turnstars 30s  alternate-reverse ease-in-out infinite;
+  -webkit-animation: turnstars 30s  alternate-reverse ease-in-out infinite;
+  } /*Stars*/
+
+@-webkit-keyframes turnstars {
+    0%{opacity: 0;}
+    50%{opacity: 1;}
+    100%{opacity: 0;}
+}
+@-moz-keyframes turnstars {
+    0%{opacity: 0;}
+    50%{opacity: 1;}
+    100%{opacity: 0;}
+}
+@keyframes turnstars {
+    0%{opacity: 0;}
+    50%{opacity: 1;}
+    100%{opacity: 0;}
+}
+/*=======================================end of Stars prop==================================================*/
+/*==========================================================================================================*/
+/*===========================================Moonshine======================================================*/
+.moonshine { fill:#FFED00;
+        filter: url(#shining);
+-webkit-filter: url(#shining);
+
+/*-webkit-filter: drop-shadow(120px 120px 20px rgba(255,255,255,0.5));
+filter: drop-shadow(120px 120px 20px rgba(255,255,255,0.5));*/
+
+  animation: turnstars 30s alternate-reverse ease-in-out infinite;
+  -moz-animation: turnstars 30s  alternate-reverse ease-in-out infinite;
+  -webkit-animation: turnstars 30s  alternate-reverse ease-in-out infinite;
+}
+@-webkit-keyframes turnstars {
+    0%{opacity: 0;}
+    50%{opacity: 1;}
+    100%{opacity: 0;}
+}
+@-moz-keyframes turnstars {
+    0%{opacity: 0;}
+    50%{opacity: 1;}
+    100%{opacity: 0;}
+}
+@keyframes turnstars {
+    0%{opacity: 0;}
+    50%{opacity: 1;}
+    100%{opacity: 0;}
+}
+/*======================================End of Moonshine===================================================*/
+/*=========================================================================================================*/
+/*=======================================Fairy uprise======================================================*/
+.fairy { fill:#FFED00; opacity: 0;
+
+        filter: url(#shining);
+-webkit-filter: url(#shining);
+
+	animation: Fairyuprise 30s alternate-reverse ease-in-out infinite;
+  -moz-animation: Fairyuprise 30s  alternate-reverse ease-in-out infinite;
+  -webkit-animation: Fairyuprise 30s  alternate-reverse ease-in-out infinite;
+}
+@-webkit-keyframes Fairyuprise {
+    40%{opacity: 0;}
+    50%{opacity: 0.5;}
+    60%{opacity: 0;}
+}
+@-moz-keyframes Fairyuprise {
+    40%{opacity: 0;}
+    50%{opacity: 0.5;}
+    60%{opacity: 0;}
+}
+@keyframes Fairyuprise {
+    40%{opacity: 0;}
+    50%{opacity: 0.5;}
+    60%{opacity: 0;}
+}
+/*=========================================end of Fary=====================================================*/
+/*=========================================================================================================*/
+
+.island { fill:black
+               z-index: 2;
+         height: 100vh;
+          width: 100vw;
+
+/*Values of animation-timing-function:  ease; ease-in; ease-out; ease-in-out; linear; cubic-bezier(0.1, 0.7, 1.0, 0.1); step-start; step-end; steps(4, end)*/
+
+  -webkit-animation-timing-function: ease-out;
+       -o-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+
+-webkit-animation-iteration-count: 1;
+   -moz-animation-iteration-count: 1;
+     -o-animation-iteration-count: 1;
+        animation-iteration-count: 1;
+ }
+
+/*Method of mount and palms grow animation*/
+@keyframes bounce {
+    0% {
+      -ms-transform: translateY(2vh);
+       -webkit-transform: translateY(2vh);
+       transform: translateY(2vh);
+        opacity: 0.25;
+      }
+
+    50% {-ms-transform: scale(1.0,0.95);
+       -webkit-transform: scale(1.0,0.95);
+       transform: scale(1.0,0.95);
+       opacity: 0.5;}
+
+   100% {-ms-transform: scale(1.0,1.05);
+       -webkit-transform: scale(1.0,1.05);
+       transform: scale(1.0,1.05);
+        opacity: 1;
+        }
+            } /*end of @keyframes bounce*/
+
+/*=====================================4 objts growing======================================================*/
+  .solidground { opacity: 0;
+  -webkit-animation-name: bounce;
+     -moz-animation-name: bounce;
+          animation-name: bounce;
+}
+
+  .smollmount1 { opacity: 0;
+     -webkit-animation-name: bounce;
+        -moz-animation-name: bounce;
+             animation-name: bounce;
+    -webkit-animation-delay: 0.6s;
+       -moz-animation-delay: 0.6s;
+         -o-animation-delay: 0.6s;
+            animation-delay: 0.6s;
+}
+  .smollmount2 {opacity: 0;
+  -webkit-animation-name: bounce;
+     -moz-animation-name: bounce;
+          animation-name: bounce;
+
+    -webkit-animation-delay: 0.8s;
+       -moz-animation-delay: 0.8s;
+         -o-animation-delay: 0.8s;
+            animation-delay: 0.8s;
+}
+  .mainmount {opacity: 0;
+  -webkit-animation-name: bounce;
+     -moz-animation-name: bounce;
+          animation-name: bounce;
+
+    -webkit-animation-delay: 1s;
+       -moz-animation-delay: 1s;
+         -o-animation-delay: 1s;
+            animation-delay: 1s;
+}
+.palm1 {opacity: 0;
+  -webkit-animation-name: bounce;
+     -moz-animation-name: bounce;
+          animation-name: bounce;
+
+    -webkit-animation-delay: 1.3s;
+       -moz-animation-delay: 1.3s;
+         -o-animation-delay: 1.3s;
+            animation-delay: 1.3s;
+}
+.palm2 {opacity: 0;
+  -webkit-animation-name: bounce;
+     -moz-animation-name: bounce;
+          animation-name: bounce;
+
+    -webkit-animation-delay: 1.7s;
+       -moz-animation-delay: 1.7s;
+         -o-animation-delay: 1.7s;
+            animation-delay: 1.7s;
+}
+.palm3 {opacity: 0;
+  -webkit-animation-name: bounce;
+     -moz-animation-name: bounce;
+          animation-name: bounce;
+
+    -webkit-animation-delay: 2.0s;
+       -moz-animation-delay: 2.0s;
+         -o-animation-delay: 2.0s;
+            animation-delay: 2.0s;
+}
+.palm4 {opacity: 0;
+  -webkit-animation-name: bounce;
+     -moz-animation-name: bounce;
+          animation-name: bounce;
+
+    -webkit-animation-delay: 2.3s;
+       -moz-animation-delay: 2.3s;
+         -o-animation-delay: 2.3s;
+            animation-delay: 2.3s;
+}
+.palm5 {opacity: 0;
+  -webkit-animation-name: bounce;
+     -moz-animation-name: bounce;
+          animation-name: bounce;
+
+    -webkit-animation-delay: 2.7s;
+       -moz-animation-delay: 2.7s;
+         -o-animation-delay: 2.7s;
+            animation-delay: 2.7s;
+}
+
+/*========================================================================================================*/
+.clouds {
+   margin: 0 auto;
+  display: block;
+  z-index: 0;
+
+  -webkit-animation: cloudsfly 30s alternate-reverse ease-in-out infinite;
+  	 -moz-animation: cloudsfly 30s alternate-reverse ease-in-out infinite;
+  	   	  animation: cloudsfly 30s alternate-reverse ease-in-out infinite;
+}
+@keyframes cloudsfly {
+	0%   { -ms-transform: translateX(90vw); /* IE 9 */
+	   	   -webkit-transform:translateX(90vw); /* Safari */
+	       transform: translateX(90vw);
+  		   opacity: 0;  }
+	20%  { opacity: 0.01;}
+	50%  { opacity: 0.2; }
+	80%  { opacity: 0.01;}
+  100% { -ms-transform: translateX(-40vw); /* IE 9 */
+		     -webkit-transform:translateX(-40vw); /* Safari */
+		     transform: translateX(-40vw);
+	       opacity: 0; }
+}
+/*================================Draw and move Sun==================================================*/
+#luminary {
+  width:100px;
+  height:100px;
+  max-width:120px; max-height:120px;
+  padding: 0;
+  position: fixed;
+  top: 120%; left: 50%;
+  border-radius: 50%;
+  background-color:#FFED00;
+  box-shadow: 0 0 75px #fff, 0 0 57px #ff7;
+
+  -webkit-animation: sun-motion1 30s infinite linear;
+     -moz-animation: sun-motion1 30s infinite linear;
+          animation: sun-motion1 30s infinite linear;
+
+    -webkit-animation-delay: 7.5s;
+       -moz-animation-delay: 7.5s;
+         -o-animation-delay: 7.5s;
+            animation-delay: 7.5s;}
+  @keyframes sun-motion1 {
+    from {  -webkit-transform: rotate(0deg)  translate(120vh);
+                -ms-transform: rotate(0deg)  translate(120vh);
+                    transform: rotate(0deg)  translate(120vh);
+         }
+
+
+      to { -webkit-transform: rotate(360deg) translate(120vh);
+               -ms-transform: rotate(360deg) translate(120vh);
+                   transform: rotate(360deg) translate(120vh);
+          }
+  }
+/*===================================================================================================*/
+.fnt0 { font-family: 'Pacifico', cursive; color: #555555; font-weight: mormal; margin: 1vh 1vw;  padding: 1 vh 5vw 1vh;}
+.icon {
+  width: 30px;
+  height: 30px;
+  fill: #777777;
+
+}
+
+.expand-link {   display: inline-block;}
+.expand-link:hover svg,
+.expand-link:active svg {  fill: red;  }
+/*===================================================================================================*/
+
+</style>
+</head><body>
+<div id="luminary"></div> <!-- Draw and animate Sun. It is colored DIV with border-radius 50%. -->
+
+<svg display="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="128" height="64" viewBox="0 0 128 64">
+<defs>
+    <g id="icon-play_f"> <!-- Simple facebook icon -->
+    <path transform="scale(0.025)" d="M256,7.098C118.535,7.098,7.098,118.535,7.098,256S118.535,504.902,256,504.902  c1.781,0,3.554-0.03,5.326-0.067v-164.1h-55.124v-68.905h55.124v-41.343c0-56.764,32.041-96.467,82.687-96.467  c24.255,0,41.343,0,55.124,0v68.905h-27.562c-27.535,0-41.343,13.781-41.343,41.343v27.562h68.905l-13.781,68.905h-55.124v152.908  C431.44,462.061,504.902,367.611,504.902,256C504.902,118.535,393.465,7.098,256,7.098z"/>
+    </g>
+     <g id="icon-play_M"><!-- Simple G-mail icon -->
+     <path transform="scale(0.4)" d="M30.143,4.542H1.857C0.834,4.542,0,5.375,0,6.399v19.201c0,1.024,0.834,1.858,1.857,1.858h28.285
+      c1.023,0,1.857-0.833,1.857-1.858V6.399C32,5.375,31.166,4.542,30.143,4.542z M29.522,23.992l-9.114-5.883l9.114-9.114V23.992z
+       M14.687,21.205c0.362,0.362,0.837,0.542,1.313,0.542c0.476,0,0.951-0.181,1.314-0.543l2.198-2.199l9.259,5.977H3.205l9.279-5.979
+      L14.687,21.205z M27.994,7.019L16,19.014L4.006,7.019H27.994z M11.588,18.105l-9.11,5.871V8.995L11.588,18.105z"></path>
+     </g>
+</defs>
+</svg>
+
+<!-- Link to my Facebook -->
+<div align="right"><a href="https://www.facebook.com/alexei.hydraulic?fref=nf" class="expand-link" title=" My Facecebook:" >
+<svg class="icon" viewBox="0 0 14 12">
+<use xlink:href="#icon-play_f"></use></svg></a>
+<!-- Email me -->
+<a href="mailto:852gin@gmail.com" class="expand-link" title="E-mail me:"><svg class="icon" viewBox="0 0 14 12"> <use xlink:href="#icon-play_M"></use></svg></a>
+<div class="fnt0" align="center"> <font size="5em">Demo of SVG animation </font><br><font size="3em">by Alexei Zababurin</font></div></div>
+
+<!-- =========================================================== MAIN SVG ================================================ -->
+<div>
+	<svg class="island" xmlns="http://www.w3.org/2000/svg"  xmlns:xlink="http://www.w3.org/1999/xlink"  width="90vw" height="90vh"  style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; clip-rule:evenodd" version="1.1" viewBox="0 0 1000 1000" >
+
+
+     <path class="island solidground" d="M0 636l0 0c33,-1 65,-3 99,-4 97,-3 195,-9 292,-6 10,0 19,0 30,0 1,0 2,0 3,0 162,0 323,3 476,7 -137,-23 -297,-35 -456,-35 -15,0 -29,0 -43,0 -5,0 -10,0 -15,0 -98,6 -196,3 -294,23 -6,0 -11,2 -18,3 -25,3 -50,8 -74,12l0 0z"/>
+
+	 <path class="island palm1" d="M792 509c2,2 2,7 1,12 1,-5 4,-10 10,-10 -4,1 -4,5 -9,11 4,-6 14,-10 20,3 -6,-7 -11,-4 -19,-2 8,-2 17,6 22,16 -7,-8 -15,-13 -22,-13 7,0 8,4 6,19 0,-11 -1,-6 -5,-14 0,0 0,0 0,0 0,0 0,0 0,1 0,1 -1,2 -2,2 -1,0 -1,0 -2,-1 -6,32 -9,47 -9,83l-6 -1c0,-35 4,-52 12,-84 -1,-1 -1,-1 -1,-2 -5,6 -9,4 -10,20 -1,-18 -1,-25 12,-24 -10,-1 -15,5 -21,13 6,-11 13,-22 19,-16 1,1 1,1 2,2 -1,-1 -1,-2 -2,-2 -5,-6 -10,-3 -14,-2 6,-4 13,-7 16,0 -2,-4 -2,-6 -4,-7 3,0 5,4 5,8 0,-4 2,-8 1,-12l0 0z"/>
+  <path class="island palm2" d="M91 508c-2,2 -2,7 -1,12 -1,-5 -4,-10 -10,-10 4,1 4,5 9,11 -4,-6 -14,-10 -21,3 7,-7 12,-4 20,-2 -8,-2 -17,6 -22,16 7,-8 14,-13 22,-13 -7,0 -8,4 -6,19 0,-11 0,-6 5,-14 0,0 0,0 0,0 0,0 0,0 0,1 0,1 1,2 2,2 1,0 1,0 1,-1 7,32 10,47 10,83l6 -1c0,-35 -4,-52 -12,-84 0,-1 1,-1 1,-2 5,6 9,4 10,20 0,-18 1,-25 -12,-24 10,-1 15,5 21,13 -6,-11 -13,-22 -19,-16 -1,0 -1,1 -2,2 1,-1 1,-2 2,-2 5,-6 10,-3 14,-2 -6,-4 -13,-7 -16,0 1,-4 2,-6 3,-8 -2,1 -4,5 -4,9 0,-4 -2,-8 -1,-12l0 0z"/>
+  <path class="island palm3" d="M734 555c-6,8 -13,11 -17,22 -4,11 2,19 10,24l11 10 -16 -4 -6 -7c-16,-28 9,-39 18,-45l0 0 0 0zm12 -11c-2,0 -4,0 -5,1 2,1 3,1 4,2 -2,0 -3,0 -5,1 1,1 2,1 2,2 -1,0 -2,-1 -3,-1 0,1 -2,2 -4,3 1,-3 2,-4 3,-7 5,-7 8,-6 11,-6 -1,1 -4,1 -6,3 2,1 3,1 3,2l0 0zm-5 37c2,-3 5,-6 4,-10 -1,-2 -1,-4 -4,-7 -2,-3 -5,-5 -7,-7 0,2 1,3 1,5 0,1 0,2 -1,4l2 -1 -1 7c1,-1 2,-3 3,-4 1,0 0,3 0,6 1,-1 2,-2 2,-2 1,1 -1,3 -1,6 1,0 2,-3 3,-2 0,1 -1,4 -1,5l0 0zm14 -23c0,-3 -5,-8 -15,-5 -2,0 -3,0 -5,1 1,1 3,1 4,1 1,0 0,0 1,1 0,-2 3,2 4,3 0,-1 0,-3 1,-3 0,0 2,1 3,3 0,-1 1,-2 1,-3 4,2 4,1 6,2l0 0zm-22 -7c0,-4 6,-16 -5,-19 1,2 1,4 3,6 -1,0 -2,0 -3,0 1,1 1,2 2,3 0,0 -1,0 -3,0 1,1 1,2 3,3 1,0 1,1 -1,1 1,1 2,1 3,2 0,2 0,3 1,4l0 0zm-1 3c0,0 0,-1 0,-2 -3,-6 -10,-14 -20,-8 3,1 6,2 8,3l-2 1c2,0 5,0 6,1 -2,1 -3,2 -5,2 3,1 5,1 7,0 0,1 0,1 -1,2 1,0 2,-1 3,0 1,1 3,1 4,1l0 0 0 0zm-1 2c-1,0 -2,0 -3,-1 -17,-5 -19,1 -22,7 4,-2 6,-3 9,-4l-1 4c2,-2 4,-4 5,-4 0,0 1,0 1,0 -1,2 -2,4 -2,5 2,-1 4,-3 5,-4 0,-1 1,0 1,1 0,0 1,-1 1,-2 2,0 4,0 6,-2l0 0z"/>
+  <path class="island palm4" d="M815 565l0 0 0 0 0 0 0 0zm-2 1l0 0 0 0 0 0 0 0zm-2 1l0 0 0 0 0 0 0 0zm9 -2c-3,6 -6,12 -9,20 -3,8 -3,26 -4,33l-8 -1 3 -6c5,-31 12,-39 18,-46l0 0zm12 -15c-1,0 -4,1 -4,2 2,0 3,0 4,1 -2,0 -3,0 -5,1 1,1 2,2 2,3 0,-1 -1,-1 -3,-1 0,1 -2,2 -3,3 0,-2 1,-4 2,-7 3,-8 6,-7 10,-8 -1,2 -4,3 -6,5 2,0 3,0 3,1l0 0zm2 37c1,-3 3,-7 1,-11 0,-1 -1,-3 -4,-5 -3,-3 -6,-4 -9,-6 1,2 2,3 2,5 1,1 0,2 0,3l1 -1 1 7c1,-1 1,-2 2,-4 1,-1 1,3 1,6 1,-1 2,-2 2,-3 1,1 0,4 0,6 1,0 2,-2 2,-2 1,1 0,4 1,5l0 0zm10 -25c-1,-3 -6,-7 -16,-2 -2,0 -3,1 -5,2 1,0 3,0 4,0 1,0 0,0 1,1 0,-2 3,1 5,2 0,-1 0,-3 0,-3 1,0 2,1 4,2 0,-1 0,-2 0,-3 4,2 5,1 7,1l0 0zm-24 -3c0,-3 4,-16 -7,-17 1,1 1,4 3,5 -1,0 -1,0 -2,1 0,0 1,1 2,2 0,0 -1,1 -3,0 1,1 2,2 3,3 1,0 1,1 0,1 1,1 2,1 3,2 0,1 1,2 1,3l0 0zm0 4c0,-1 0,-2 -1,-3 -4,-5 -11,-12 -21,-4 3,1 7,1 9,1l-2 2c2,0 5,-1 6,0 -1,1 -3,2 -4,3 3,0 5,0 7,-1 0,0 -1,1 -1,2 1,-1 2,-2 3,-1 1,1 3,0 4,1l0 0zm-1 1c-1,1 -2,1 -3,0 -18,-1 -19,5 -20,11 3,-2 5,-4 7,-5l1 3c1,-2 3,-4 4,-4 0,-1 0,0 0,0 0,2 0,3 0,5 1,-2 3,-4 4,-5 0,-1 1,0 1,1 0,-1 1,-2 1,-3 2,1 4,-1 5,-3l0 0z"/>
+  <path class="island palm5" d="M60 569l0 0 0 -1 0 0 0 1zm2 1l0 0 0 0 0 0 0 0zm2 1l0 0 0 0 0 0 0 0zm-9 -2c3,6 6,12 9,20 3,7 3,26 4,33l8 -1 -3 -6c-5,-32 -11,-39 -18,-46l0 0zm-12 -16c1,1 4,2 4,3 -1,0 -3,0 -4,0 2,1 3,1 5,2 -1,1 -2,2 -2,2 1,0 1,0 3,0 0,1 2,2 3,3 0,-3 -1,-4 -2,-7 -3,-8 -6,-7 -10,-8 2,2 5,2 6,5 -2,0 -3,0 -3,0l0 0zm-2 38c-1,-4 -3,-7 -1,-11 1,-2 1,-3 5,-5 2,-3 5,-5 8,-6 -1,1 -2,3 -2,4 -1,2 0,3 0,4l-1 -1 0 7c-2,-1 -2,-3 -3,-5 -1,0 -1,4 -1,6 -1,0 -1,-1 -2,-2 -1,1 0,4 0,6 -1,0 -2,-3 -2,-2 -1,0 0,4 -1,5l0 0zm-10 -25c1,-3 6,-7 16,-3 2,1 3,2 5,3 -1,0 -3,0 -4,0 -1,-1 0,0 -1,1 0,-2 -3,1 -5,1 0,0 0,-2 0,-2 -1,0 -2,1 -4,2 0,-1 0,-2 0,-3 -4,1 -4,0 -7,1l0 0zm24 -3c0,-3 -4,-17 7,-17 -1,1 -1,3 -3,5 1,0 2,0 3,0 -1,1 -2,2 -3,3 0,0 1,0 3,0 -1,1 -1,2 -3,3 -1,0 -1,0 1,1 -2,1 -3,1 -4,2 0,1 -1,2 -1,3l0 0zm0 3c0,0 0,-1 1,-2 4,-5 12,-12 21,-4 -3,0 -7,1 -9,1l2 2c-2,0 -5,-1 -6,0 1,1 3,2 4,3 -3,0 -5,0 -7,-1 0,0 1,1 1,1 -1,0 -2,-1 -3,-1 -1,2 -3,1 -4,1l0 0zm1 2c1,0 2,1 3,0 18,-1 19,5 20,11 -3,-3 -5,-5 -7,-6l0 4c-2,-2 -4,-4 -4,-5 -1,0 -1,0 -1,1 0,2 0,3 1,5 -2,-2 -4,-4 -5,-6 0,0 0,1 -1,2 0,-1 0,-2 -1,-3 -2,0 -4,-1 -5,-3l0 0z"/>
+
+  <path class="island smollmount1" d="M392 489c-8,6 -47,37 -53,43 -36,31 -37,29 -71,61 36,-25 46,-26 81,-52 6,-4 39,-24 47,-29 7,11 16,21 24,30 7,-4 10,-5 14,-7 15,18 35,42 51,54 -5,-6 -52,-66 -52,-66 -5,4 -6,5 -11,9 -11,-15 -20,-28 -30,-43l0 0z"/>
+  <path class="island smollmount2" d="M712 605c-21,-12 -85,-36 -106,-59 -10,10 -20,21 -31,30 -3,1 -3,1 -5,0 -2,-1 -3,-1 -6,-4 0,0 -5,5 -7,7 -10,10 -12,8 -20,19 24,-14 48,-13 71,-34 23,14 67,26 90,37l14 4z"/>
+  <!-- main mount -->
+    <path class="island mainmount" d="M270 487l25 17c29,-35 92,-119 112,-148 15,30 26,51 38,86 12,-13 19,-16 35,-31 33,34 67,64 98,98 14,-6 19,-11 33,-18 25,33 52,75 79,99 -28,-40 -55,-80 -79,-125 -12,8 -23,15 -35,23 -32,-43 -63,-75 -96,-118 -12,11 -22,22 -32,32 -12,-31 -23,-55 -39,-85 -39,51 -76,102 -115,153 -11,-8 -20,-16 -31,-23 -35,46 -89,109 -119,157 1,1 1,1 1,1 -1,0 92,-85 125,-118z"/>
+  <path class="clouds"  d="M230 375c-4,0 -47,0 -51,0 -30,-13 -13,-43 15,-37 7,-18 36,-19 38,8 30,-4 35,30 -2,29z"/>
+  <path class="clouds"  d="M183 363c-3,0 -48,0 -50,-1 -31,-12 -12,-41 14,-36 7,-17 36,-20 39,9 30,-5 34,30 -3,28l0 0z"/>
+
+ <!-- Put stars -->
+  <ellipse class="fil3" cx="395" cy="192" rx="3" ry="3"/>
+  <ellipse class="fil3" cx="204" cy="296" rx="2" ry="2"/>
+  <ellipse class="fil3" cx="173" cy="273" rx="2" ry="2"/>
+  <ellipse class="fil3" cx="197" cy="245" rx="2" ry="2"/>
+  <ellipse class="fil3" cx="189" cy="217" rx="2" ry="2"/>
+  <ellipse class="fil3" cx="212" cy="189" rx="2" ry="2"/>
+  <ellipse class="fil3" cx="650" cy="171" rx="2" ry="2"/>
+  <ellipse class="fil3" cx="694" cy="202" rx="2" ry="2"/>
+  <ellipse class="fil3" cx="624" cy="97" rx="2" ry="2"/>
+  <ellipse class="fil3" cx="557" cy="50" rx="2" ry="2"/>
+  <ellipse class="fil3" cx="590" cy="21" rx="2" ry="2"/>
+  <ellipse class="fil3" cx="638" cy="64" rx="2" ry="2"/>
+  <ellipse class="fil3" cx="641" cy="138" rx="2" ry="2"/>
+
+								  <filter id="shining">
+								  <feGaussianBlur in="SourceAlpha" stdDeviation="8"/>
+								  <feOffset dx="0" dy="0" result="offsetblur"/>
+								  <feFlood flood-color="rgba(255,255,255,0.6)"/>
+								  <feComposite in2="offsetblur" operator="in"/>
+								  <feMerge>
+								  <feMergeNode/>
+								  <feMergeNode in="SourceGraphic"/>
+								  </feMerge>
+								  </filter>
+  <g id="fairyMoon" >
+  <path  class="moonshine" d="M305 145c-3,2 -7,4 -7,5 -3,2 -5,3 -13,5 -11,0 -20,-6 -25,-15 -8,-13 -6,-37 -3,-43 3,-11 20,-17 29,-16 2,1 2,1 5,2 -1,-6 -24,-8 -42,4 -37,29 -6,78 32,73 10,-1 13,-3 20,-8 1,0 4,-6 4,-7z"/>
+ </g>
+</svg> <!-- close main SVG -->
+
+</div><!--  close main div -->
+
+</body></html>
