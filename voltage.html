@@ -16,7 +16,7 @@
  ==========================================================-->
   <style>
 html, body {
-   /*background-size: 100% 100%;*/
+   background-size: 100% 100%;
 /*===============RadialGradient background====================*/
   background-image: -webkit-radial-gradient(#fff 25%, #aaa 75%);
   background-image: radial-gradient(#fff 25%, #aaa 75%);
@@ -29,15 +29,26 @@ html, body {
           width:100%;
           height: 100%;
           z-index: 2;
+}
+.hid {
+    animation: hidding 2s linear forwards;
+  -moz-animation: hidding 2s linear forwards;
+  -webkit-animation: hidding 2s linear forwards;
+    -webkit-animation-delay: 4s;
+       -moz-animation-delay: 4s;
+         -o-animation-delay: 4s;
+            animation-delay: 4s;
          }
-
+@keyframes hidding {
+  0% {opacity: 1;  }
+  100% {opacity: 0.0  }
+}
 
  .letters { opacity: 0.25;  }
 
    .top_ {z-index: 1;
-          opacity: 0.5;
+          opacity: 0.25;
           position: fixed;
-          margin: 50% 10% 10% 40%;
           background-color: #ffffff;
           border: 1px solid gray;
           border-radius: 10px;
@@ -55,20 +66,27 @@ html, body {
         padding: 1 vh 5vw 1vh;
     }
 
-  .str1 {stroke:black;stroke-width:9;stroke-linecap:round;
+  .str1 {stroke:black;
+    stroke-width:9;
+    stroke-linecap:round;
   stroke-dasharray: 454;
-  stroke-dashoffset: 454;
-  animation: dash 2s linear alternate forwards;
-  -moz-animation: dash 2s linear alternate forwards;
-  -webkit-animation: dash 2s linear alternate forwards;
+  stroke-dashoffset: 0;
+  animation: dash 2s linear reverse forwards;
+  -moz-animation: dash 2s linear reverse forwards;
+  -webkit-animation: dash 2s linear reverse forwards;
   }
 
 @keyframes dash {
-  0% {opacity: 0.2;
-    stroke-dashoffset: 454;
-  }
-  100% {opacity: 1;
+  0% {opacity: 1;
     stroke-dashoffset: 0;
+/*  }
+  50% {opacity: 0.2;
+    stroke-dashoffset: 454;*/
+
+  }
+  100% {opacity: 0.2;
+    stroke-dashoffset: 454;
+
   }
 }
 
@@ -123,6 +141,7 @@ html, body {
      -moz-animation-name: bounce;
           animation-name: bounce;
 }
+
 .str0 {stroke:#B2B3B3;stroke-width:0.288}
     .str2 {stroke:#FFED00;stroke-width:0.288}
 
@@ -136,8 +155,7 @@ html, body {
 </head>
 
 <body>
-
-<div class="top_" title="852gin@gmail.com"><div class="wrt">SVG animation for VOLTAGE<br><font size="3em" > by Alexei Zababurin</font></div></div>
+<div class="top_" ><div class="wrt">SVG animation for VOLTAGE<br><font size="3em"> by Alexei Zababurin</font></div></div>
 <div class="island">
 <svg  xmlns="http://www.w3.org/2000/svg"  xmlns:xlink="http://www.w3.org/1999/xlink"  version="1.1"  width="1200" height="900"
 viewBox="0 -100 800 600" >
@@ -175,20 +193,16 @@ viewBox="0 -100 800 600" >
      <path class="fil0" d="M167 147c-22,-1 -40,-18 -39,-40 0,-21 17,-39 39,-39 22,0 39,18 39,40 0,21 -17,39 -39,39zm0 -61l0 0c-12,1 -22,10 -21,22 0,11 10,21 21,21 12,0 22,-10 21,-22 0,-12 -9,-21 -21,-21z"/>
      </path>
 </g>
+<g class="hid">
   <path id="animpath1" class="fil2 str1" d="M259 169c-1,9 -2,18 -2,27 0,80 65,145 145,145 69,0 129,-49 142,-117"/>
   <path id="animpath2" class="fil2 str1" d="M544 224c2,-9 3,-18 3,-28 0,-80 -65,-145 -145,-145 -70,0 -129,49 -143,117"/>
 
 <!-- Z -->
  <path class="island Z" d="M402 276c-1,0 -2,0 -3,-1l-142 -103c-2,-2 -3,-5 -1,-7 2,-2 5,-3 7,-1l134 98 0 -141c0,-2 1,-3 3,-4 2,-1 3,-1 5,0l139 100c2,2 2,5 1,7 -2,2 -5,3 -7,1l-131 -94 0 140c0,2 -1,4 -3,5 0,0 -1,0 -2,0z"/>
-
+</g>
 </svg>
-<div/>
+</div>
 
-<script>
-     var windowHeight = document.documentElement.clientHeight;
-     var element = document.getElementById("animpath2");
-     var pathLength = element.getTotalLength();
-         console.log("pathLength2="+pathLength);
-    </script>
+
 </body>
 </html>
