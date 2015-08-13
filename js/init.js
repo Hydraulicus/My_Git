@@ -1,10 +1,12 @@
+var zoom = detectZoom.zoom(); //Current zoom level
+var device = detectZoom.device();//considering  follow Device Pixel Aspect Ratio
 var windowHeight = document.documentElement.clientHeight;
 var shift = windowHeight*0.25; //Set border where elements should appears
 var inequality = 0; //difference
 var element = document.getElementById("animpath");
 var pathLength = element.getTotalLength();
-var k=0.48*pathLength/windowHeight;
-var crutch4scrolling = 1; //need for main curvs correctly draw according  scroll  in FF
+var k=0.42*pathLength/windowHeight; //considering bending of curve
+var crutch4scrolling = 1; //was need for main curve correctly draw according  scroll . Precition var device insted it
 
 
 (function($){
@@ -23,13 +25,13 @@ jQuery( document ).ready( function( $ ) {
 });
 
 function detectmob() {
- if( navigator.userAgent.match(/Android/i)
- || navigator.userAgent.match(/webOS/i)
- || navigator.userAgent.match(/iPhone/i)
- || navigator.userAgent.match(/iPad/i)
- || navigator.userAgent.match(/iPod/i)
- || navigator.userAgent.match(/BlackBerry/i)
- || navigator.userAgent.match(/Windows Phone/i)
+ if ( navigator.userAgent.match(/Android/i)
+   || navigator.userAgent.match(/webOS/i)
+   || navigator.userAgent.match(/iPhone/i)
+   || navigator.userAgent.match(/iPad/i)
+   || navigator.userAgent.match(/iPod/i)
+   || navigator.userAgent.match(/BlackBerry/i)
+   || navigator.userAgent.match(/Windows Phone/i)
  ){
     return true;
   }
@@ -52,7 +54,7 @@ function detectmob() {
     // Detect browser and for Chrome and Safari scroll to do more smooth
     if (detectmob()) {console.log('Mobile detected!');}
      else
-       if (is_firefox) {console.log('Firefox detected!'); crutch4scrolling=0.7; }
+       if (is_firefox) {console.log('Firefox detected!');} // crutch4scrolling=1;
           else
             if (is_explorer) {console.log('MSIE detected!');}
               else {
@@ -61,7 +63,7 @@ function detectmob() {
                            // for smooth scroll - need jquery.mousewheel.min.js
                             $(document).bind( 'mousewheel', function (e) {
                             var nt = $(document.body).scrollTop()-(e.originalEvent.wheelDeltaY)*2.5 ;
-                            e.preventDefault();
+                            // e.preventDefault();
                                 e.stopPropagation();
                             $(document.body).stop().animate( {
                             scrollTop : nt
@@ -70,10 +72,10 @@ function detectmob() {
                        }
 })(jQuery); // end of jQuery name space
 
-document.addEventListener("touchmove", function(e) { e.preventDefault() });
+// document.addEventListener("touchmove", function(e) { e.preventDefault() });
 
 window.onscroll = showVisible;
-window.onload = function () {  console.log('start'); window. scrollTo(0, 0);}
+window.onload = function () {console.log('start'); window. scrollTo(0, 0); console.log("Current zoom level: "+zoom+"    Device Pixel Aspect Ratio:"+device);}
 
 var s = Snap("#curves");
 var flag0=true;
@@ -111,7 +113,10 @@ groupfoto = s.group(path5, path6, path7, path8, path9, path10, path11, path12, p
 
 function showVisible() {
         scrolled = window.pageYOffset || document.documentElement.scrollTop;
-        inequality = pathLength-scrolled*k*crutch4scrolling; console.log('crutch4scrolling='+crutch4scrolling);
+
+        device = detectZoom.device(); //redetect  Pixel Aspect Ratio, if user zoomed?
+        var thismoment=k*crutch4scrolling/device;
+        inequality = pathLength-scrolled*thismoment; console.log('thismoment K='+thismoment);
 
         element.style.strokeDashoffset = inequality; //- It is work!
         console.log("strokeDashoffset="+element.style.strokeDashoffset);
