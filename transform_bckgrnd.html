@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
+        <title>SVG animation for Dr. Pam Narang</title>
+<!--=======================================================
+ ================= Alexei Zababurin =======================
+ ================= 852gin@gmail.com =======================
+ ========= SVG animation for Dr. Pam Narang ===============
+ ======================= Ukraine ==========================
+ ======================== 2015 ============================
+ ==========================================================-->
+        <style>
+
+        html, body { margin:0; padding:0; overflow:auto
+                   }
+               svg {
+                    display:block; position:absolute;  position:fixed;
+                    top:0; left:0; width:100%; height:100%; background:#fff;
+                    }
+
+
+.topstring {z-index: 20;
+            opacity: 0.7;
+            position:fixed;
+            height:3vh;
+            /*width:20vw;*/
+            border:gray solid 2px;
+            background: #99cccc;
+            border-radius: 10px;
+            padding:1%;
+            top:5vh;
+            right: 5vw;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1em;
+            font-weight: 400;
+            text-align: center;
+    -webkit-box-shadow:0 10px 40px rgba(0, 0, 0, 0.4), 0 0 50px rgba(0, 0, 0, 0.3) inset;
+       -moz-box-shadow:0 10px 40px rgba(0, 0, 0, 0.4), 0 0 50px rgba(0, 0, 0, 0.3) inset;
+            box-shadow:0 10px 40px rgba(0, 0, 0, 0.4), 0 0 50px rgba(0, 0, 0, 0.3) inset;
+
+}
+   .wrt {z-index: 10;
+            opacity: 0.7;
+
+            padding:0vh 35vw 5vh 10vh;
+            top:20vh;
+            left: 30vw;
+            font-family: 'Roboto', sans-serif;
+            font-size: 4em;
+            font-weight: 700;
+            text-align: center;
+            color: black;
+        }
+
+   .txt {opacity: 0.7;
+
+            padding:5vh 5vw 5vh 40vh;
+            top:40vh;
+            left: 40vw;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1em;
+            font-weight: 400;
+            text-align: left;
+        }
+
+        </style>
+
+        <script src="javascripts/snap.svg-min.js"></script>
+
+
+    </head>
+    <body>
+        <svg version="1.1" id="curves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 900 900" enable-background="new 0 0 900 900" xml:space="preserve">
+        </svg>
+        <div class="topstring" >for animate - scroll page</div>
+        <div class="wrt"><br><br><br></div>
+        <div class="wrt" id="about">Dr. Pam Narang</div>
+        <div class="txt" id="animate1">         Dr. Pam Narang is a Registered Psychologist with the College of Psychologists of British Columbia.  She is currently a psychologist at B.C. Children’s Hospital’s Child Psychiatry Inpatient Program and a Clinical Instructor at The University of British Columbia’s Department of Psychiatry.
+Dr. Narang has over 10 years of experience providing assessment, treatment and consultation services for children, adolescents, and families.
+Throughout her work in various healthcare settings, Dr. Narang has acquired thorough assessment and treatment experience with children and adolescents with complex mental health, learning, developmental, and neurological needs.
+</div>
+
+<div class="wrt"><br><br><br><br><br><br><br><br><br></div>
+
+<div class="wrt" id="SERVICES">SERVICES</div>
+ <div class="txt">  Assessment
+Psychodiagnostic assessment
+Psychoeducational assessment
+Social-emotional assessment
+Treatment
+Dr. Narang uses evidence-based practices to support clients through challenges. She works primarily using a Cognitive Behavioural Therapy and Psychodynamic lense, and will tailor treatment using the most appropriate methods to match the client’s needs.
+Consultation
+Dr. Narang provides consultation services to parents, care providers, agencies and schools involved in the child or adolescent’s care.
+Concerns
+Some common concerns that clients request support for include:
+Anxiety & mood
+Learning challenges
+Parenting and family challenges
+Relationship challenges
+Stress, coping, transitions
+Healthy living (sleep, eating, activity)</div>
+<div class="wrt"><br><br><br><br><br><br><br><br><br></div>
+
+<div class="wrt" id="CONTACT">CONTACT</div>
+ <div class="txt">
+Address: Suite 370 - 2025 West 42nd Avenue, Kerrisdale Professional Centre, Vancouver, BC V6M 2B5 (with Map)
+Complementary parking is available on site
+Email contact form
+Phone: TBD</div>
+<div class="wrt"><br><br><br><br><br><br></div>
+
+
+
+
+
+<script>
+
+          var s;
+          var animtime = 1800;
+          var animcolr = 0.5*animtime;
+          var path1, path2, path3, path4;
+          var sgroup;
+          var myMatrix, initMatrix, myInvertedMatrix;
+          var filterChild;
+
+
+
+ window.onload = function () {
+  console.log('start');
+
+  s = Snap.select("#curves"),
+
+
+   path1 = s.path("M880 521c5,-30 6,-63 4,-97 -97,-229 -870,-30 -824,-168 0,0 0,0 0,0 -13,30 -21,56 -26,80 0,0 0,0 0,0 -82,359 592,12 751,219 54,71 2,160 -26,198 46,-58 79,-110 101,-154 9,-25 16,-51 20,-78z").attr({ stroke: '#123456', 'strokeWidth': 0, fill: '#9dd3dc',  opacity: '0.3'});
+  path2 = s.path("M884 424c2,34 1,67 -4,97 4,-23 6,-47 6,-71 0,-241 -195,-436 -436,-436 -118,0 -224,47 -303,122 584,-134 726,93 737,288z").attr({ stroke: '#123456', 'strokeWidth': 0, fill: '#92C3D8',  opacity: '0.3'});
+ path3 = s.path("M884 424c-11,-195 -153,-422 -737,-288 -35,35 -65,75 -87,120 -46,138 727,-61 824,168z").attr({ stroke: '#123456', 'strokeWidth': 0, fill: '#F4F3EB',  opacity: '0.3'});
+ path4 = s.path("M450 886c113,0 217,-43 294,-114 1,-2 63,-228 -193,-115 -329,145 -649,-69 -492,-401 -29,59 -45,124 -45,194 0,241 195,436 436,436zz").attr({ stroke: '#123456', 'strokeWidth': 0, fill: '#F4F3EB', opacity: '0.3'});
+
+  sgroup = s.group(path1, path2, path3, path4);
+
+
+
+
+ var initMatrix = new Snap.Matrix();
+initMatrix.scale(1.5,1.5);
+initMatrix.translate(200,-400);
+sgroup.animate({ transform: initMatrix },500, mina.easeinout);
+
+for (var ii = 4 - 1; ii >= 0; ii--) {// console.log(' '+ii);
+  sgroup[ii].animate({ opacity: '1'} ,500, mina.easeinout); };
+
+}
+
+ function Changebacground1 (v) {
+window.setTimeout( function () {
+  myMatrix = new Snap.Matrix();
+
+  switch (v) {
+         case '0': {
+                                 path1.animate({d: "M880 521c5,-30 6,-63 4,-97 -97,-229 -870,-30 -824,-168 0,0 0,0 0,0 -13,30 -21,56 -26,80 0,0 0,0 0,0 -82,359 592,12 751,219 54,71 2,160 -26,198 46,-58 79,-110 101,-154 9,-25 16,-51 20,-78z" }, animtime, mina.easeinout
+                                 ,  function() {this.animate({ fill: '#9dd3dc' }, animcolr, mina.easeinout)}
+
+                                  );
+                                 path2.animate({d: "M884 424c2,34 1,67 -4,97 4,-23 6,-47 6,-71 0,-241 -195,-436 -436,-436 -118,0 -224,47 -303,122 584,-134 726,93 737,288z" }, animtime, mina.easeinout
+                                  ,  function() {this.animate({ fill: '#92C3D8' }, animcolr, mina.easeinout)}
+                                  );
+                                 path3.animate({ d: "M884 424c-11,-195 -153,-422 -737,-288 -35,35 -65,75 -87,120 -46,138 727,-61 824,168z" }, animtime, mina.easeinout
+                                  ,  function() {this.animate({ fill: '#F4F3EB' }, animcolr, mina.easeinout)}
+                                  );
+                                 path4.animate({ d: "M450 886c113,0 217,-43 294,-114 1,-2 63,-228 -193,-115 -329,145 -649,-69 -492,-401 -29,59 -45,124 -45,194 0,241 195,436 436,436zz" }, animtime, mina.easeinout
+                                  ,  function() {this.animate({ fill: '#F4F3EB' }, animcolr, mina.easeinout)}
+                                  );
+                                  bckgdnmbr = 0;
+                                  console.log('bckgdnmbr='+bckgdnmbr+' stop animation');
+
+                                  myMatrix.scale(1.5,1.5);
+                                  myMatrix.translate(200,-400);
+                                   myInvertedMatrix = myMatrix.invert();
+
+                      }
+                                  break;
+         case '1': {
+
+                                path2.animate({d: "M886 450c0,-55 -10,-109 -29,-157 -29,25 -64,50 -107,73 -52,27 -116,51 -193,68 -117,26 -273,-28 -344,41 23,9 49,16 80,22 343,63 344,264 269,375 187,-50 324,-220 324,-422z" }, animtime, mina.easeinout
+                                  ,  function() {this.animate({ fill: '#92c3D8' }, animcolr, mina.easeinout)}
+                                  );
+                                path1.animate({d: "M450 14c-148,0 -278,74 -357,186 -1,4 -27,240 241,110 314,-152 416,56 416,56 43,-23 78,-48 107,-73 -63,-163 -222,-279 -407,-279z" }, animtime, mina.easeinout
+                                 ,  function() {this.animate({ fill: '#F4F3EB' }, animcolr, mina.easeinout)}
+                                  );
+                                path3.animate({ d: "M293 497c-31,-6 -57,-13 -80,-22 -213,-79 -123,-268 -120,-274 -50,70 -79,156 -79,249 0,241 195,436 436,436 39,0 77,-5 112,-14 75,-111 74,-312 -269,-375z" }, animtime, mina.easeinout
+                                 ,  function() {this.animate({ fill: '#9DD3DC' }, animcolr, mina.easeinout)}
+                                  );
+                                path4.animate({ d: "M864 588c-2,-2 -3,-5 -4,-8 1,3 2,6 3,9 0,0 1,0 1,-1" }, animtime, mina.easeinout
+                                  ,  function() {this.animate({ fill: '#92c3D8' }, animcolr, mina.easeinout)}
+                                  );
+
+                                  bckgdnmbr = 1;   console.log('bckgdnmbr='+bckgdnmbr+' stop animation');
+
+                                  myMatrix.scale(1.8,1.8);
+                                  myMatrix.translate(-150,0);
+                                   myInvertedMatrix = myMatrix.invert();
+                    }
+                                  break;
+         case '2': {
+                                path1.animate({d: "M586 36c-17,16 -31,34 -42,51 -46,86 8,161 62,208 138,74 215,197 253,284l5 9c14,-43 22,-89 22,-138 0,-193 -126,-357 -300,-414z" }, animtime, mina.easeinout
+                                  ,  function() {this.animate({ fill: '#F4F3EB' }, animcolr, mina.easeinout)}
+                                  );
+                                path2.animate({ d: "M606 295c-51,-27 -110,-47 -179,-57 -144,-19 -273,-1 -378,42 -22,52 -35,110 -35,170 0,81 22,157 61,222 95,-39 198,-98 285,-159 261,-183 401,-89 471,16 8,13 16,25 22,37 0,1 0,1 0,1 2,3 4,7 5,10 1,1 1,2 2,3 0,0 -1,0 -1,-1 -38,-87 -115,-210 -253,-284z" }, animtime, mina.easeinout
+                                  ,  function() {this.animate({ fill: '#9DD3DC' }, animcolr, mina.easeinout)}
+                                  );
+                                 path3.animate({d: "M427 238c69,10 128,30 179,57 -54,-47 -108,-122 -62,-208 11,-17 25,-35 42,-51 -43,-14 -88,-22 -136,-22 -180,0 -335,110 -401,266 105,-43 234,-61 378,-42z" }, animtime, mina.easeinout
+                                ,  function() {this.animate({ fill: '#92c3D8' }, animcolr, mina.easeinout)}
+                                 );
+                                 path4.animate({ d: "M473 707c-209,120 -316,64 -365,14 80,101 204,165 342,165 180,0 333,-108 400,-263 -75,-40 -226,-2 -377,84z" }, animtime, mina.easeinout
+                                  ,  function() {this.animate({ fill: '#92c3D8' }, animcolr, mina.easeinout)}
+                                 );
+                                  bckgdnmbr = 2;   console.log('bckgdnmbr='+bckgdnmbr+' stop animation');
+
+
+                                  var shiftx; shiftx=document.documentElement.clientWidth/(2*1.4);
+                                  myMatrix.translate(shiftx, -100);
+                                  // console.log('document.documentElement.clientWidth='+document.documentElement.clientWidth+' ');
+                                  console.log('shiftx='+shiftx+' ');
+                                  myMatrix.scale(1.4,1.4);
+                                   myInvertedMatrix = myMatrix.invert();
+
+
+
+                    }
+                                  break;
+             }
+
+                                },500);
+
+
+sgroup.animate({ opacity: '0.3' },animtime, mina.linear,
+    function() { sgroup.animate({ opacity: '1' }, animtime*2.5, mina.linear) } );
+
+
+  sgroup.animate({ transform: myInvertedMatrix },animtime, mina.linear,
+     function() { sgroup.animate({ transform: myMatrix }, animtime, mina.linear) } );
+}
+
+ /*** Check element Is it visible    */
+    function isVisible(elem) {
+      var coords = elem.getBoundingClientRect();
+      var topVisible = coords.top > 0 && coords.top < shift;
+      var bottomVisible = coords.bottom < shift && coords.bottom > 0;
+      return topVisible || bottomVisible;
+    }
+
+        function showVisibleAnimation() {
+        if (isVisible(trigger0) && (bckgdnmbr != 0)) { Changebacground1('0'); console.log('bckgdnmbr='+bckgdnmbr+' start animation'); return;}
+        if (isVisible(trigger1) && (bckgdnmbr != 1)) { Changebacground1('1'); console.log('bckgdnmbr='+bckgdnmbr+' start animation'); return;}
+        if (isVisible(trigger2) && (bckgdnmbr != 2)) { Changebacground1('2'); console.log('bckgdnmbr='+bckgdnmbr+' start animation');  return;}
+//      scrolled = window.pageYOffset || document.documentElement.scrollTop;
+    }
+
+
+     var bckgdnmbr = 0;
+     var trigger0 = document.getElementById("about");
+     var trigger1 = document.getElementById("SERVICES");
+     var trigger2 = document.getElementById("CONTACT");
+
+     var windowHeight = document.documentElement.clientHeight;
+     var shift = windowHeight*0.9; //Set border where elements should appears
+
+     window.onscroll = showVisibleAnimation;
+    </script>
+
+    </body>
+</html>
+
