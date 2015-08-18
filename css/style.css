@@ -53,7 +53,8 @@ footer.page-footer {
 
 /******************************************************************/
 body {
-    overflow:auto;
+    overflow-y:auto;
+    overflow-x:hidden;
     background-image: url("../backgrnd.svg");
     background-attachment: fixed;
     background-position: 50% 0px;

@@ -73,7 +73,6 @@ function detectmob() {
                        }
 })(jQuery); // end of jQuery name space
 
-window.onscroll = showVisible;
 
 var s = Snap("#curves");
 var flag0=true;
@@ -111,8 +110,8 @@ groupfoto = s.group(path5, path6, path7, path8, path9, path10, path11, path12, p
 // Zababurin
   var svgString4 = '<path class="fil1 str6" d="M404 2760c-1,-2 -3,-6 -2,-8 1,-2 2,-2 5,2 2,2 0,5 -1,4 -2,-1 -5,-5 -5,-7 -1,-4 0,-9 3,-9 1,0 2,0 4,1 2,1 4,3 6,6 2,3 4,7 6,13 1,-2 2,-3 3,-3 1,-1 3,0 4,1 3,1 5,3 7,5 4,4 9,9 10,15 2,12 -7,6 -10,3 -4,-6 -6,-10 -7,-20 0,-4 0,-11 0,-12 -1,-1 -2,-2 -2,-1 -2,2 -1,3 0,4 1,2 7,7 10,6 8,-3 -7,-18 -9,-19 -3,-3 -5,-2 -4,3 0,3 1,5 3,7 1,2 2,3 3,4 1,1 2,2 3,2 1,1 3,2 4,2 1,-1 2,-1 2,-2 0,-1 0,-2 -1,-4 -1,-2 -9,-13 -11,-15 1,1 9,11 10,12 0,1 3,3 3,0 1,-3 -1,-5 -5,-11 -3,-6 -13,-19 -15,-23 -3,-3 -5,-5 -6,-5 0,0 -1,0 -1,0 0,1 2,3 2,4 3,2 5,5 8,7 2,3 9,10 11,12 1,1 2,2 3,3 1,1 1,1 2,1 1,1 2,1 2,1 1,0 1,-1 1,-2 1,-1 0,-2 0,-3 -1,-4 -5,-9 -7,-12 -1,-1 -3,-2 -4,-2 0,-1 -2,-1 -2,0 -1,1 0,2 1,4 2,3 5,5 7,5 1,1 3,1 3,-1 0,-3 -2,-8 -4,-11 0,-1 -2,-4 -3,-3 -1,2 0,3 1,4 1,2 7,7 10,5 8,-2 -7,-18 -9,-18 -5,-1 -5,5 -2,10 1,2 2,3 3,4 1,1 2,2 3,2 2,1 3,2 5,2 1,-1 1,-1 2,-2 0,-1 -1,-2 -1,-4 -1,-2 -8,-11 -10,-13 1,1 8,9 9,10 0,0 2,3 3,0 1,-3 -2,-5 -5,-11 -4,-6 -13,-20 -16,-23 0,0 -6,-7 -6,-5 0,1 2,3 2,3 3,3 5,6 8,8 2,3 8,9 11,12 1,1 2,2 3,3 0,1 1,1 2,1 1,1 1,1 2,1 1,0 1,-1 1,-2 0,-1 0,-2 0,-3 -2,-4 -3,-6 -5,-8 -2,-3 -5,-6 -6,-3 0,4 5,8 6,8 1,1 3,1 3,-2 1,-1 -1,-7 -2,-8 0,-1 -2,-7 -3,-8 1,2 6,9 7,10 0,1 2,2 2,1 0,-1 0,-3 -1,-6 -1,-3 -3,-8 -5,-13 2,3 4,7 6,9 0,0 2,2 2,1 0,-1 0,-2 0,-4 -2,-7 -2,-7 -5,-15 0,-1 -1,-3 -1,-2 -1,0 -1,1 0,2 0,0 1,-1 1,-2 1,-1 0,-4 1,-4 0,0 0,1 1,2 0,0 0,0 0,0 2,2 3,4 4,6 1,1 2,2 2,1 0,-1 0,-5 -1,-10 -1,-4 -2,-14 -3,-10l0 0c0,1 1,2 1,3 1,1 3,5 4,6 0,1 1,2 1,1 1,-2 0,-9 -1,-11 -1,-5 -3,-8 -2,-11 1,3 3,8 5,11 -1,-5 -3,-12 -3,-14 0,-3 0,-4 0,-5 0,-1 1,0 1,1 1,2 2,4 3,6 0,0 1,1 1,0 0,0 -1,-7 -1,-8"/>';
 
-//monograms
-var svgString5 = '<path id="monogram1" class="fil1 str6" d="M71 1943c5,25 13,48 16,73 4,26 7,47 4,79 -2,32 -10,70 -17,111 -7,41 -22,98 -24,136 -3,38 2,71 8,90 7,19 8,20 12,30 0,0 7,13 13,33 6,21 6,26 5,42 -2,17 -3,30 -18,72 -14,42 -37,102 -37,140 0,37 7,55 25,76 17,20 32,21 39,20 7,-1 14,-2 20,-15 6,-13 7,-34 2,-47 -6,-12 -20,-26 -31,-19 -11,6 -10,27 -6,36 3,9 16,16 21,3"/>';
+  //monograms
+  var svgString5 = '<path id="monogram1" class="fil1 str6" d="M71 1943c5,25 13,48 16,73 4,26 7,47 4,79 -2,32 -10,70 -17,111 -7,41 -22,98 -24,136 -3,38 2,71 8,90 7,19 8,20 12,30 0,0 7,13 13,33 6,21 6,26 5,42 -2,17 -3,30 -18,72 -14,42 -37,102 -37,140 0,37 7,55 25,76 17,20 32,21 39,20 7,-1 14,-2 20,-15 6,-13 7,-34 2,-47 -6,-12 -20,-26 -31,-19 -11,6 -10,27 -6,36 3,9 16,16 21,3"/>';
   var svgString6 = '<path id="monogram2" class="fil1 str6" d="M227 281c4,-9 13,-4 16,3 2,6 3,22 -5,26 -8,5 -18,-5 -22,-14 -4,-9 -4,-25 1,-34 4,-10 10,-11 15,-11 5,-1 15,0 28,15 13,15 18,28 18,55 0,28 -17,72 -27,103 -10,30 -12,40 -13,52 -1,12 -1,16 4,31 4,15 9,24 9,24 3,7 4,8 9,22 5,14 8,38 6,66 -2,28 -12,69 -17,99 -6,31 -12,59 -13,82 -2,23 0,39 3,57 2,19 8,36 12,54"/>';
   var svgString7 = '<path id="monogram3" class="fil1 str0" d="M452 3000c-1,-2 -1,-4 2,-5 1,0 2,1 2,2 0,1 0,2 -1,2 0,1 4,1 13,-7 -3,-1 -8,-3 -10,-4 -17,11 -49,14 -50,-5 -1,-15 27,-20 54,-8 2,-1 4,-2 6,-4 -4,-3 -6,-10 0,-10 5,-1 8,4 3,9 2,2 5,3 9,4 6,-3 14,-5 20,-4 6,1 11,5 12,12 1,5 -2,9 -3,10 11,3 14,2 14,1 0,0 -1,0 -2,-2 0,-1 1,-2 2,-2 2,-1 4,1 4,3 0,7 -14,3 -20,2 -12,10 -32,2 -37,-1 -4,4 -16,13 -18,7zm18 -30l0 0c4,-4 1,-7 -1,-7 -3,-1 -6,4 1,7zm1 9l0 0c2,-1 5,-3 7,-4 -2,-1 -6,-2 -8,-3 -2,2 -4,3 -6,4 3,1 5,2 7,3zm-26 3l0 0c-6,-4 -17,-5 -17,1 0,5 13,1 17,-1zm11 5l0 0c-2,-1 -6,-2 -7,-3 -9,3 -23,6 -24,-2 0,-7 17,-5 24,-1 2,-1 7,-3 11,-5 -19,-8 -51,-9 -49,8 1,15 27,13 45,3zm3 -1l0 0c3,-2 7,-4 10,-6 -3,-1 -5,-2 -7,-2 -2,1 -7,3 -10,5 2,0 5,2 7,3zm21 -1l0 0c-3,-1 -5,-3 -9,-4 -1,1 -7,4 -10,6 3,1 7,3 9,4 2,-2 6,-4 10,-6zm3 -1l0 0c3,-1 8,-3 11,-4 -3,-1 -9,-3 -13,-4 -3,2 -5,2 -8,4 3,1 8,3 10,4zm21 9l0 0c-9,-2 -13,-4 -20,-7 -1,0 -9,4 -11,6 8,5 25,7 31,1zm2 -1l0 0c5,-5 5,-12 1,-16 -5,-6 -12,-6 -24,-1 4,2 13,4 19,6 -4,1 -11,2 -16,4 5,2 15,5 20,7z"/>';
 
@@ -120,12 +119,34 @@ var svgString5 = '<path id="monogram1" class="fil1 str6" d="M71 1943c5,25 13,48 
 
 // ********************************************************************************************
 
+    function infoAboutObj(elem) {
+      coords = elem.getBoundingClientRect();
+      console.log('coords.top='+coords.top+';  coords.bottom='+coords.bottom);
+    }
+
+var coords;
+var DX=0, KX=0;
 function showVisible() {
-       device = detectZoom.device(); //redetect  Pixel Aspect Ratio
-       var thismoment=(Height_of_mainsvg/device)/windowHeight;console.log('thismoment K='+thismoment);
-       scrolled = window.pageYOffset || document.documentElement.scrollTop; console.log('scrolled='+scrolled);
-       inequality =(pathLength-(scrolled+0.1*windowHeight)*k*thismoment);
-       // inequality =(pathLength-scrolled*thismoment*k);
+        infoAboutObj(document.getElementById("animpath"));
+        device = detectZoom.device(); //redetect  Pixel Aspect Ratio
+        var scrolled = window.pageYOffset || document.documentElement.scrollTop; console.log('scrolled='+scrolled);
+
+       var vartop=parseFloat(Math.abs(coords.top),10);//console.log(' vartop='+vartop);
+       var varbottom=parseInt(Math.abs(coords.bottom),10);//console.log(' varbottom='+varbottom);
+
+        //DX - размер в px учитывающий сдвиг начала #animpath относительно начала страници и уменьшающийся по мере приближения к концу  #animpath
+        //KX - эмпирический к-т учитывающий неравномерность #animpath
+
+        KX=pathLength/Math.abs(coords.bottom-coords.top);console.log(' KX='+KX);
+
+        //PK поправочное слогаемое - усиливающий coords.top в начале и coords.bottom в конце h*(t*b)/((b-t)*(b-t))
+
+        var varpow=Math.pow(coords.top-coords.bottom,2); //console.log(' varpow='+varpow);
+        PK=Height_of_mainsvg*vartop*varbottom/varpow;  console.log(' PK='+PK);
+
+
+        inequality = KX*(coords.bottom)-PK-windowHeight*0.5;
+
        element.style.strokeDashoffset = inequality; //- It is work!
        console.log("strokeDashoffset="+element.style.strokeDashoffset);
 
@@ -160,9 +181,11 @@ function showVisible() {
 
 			 if ((inequality < 10) && flag5) {flag5=false; myDrawing4.initDraw(); return;}// Draw Zababurin
 
-       if ((scrolled>1100) && flag6) {flag6=false; myDrawing5.initDraw(); }
-       if ((scrolled>20) && flag7) {flag7=false; myDrawing6.initDraw(); }
-       if ((scrolled>2000) && flag8) {flag8=false; myDrawing7.initDraw(); }
+       if ((scrolled>2000) && flag6) {flag6=false; console.log('scrolled='+scrolled); myDrawing5.initDraw(); }
+
+       if ((inequality < 4200) && flag7) {flag7=false; console.log('Draw 1 , scrolled='+scrolled); myDrawing6.initDraw(); }
+
+       if ((scrolled>2600) && flag8) {flag8=false; console.log('scrolled='+scrolled); myDrawing7.initDraw(); }
 
     }
 
@@ -240,9 +263,9 @@ var myDrawing1 = new Drawing( svgString1, '', 2000 );
 var myDrawing2 = new Drawing( svgString2, '', 3000 );
 var myDrawing3 = new Drawing( svgString3, '', 3000 );
 var myDrawing4 = new Drawing( svgString4, '', 4000 );
-var myDrawing5 = new Drawing( svgString5, '', 3000 );
-var myDrawing6 = new Drawing( svgString6, '', 3000 );
-var myDrawing7 = new Drawing( svgString7, '', 3000 );
+var myDrawing5 = new Drawing( svgString5, '', 5000 );
+var myDrawing6 = new Drawing( svgString6, '', 5000 );
+var myDrawing7 = new Drawing( svgString7, '', 5550 );
 
 // var mainsvg = document.getElementById("curves");
 var mainsvg = document.getElementsByTagName('svg')[1]; // eqv document.getElementById("curves")
@@ -255,3 +278,4 @@ window.onload = function () {
   console.log('Height of screen: '+windowHeight);
   console.log('Current zoom level: '+zoom+'    Device Pixel Aspect Ratio:'+device);
  }
+window.onscroll = showVisible;
