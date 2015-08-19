@@ -78,6 +78,7 @@ z-index:1;  position:relative;
   .author_ {font-size: 1.0em;  }
   .text1 {font-size: 1.0em;   }
   .text2 {font-size: 1.0em;   }
+  .text3 {font-size: 0.5em;   color:black;}
 }
 
 .author_ {  font-family: 'Playfair Display', serif; font-size: 1.25em; font-weight: 700;letter-spacing: 0.25em; font-style: italic;
@@ -120,6 +121,20 @@ z-index:1;  position:relative;
   z-index:1;
   overflow:hidden;
   text-align:center;}
+
+.text3{ font-family: 'Playfair Display', serif; font-size: 1.75em; font-weight: 600; letter-spacing: 0.15em; font-style: italic;
+  color: #EBE2CA;
+  margin-top: 1em;
+  margin-bottom: -0.2em;
+  margin-left: 2em;
+  width: 90%;
+  height: 1.75em;
+  white-space: nowrap;
+  position:relative;
+  z-index:1;
+  overflow:hidden;
+
+}
 
 .icon {
   display: inline-block;
