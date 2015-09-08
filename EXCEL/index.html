@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
+	<title>VVP</title>
+	<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+	<link rel="stylesheet" type="text/css" href="css/shCore.css">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+	<style type="text/css" class="init">
+	</style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script type="text/javascript" language="javascript" src="javascripts/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" language="javascript" src="javascripts/shCore.js"></script>
+	<script type="text/javascript" language="javascript" src="javascripts/demo.js"></script>
+	<script type="text/javascript" language="javascript" class="init">
+
+$(document).ready(function() {
+	$('#VVP').DataTable( {
+		 "ajax": "data/arrays.txt",
+         "info":     false
+	} );
+} );
+
+	</script>
+</head>
+
+<body class="dt-example">
+	<div class="container">
+		<section>
+			<h1>Структура ВВП 2010 <span>демонстрация интерфейса пользователя</span></h1>
+			<p>Краткое описание функций</p>
+			<ul>Имеющиеся функции:
+				<li>Прием данных из внешнего файла (JSON - протокол)</li>
+				<li>Сортировка (направление сортировки задается пиктограммами в шапке каждого столбца)</li>
+				<li>Порционный вывод (10,25,50...) строк</li>
+				<li>Разбивка на страници</li>
+				<li>Поиск</li>
+			</ul>
+			<ul>Будет доболнено:
+				<li>Вывод данных по остальным годам</li>
+				<li>Выравнивание цифровых ячеек</li>
+				<li>Заменен английский язык некторорых элементов интерфейса на русский</li>
+				<li>В случае необходимости - математический расчет итоговых данных (в конце таблицы)</li>
+				<li>В случае необходимости - добавлен вертикальный скролл строк внутри таблици</li>
+
+			</ul>
+
+			<table id="VVP" class="display" cellspacing="0"  width="100%">
+				<thead>
+			        <tr>
+			            <th rowspan="3">Наименование</th>
+			            <th colspan="4">2010 год</th>
+			            <th colspan="4">2010 год</th>
+			        </tr>
+			          <tr>
+			          <!-- <th rowspan="2">Наименование</th> -->
+			            <th colspan="4">ВДС в текущих ценах, млн.тенге</th>
+			            <th colspan="4">в % к ВВП</th>
+			        </tr>
+					<tr>
+						<th>1 квартал</th>
+						<th>1 полугодие</th>
+						<th>9 месяцев</th>
+						<th> январь-декабрь </th>
+						<th>1 квартал</th>
+						<th>1 полугодие</th>
+						<th>9 месяцев</th>
+						<th> январь-декабрь </th>
+					</tr>
+
+				</thead>
+
+				<tfoot>
+					<tr>
+						<th>Итого по отраслям</th><th>3892578,6</th><th>8474765,4</th><th>13708939,7</th><th>21115891,0</th><th>97,0</th><th>97,3</th><th>97,0</th><th>96,8</th>
+					</tr>
+					<tr>
+					<th>Косвенно-измеряемые услуги финансового посредничества</th>
+						<th>-69194,1</th>
+						<th>-196113,2</th>
+						<th>-314041,3</th>
+						<th>-466859,4</th>
+						<th>-1,8</th>
+						<th>-2,3</th>
+						<th>-2,2</th>
+						<th>-2,1</th>
+					</tr>
+
+					<tr>
+						<th>Валовая добавленная стоимость</th>
+						<th>3823384,5</th>
+						<th>8278652,2</th>
+						<th>13394898,4</th>
+						<th>20649031,6</th>
+						<th>95,2</th>
+						<th>95,0</th>
+						<th>94,8</th>
+						<th>94,7</th>
+					</tr>
+
+					<tr>
+						<th>Чистые налоги на продукты и импорт</th>
+						<th>197493,9</th>
+						<th>433491,7</th>
+						<th>740329,7</th>
+						<th>1166485,4</th>
+						<th>4,8</th>
+						<th>5,0</th>
+						<th>5,2</th>
+						<th>5,3</th>
+					</tr>
+					<tr>
+						<th>Наименование</th>
+						<th>1 квартал</th>
+						<th>1 полугодие</th>
+						<th>9 месяцев</th>
+						<th>январь-декабрь</th>
+						<th>1 квартал</th>
+						<th>1 полугодие</th>
+						<th>9 месяцев</th>
+						<th>январь-декабрь</th>
+					</tr>
+				</tfoot>
+			</table>
+
+
+
+		</section>
+	</div>
+
+	<section>
+		<div class="footer">
+			<div class="gradient"></div>
+
+			<div class="liner"><h2></h2></div>
+				<div class="epilogue"><p>Powered by Alexei Zababurin and <a href="http://www.datatables.net">DataTables</a></p></div>
+		</div>
+	</section>
+</body>
+</html>
