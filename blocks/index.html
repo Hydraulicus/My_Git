@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <meta name="author" content="Alexei Zababurin" />
+  <meta name="description" content=""/>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta property="og:title" content="logical game"/>
+  <meta property="og:site_name" content="logical game"/>
+  <meta property="og:description" content="logical game"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>GIVE AN ORDER</title>
+<head>
+	<!-- Add jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<!--
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	 -->
+	<!--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css"> -->
+	<!-- Add fancyBox main JS and CSS files -->
+	<!--
+	<script type="text/javascript" src="javascripts/jquery.fancybox.pack.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/jquery.fancybox.css" media="screen" />
+ -->
+	 <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	 <link href="css/flex.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	 <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<!--
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+			$(".ourPopup").fancybox({
+				openEffect : 'elastic',
+				openSpeed  : 1050,
+
+				closeEffect : 'elastic',
+				closeSpeed  : 550,
+
+				closeClick : true,
+				closeBtn   : true,
+				   // overlay : {opacity: 0.8, css : {'background' : 'rgba(255, 42, 45, 0.9)'}},
+	            autoSize : false,
+				width: "80%",
+				height: "90%",
+				padding: 0,
+				autoCenter: true,
+
+			});
+
+		});
+
+	</script>
+	 -->
+
+	<style type="text/css">
+/*		.fancybox-skin {
+			background: none transparent !important;
+		}
+		.fancybox-opened .fancybox-skin {
+		    -webkit-box-shadow: 0 0 0;
+		       -moz-box-shadow: 0 0 0;
+		            box-shadow: 0 0 0;
+		        }*/
+
+/*		.indicators {
+		    width: 48px;
+		    height: 48px;
+		    background: url(http://31.131.20.203/kaz-data/images/indicators-icon.png) no-repeat 8px 8px;
+		    background-color: rgba(0,0,0,0.5);
+		    -webkit-border-radius: 8px 0px 0px 8px;
+		    -moz-border-radius: 8px 0px 0px 8px;
+		    border-radius: 8px 0px 0px 8px;
+		    position: fixed;
+		    right: 0px;
+		    top: 50%;
+		    z-index: 10;
+
+			}*/
+
+.modal.fade .modal-dialog { /*animation for modal window appiarence*/
+  -webkit-transform: translate(0, 50%);
+  -ms-transform: translate(0, 50%);
+  transform: translate(0, 50%);
+  -webkit-transition: -webkit-transform 0.3s ease-out;
+  -moz-transition: -moz-transform 0.3s ease-out;
+  -o-transition: -o-transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
+}
+
+	</style>
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-fixed-top navbar-light " style="padding: 0">
+<!-- bg-faded -->
+
+
+			<div class="top">
+			<div class="flex_container">
+				<div class=" flex_block"><a class="logo" href="#">Logo</a></div>
+				<div class="textinheader flex_block">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil architecto eligendi sit fuga repellendus, eum autem deleniti unde? Alias vero distinctio, voluptatum quisquam voluptatibus doloremque quod qui minus, debitis cumque!</div>
+				<div class="textinheader flex_block">Illum error ab aut possimus dolore obcaecati quae sit eaque, iste ea nulla debitis dolor laborum cupiditate sed. Possimus quis neque, quas, aperiam illum excepturi nam! Repellendus, labore id ipsum.</div>
+				<div class="textinheader flex_block">Maiores quos veniam, facere dolor fugit quidem ex sapiente sint numquam repellat quasi ad voluptas inventore blanditiis iusto temporibus officiis quibusdam nobis vel fuga animi, aliquid doloremque fugiat, cum maxime.</div>
+				<div class="textinheader flex_block">Tempora blanditiis numquam non, illum beatae iste voluptas atque ullam iure culpa minus tenetur, minima provident id consequuntur quam quos molestias reiciendis iusto placeat rem laudantium fugit ipsam soluta. Cumque.</div>
+			</div> <!-- end of flex_container -->
+
+			<div class=" center-block text-center flex_container" role="group" aria-label="Basic example" style="width: 85	%;min-width: 70rem;">
+			  <button type="button" class="btn btn-primary-outline flex_block">F.A.Q.</button>
+			  <button type="button" class="btn btn-primary-outline flex_block">Records list</button>
+			  <button type="button" class="btn btn-primary-outline flex_block">Give an order</button>
+			  <button type="button" class="btn btn-primary-outline flex_block"><i class="fa fa-share"></i> Share</button>
+			  <button type="button" class="btn btn-primary-outline flex_block"><i class="fa fa-arrow-up"></i>Return on top </button>
+
+
+<!-- 			  <form class="form-inline navbar-form flex_block p-l-md">
+			    <button class="btn btn-primary-outline " type="submit"><i class="fa fa-search"></i> Go to block</button>
+			    <input class="form-control" type="number" placeholder="Enter number from 1 to _">
+			  </form> -->
+
+
+				<form class="form-inline">
+		  <div class="form-group">
+		    <label class="sr-only" for="n_of_blocks">Number of block</label>
+		    <div class="input-group">
+		      <!-- <div class="input-group-addon">Number of blocks</div> -->
+		      <input type="text" class="form-control" id="n_of_blocks" placeholder="Enter number">
+		      <div class="input-group-addon">of ____</div>
+		    </div>
+		    <button type="submit" class="btn btn-primary-outline"><i class="fa fa-search"></i> Go!</button>
+		  </div>
+		</form>
+
+
+			  <button type="button" class="btn btn-primary-outline flex_block" data-toggle="modal" data-target="#SettingsModal"><i class="fa fa-cog fa-spin"></i> Settings</button>
+
+
+			</div>
+			</div>
+		</nav>
+	</header>
+
+<!-- Modal window Preview Hint -->
+<!-- add "fade" - animated appiarence -->
+<div id="PreviewHint" class="modal hide fade " tabindex="-1" role="dialog" aria-labelledby="PreviewHintLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <p>One fine body&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- end of Modal window Preview Hint -->
+
+<!-- Modal window Settings -->
+<div id="SettingsModal" class="modal hide fade " tabindex="-1" role="dialog" aria-labelledby="SettingsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title">Settings</h4>
+      </div>
+      <div class="modal-body">
+		<form class="form-inline">
+		  <div class="form-group">
+		    <label class="sr-only" for="high_of_blocks">High of blocks:</label>
+		    <div class="input-group">
+		      <div class="input-group-addon">High of blocks:</div>
+		      <input type="text" class="form-control" id="high_of_blocks" placeholder="Amount">
+		      <div class="input-group-addon">, pixels</div>
+		    </div>
+		  </div>
+		  <button type="submit" class="btn btn-primary">Save changes</button>
+		</form>
+      </div>
+<!--       <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- end of Modal window Settings -->
+
+
+<!-- 			<div class="btn-group-lg navbar-left btn-group-vertical text-center flex_container" role="group" aria-label="Basic example" style="high: 55%;min-high: 50rem; flex-direction: column;">
+			  <button type="button" class="btn btn-primary-outline flex_block">F.A.Q.</button>
+			  <button type="button" class="btn btn-primary-outline flex_block">Records list</button>
+			  <button type="button" class="btn btn-primary-outline flex_block">Give an order</button>
+			</div> -->
+
+
+	<div class="grid" style="padding-top:15rem">
+		<div class="grid-itm block " style="flex-basis:100px;" data-toggle="modal" data-target="#PreviewHint">1</div>
+		<div class="grid-itm block " style="flex-basis:140px;">2</div>
+		<div class="grid-itm block " style="flex-basis:40px">3</div>
+		<div class="grid-itm block " style="flex-basis:1040px">4</div>
+		<div class="grid-itm block" style="flex-basis:140px">5</div>
+		<div class="grid-itm block" style="flex-basis:540px">6</div>
+
+		<div class="grid-itm block " style="flex-basis:100px;" >1</div>
+		<div class="grid-itm block " style="flex-basis:140px;">2</div>
+		<div class="grid-itm block " style="flex-basis:40px">3</div>
+		<div class="grid-itm block " style="flex-basis:1040px">4</div>
+		<div class="grid-itm block" style="flex-basis:140px">5</div>
+		<div class="grid-itm block" style="flex-basis:1040px">6</div>
+
+		<div class="grid-itm block " style="flex-basis:100px;" >1</div>
+		<div class="grid-itm block " style="flex-basis:140px;">2</div>
+		<div class="grid-itm block " style="flex-basis:40px">3</div>
+		<div class="grid-itm block " style="flex-basis:1040px">4</div>
+		<div class="grid-itm block" style="flex-basis:140px">5</div>
+		<div class="grid-itm block" style="flex-basis:540px">6</div>
+
+		<div class="grid-itm block " style="flex-basis:100px;" >1</div>
+		<div class="grid-itm block " style="flex-basis:240px;">2</div>
+		<div class="grid-itm block " style="flex-basis:340px">3</div>
+		<div class="grid-itm block " style="flex-basis:100px">4</div>
+		<div class="grid-itm block" style="flex-basis:140px">5</div>
+		<div class="grid-itm block" style="flex-basis:1040px">6</div>
+
+		<div class="grid-itm block " style="flex-basis:200px;" >1</div>
+		<div class="grid-itm block " style="flex-basis:140px;">2</div>
+		<div class="grid-itm block " style="flex-basis:400px">3</div>
+		<div class="grid-itm block " style="flex-basis:1040px">4</div>
+		<div class="grid-itm block" style="flex-basis:140px">5</div>
+		<div class="grid-itm block" style="flex-basis:240px">6</div>
+
+		<div class="grid-itm block " style="flex-basis:100px;" >1</div>
+		<div class="grid-itm block " style="flex-basis:340px;">2</div>
+		<div class="grid-itm block " style="flex-basis:340px">3</div>
+		<div class="grid-itm block " style="flex-basis:1040px">4</div>
+		<div class="grid-itm block" style="flex-basis:140px">5</div>
+		<div class="grid-itm block" style="flex-basis:540px">6</div>
+
+		<div class="grid-itm block " style="flex-basis:100px;" >1</div>
+		<div class="grid-itm block " style="flex-basis:140px;">2</div>
+		<div class="grid-itm block " style="flex-basis:90px">3</div>
+		<div class="grid-itm block " style="flex-basis:1040px">4</div>
+		<div class="grid-itm block" style="flex-basis:140px">5</div>
+		<div class="grid-itm block" style="flex-basis:540px">6</div>
+
+
+
+
+
+	</div>
+
+
+<script src="js/bootstrap.min.js"></script>
+<script src="js/init.js"></script>
+<script src="js/blocks.js"></script>
+</body>
+</html>
