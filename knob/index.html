@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="author" content="Alexei Zababurin" />
+  <meta name="description" content="KNOB by Alexei Zababurin"/>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2.0"/>
+  <meta property="og:title" content="KNOB by Alexei Zababurin"/>
+  <meta property="og:site_name" content="KNOB by Alexei Zababurin"/>
+  <meta property="og:description" content="KNOB by Alexei Zababurin"/>
+  <title>KNOB by Alexei Zababurin</title>
+  <style type="text/css">
+    @font-face {
+      font-family: Agida;
+      src: url("Aguda Regular.otf");
+  }
+  #pointer {
+  position: absolute;
+  background: #000;
+  width: 20px;
+  height: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;}
+  </style>
+</head>
+<body>
+
+  <!-- <svg id="svgout"  width="1220px" height="1220px" xmlns="http://www.w3.org/2000/svg" version="1.20"  xmlns:xlink="http://www.w3.org/1999/xlink" style='border: 1px solid blue' > -->
+  <div style="width:100%; height:100%; margin:0 auto; background-color:#fff">
+      <svg id="svgout"> </svg>
+  </div>
+  <div id="pointer"></div>
+
+
+  <script src="js/snap.svg-min.js"></script>
+  <script src="js/knob.js"></script>
+
+  <script type="text/javascript">
+    knob.init({
+          knobFont : 'Agida',//font-family defined in the head
+            knobId : '#svgout',//ID of our SVG of KNOB
+         knobWidth : '800',//user Width. Original size 1220.
+        knobHeight : '800',//user Height. Original size 1220.
+         knobText1 : '____$2000____',
+         knobText2 : '____$700____',
+         bluePointer : '22', // 126 max.
+         colorOfactivEl : 'DeepSkyBlue', //color of active elements, can be setted like "#00BFFF"
+         colorOfpassiveEl : 'darkgray',//color of passive elements
+      });
+
+  </script>
+
+
+</body>
+</html>
+<!-- ================================
+Free for hire
+Skype: zababurinalex;
+Emails:  852gin@gmail.com, alexei.zababurin@gmail.com
+Phone number:+38(050)800-5770
+ ===================================== -->
