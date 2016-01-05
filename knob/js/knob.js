@@ -234,7 +234,7 @@ function distance(dot1, dot2) {
 
 
 
-		var start = function(){console.log("Move start");
+		var start = function(event){console.log("Move start");
 					this.data("ox", this.type == "rect" ? this.attr("x") : this.attr("cx") );
 			        this.data("oy", this.type == "rect" ? this.attr("y") : this.attr("cy") );
 			        pdragableKnobC.attr({"fill":e.colorOfactivEl,opacity:"0.15"});
@@ -245,14 +245,21 @@ function distance(dot1, dot2) {
 						        x.preventDefault();
 						        this.data('ox', x.changedTouches[0].clientX );
 						        this.data('oy', x.changedTouches[0].clientY );
+
+						         event.stopPropagation();
+								 event.preventDefault();
+								 event.target.className = 'selected';
 						    }
 		};
 
-		var stopE = function(){
+		var stopE = function(event){
 					console.log("Move stopped");
 			        pdragableKnobC.attr({fill:"transparent"});
 			        pdragableKnobC.animate({opacity: 1, }, 500);
 			        pgrayPointer.attr({"fill":"l(0,0,0,1)#eee-#888",stroke:'darkgrey'});
+			  //       event.stopPropagation();
+					// event.preventDefault();
+					// event.target.className = '';
 		}
 
 
