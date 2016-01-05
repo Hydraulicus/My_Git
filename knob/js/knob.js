@@ -1,6 +1,29 @@
 var knob={
 
- 	centerOfCnob : {x : 610, y : 610},
+ 	centerOfCnob : {x : 611, y : 611},
+	endengel : 252,
+	knobValue : 100,//in %
+	luftAngel  : 37,
+	getKnobPos : function getKnobPos(){console.log(knob.knobValue); return knob.knobValue.toFixed(2)+'%'},
+	setKnobPos : function setKnobPos(pos){knob.initKnobPos(pos);},
+
+
+		initKnobPos : function initKnobPos(Pos) {
+			if (Pos > 100) Pos=100;
+			if (Pos < 0) Pos=0;
+			knobValue = Pos;
+			var angelKnobPos = (-1)*Pos*0.01*knob.endengel+knob.luftAngel;//in grd
+			var radians = Snap.rad(angelKnobPos);//in rad
+			// console.log(radians);
+			var att = {cx: Math.cos(radians) * 502 + knob.centerOfCnob.x,cy: Math.sin(radians) * 502 + knob.centerOfCnob.y}
+		    pdragableKnob3.attr(att);
+		    pdragableKnobC.attr(att);
+		    pgrayPointer.transform( 'r'+(angelKnobPos-knob.luftAngel+5)+','+this.centerOfCnob.x+','+this.centerOfCnob.y);
+		},
+
+	 pgrayPointer:undefined,
+     pdragableKnob3:undefined,
+     pdragableKnobC:undefined, // knob elements
 
 	 elements : {
 	 medCircle1:"M531 991c-25,-5 -49,-12 -72,-22 -24,-10 -46,-22 -67,-36 -20,-14 -41,-30 -58,-48 -18,-18 -34,-37 -48,-58 -14,-21 -26,-43 -35,-66 -11,-23 -19,-48 -24,-73 -4,-26 -7,-53 -7,-79 0,-26 3,-53 7,-79 5,-25 13,-49 24,-73 9,-23 21,-45 35,-67 14,-20 30,-39 48,-57 17,-18 38,-34 58,-48 21,-14 43,-26 67,-36 23,-10 47,-18 72,-22 26,-6 52,-9 79,-9 27,0 53,3 79,9 25,4 49,12 73,22 24,10 46,22 66,36 21,14 41,30 58,48 18,18 34,37 48,57 14,22 27,44 36,67 10,24 18,48 23,73 5,26 7,53 7,79 0,26 -2,53 -7,79 -5,25 -13,50 -23,73 -9,23 -22,45 -36,66 -14,21 -30,40 -48,58 -17,18 -37,34 -58,48 -20,14 -42,26 -66,36 -24,10 -48,17 -73,22 -26,6 -52,8 -79,8 -27,0 -53,-2 -79,-8l0 0z",
@@ -13,10 +36,6 @@ var knob={
 	 bluePointer:"M666 327c5,10 3,22 -8,27 -10,6 -21,3 -27,-7 -6,-9 -3,-22 7,-27 10,-6 22,-3 28,7z",
 	 grayPointer:"M936 791c3,8 1,17 -5,21 -8,3 -17,1 -21,-6 -3,-7 -2,-16 6,-20 7,-4 16,-2 20,5z",
 
-	 //dragableKnob1:"M995 967c-11,-5 -21,-11 -28,-19 -9,-8 -15,-18 -20,-29 -5,-10 -7,-22 -7,-34 0,-12 2,-24 7,-35 5,-11 11,-20 20,-29 7,-8 17,-14 28,-19 11,-4 23,-7 34,-7 13,0 25,3 35,7 11,5 21,11 28,19 9,9 16,18 20,29 4,11 7,23 7,35 0,12 -3,24 -7,34 -4,11 -11,21 -20,29 -7,8 -17,14 -28,19 -10,5 -22,7 -35,7 -11,0 -23,-2 -34,-7l0 0z",
-	 // dragableKnob2:"M1116 885c0,47 -38,87 -87,87 -47,0 -87,-40 -87,-87 0,-48 40,-87 87,-87 49,0 87,39 87,87z",
-	 //dragableKnob3:"M1009 932c-6,-2 -12,-6 -15,-11 -5,-5 -9,-10 -12,-16 -3,-6 -4,-13 -4,-20 0,-7 1,-14 4,-20 3,-6 7,-12 12,-16 3,-5 9,-9 15,-11 7,-3 14,-5 20,-5 7,0 14,2 21,5 6,2 11,6 16,11 5,4 8,10 11,16 3,6 4,13 4,20 0,7 -1,14 -4,20 -3,6 -6,11 -11,16 -5,5 -10,9 -16,11 -7,3 -14,4 -21,4 -6,0 -13,-1 -20,-4l0 0z",
-	 // dragableKnob4:"M1080 885c0,28 -23,50 -51,50 -27,0 -50,-23 -50,-50 0,-28 23,-50 50,-50 28,0 51,22 51,50z",
 	 circleB1:"M392 1153c-11,-4 -20,-10 -27,-18 -8,-8 -14,-17 -19,-27 -4,-11 -6,-22 -6,-34 0,-11 2,-22 6,-32 5,-11 11,-20 19,-27 7,-9 16,-15 27,-19 10,-4 21,-6 33,-6 11,0 23,2 34,6 9,4 18,10 26,19 8,7 14,16 18,27 5,10 7,21 7,32 0,12 -2,23 -7,34 -4,10 -10,19 -18,27 -8,8 -17,14 -26,18 -11,5 -23,7 -34,7 -12,0 -23,-2 -33,-7l0 0z",
 	 circleB2:"M425 991c46,0 84,37 84,83 0,47 -38,84 -84,84 -47,0 -83,-37 -83,-84 0,-46 36,-83 83,-83z",
 	 circleB3:"M425 1009c36,0 66,30 66,65 0,37 -30,66 -66,66 -36,0 -66,-29 -66,-66 0,-35 30,-65 66,-65z",
@@ -39,6 +58,7 @@ var knob={
 		console.dir('Init');
 		var s = Snap(e.knobId);
 		var mainshadow = s.filter(Snap.filter.shadow(0, 20, 4, 'black'));
+
 		var kScale = 1220/e.knobWidth;
 		s.attr({
 			viewBox: "0 0 1220 1220",//Original size 1220 х 1220.
@@ -48,17 +68,21 @@ var knob={
 			stroke:"DodgerBlue",
 			strokeWidth:1});
 
+			var canvas = {
+				center : [knob.centerOfCnob.x, knob.centerOfCnob.y],
+				radius : 502
+			};
+
 			var outCrclP = s.circle(this.centerOfCnob.x,this.centerOfCnob.y,605).attr({fill:'transparent',fill:'#eee', stroke:"gray"});
 
 			var arrayp =[];
 			var angle = 0,
-				endengel = 252,
-			_color = e.colorOfactivEl;
-			var angelstep = endengel/126;
+				_color = e.colorOfactivEl;
+			var angelstep = knob.endengel/126;
 			var bluePointerAngel = angelstep*parseInt(e.bluePointer)-138,
 				blueGlow = s.filter(Snap.filter.shadow(0, 0, 8, e.colorOfactivEl, 1));
 			var i=0;
-                while (angle < endengel) { //round scale generation
+                while (angle < knob.endengel) { //round scale generation
                      arrayp[i] = s.path(this.elements.elOfscale);
 					if (i >= parseInt(e.bluePointer)) {
 						_color = e.colorOfpassiveEl;
@@ -93,19 +117,23 @@ var knob={
 						});
 			var bluePointer  = s.path(this.elements.bluePointer).attr({fill:'transparent', stroke:"blue",  });
 				 bluePointer.transform( 'r'+bluePointerAngel+','+this.centerOfCnob.x+','+this.centerOfCnob.y);
-			var p  = s.path(this.elements.grayPointer).attr({fill:'transparent', stroke:"gray",});
-			// var pdragableKnob1 = s.path(this.elements.dragableKnob1).attr({fill:'transparent', stroke:"gray",});//old
-			// var pdragableKnobC = s.circle(1029, 885, 90).attr({fill:'transparent', stroke:"black",});
-			// var pdragableKnob2 = s.path(this.elements.dragableKnob2).attr({fill:'transparent', stroke:"gray",});
-			var pdragableKnob3 = s.circle(1029, 885, 50)
+
+			 pgrayPointer = s.path(this.elements.grayPointer).attr({fill:"l(0,0,0,1)#eee-#888", stroke:"darkgray",
+			 	// filter : s.filter(Snap.filter.shadow(0, 0, 10, 'red'))
+			 		});
+			 // pgrayPointer.transform( 'r-10,'+this.centerOfCnob.x+','+this.centerOfCnob.y);
+
+			 pdragableKnobC = s.circle(1029, 885, 90).attr({fill:'transparent', stroke:"white",strokeWidth:2,filter : s.filter(Snap.filter.shadow(0, 3, 2, '#555', 1.0))});
+			 pdragableKnob3 = s.circle(1029, 885, 50)
 					.attr({
 						fill:'r(0.5, 0.5, 0.5)#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999',
-						 stroke:"rgba(200,200,200,0.2)",strokeWidth:100, filter : s.filter(Snap.filter.shadow(0, 20, 10, '#555'))});
-			// var track = s.circle(this.centerOfCnob.x,this.centerOfCnob.y, 502).attr({fill:'transparent', stroke:"cyan",});
+						 stroke:"darkgray",strokeWidth:1,
+						 filter : s.filter(Snap.filter.shadow(0, 20, 10, '#555', 0.5))
+						});
 					// pdragableKnob3.transform( 'r-150,'+this.centerOfCnob.x+','+this.centerOfCnob.y);
-			// var pdragableKnob4 = s.path(this.elements.dragableKnob4).attr({fill:'transparent', stroke:"gray",});
-			// var dragableGroup = s.g(pdragableKnobC, pdragableKnob2, pdragableKnob3, pdragableKnob4);//grouping
-
+			// var dragableGroup = s.g(pdragableKnobC,  pdragableKnob3);//grouping
+			// dragableGroup.transform( 'r-150,'+this.centerOfCnob.x+','+this.centerOfCnob.y);
+			if (e.knobPos != undefined) {knob.initKnobPos(e.knobPos, pdragableKnobC, pdragableKnob3 );}
 
 
 			var p  = s.path(this.elements.circleB1).attr({fill:'transparent', stroke:"gray",});
@@ -147,31 +175,38 @@ var knob={
   //  <text x="442" y="610"  class="fil1 str0 fnt4">$2000</text>
 
 
-var canvas = {
-	center : [knob.centerOfCnob.x, knob.centerOfCnob.y],
-	radius : 502
-};
+
+
 
 
 function limit(x, y) {
-//    var dist = distance([x, y], canvas.center);
-    // if (dist <= canvas.radius) {
-    //     return {x: x, y: y};
-    // }
-    // else
-  //   {
+		var radians;
         x = x - canvas.center[0];
         y = y - canvas.center[1];
-        var radians = Math.atan2(y, x);
-        console.log('radians='+radians);
-        if (radians>0.59 && radians<2.49) radians=0.59;
-        if (radians<2.48 && radians>1) radians=2.48;
+        radians = Math.atan2(y, x);
+//check reaching ends of scale
+         console.log("radians befor comparisation  "+radians);
+        if (2.04>radians && radians>knob.luftAngel/57.3) {radians=0.99*knob.luftAngel/57.3; console.log(" radians AFTER 1 comparisation  "+radians);}
+          else
+          if (2.54>radians && radians>2.04 ) {radians=2.53; console.log(" radians AFTER 2 comparisation  "+radians);}
 
+//calculate % at the scale
+		if (radians < 0) {
+			knob.knobValue = (knob.luftAngel+((-1)*radians*57.3))/knob.endengel*100;
+			// knob.knobValue = radians*57.3 -knob.luftAngel;
+		}
+		else {
+			if ((radians*57.3) < knob.luftAngel) {knob.knobValue =  Math.abs((radians*57.3 -knob.luftAngel)/knob.endengel*100);}
+				else
+			// if ((radians*57.3) < 180)
+				 {knob.knobValue = Math.abs((180 - radians*57.3 + 180 + knob.luftAngel)/knob.endengel*100);}
+		}
+        // console.log(Snap.deg(Math.abs(radians))+'From limit fun - knob.knobValue='+knob.knobValue);
            return {
                x: Math.cos(radians) * canvas.radius + canvas.center[0],
-               y: Math.sin(radians) * canvas.radius + canvas.center[1]
+               y: Math.sin(radians) * canvas.radius + canvas.center[1],
+               angl: radians*57.3
            }
-    //    }
     }
 
 function distance(dot1, dot2) {
@@ -182,106 +217,100 @@ function distance(dot1, dot2) {
     return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
 }
 
+
 		var move = function(dx, dy, x, y) {
-
-			// s.path('M'+tcx+','+1220-tcy+' l'+knob.centerOfCnob.x+' '+knob.centerOfCnob.y+','+x+' '+1220-y).attr({stroke:"red"});
-			// var a = Snap.angle(tcx,tcy,knob.centerOfCnob.x,knob.centerOfCnob.y,tcx+dx,tcy+dy)+55,
-			// var a = Snap.angle(x+dx,1220-y+dy,knob.centerOfCnob.x,knob.centerOfCnob.y,tcx,1220-tcy)+59,
-			// var a = Snap.angle(1029+dx, 885+dy, knob.centerOfCnob.x,knob.centerOfCnob.y)-30,
-			// console.log("Move going. tcx="+tcx+' tcy='+tcy);
-			var a = Snap.angle( knob.centerOfCnob.x,knob.centerOfCnob.y, +tcx+dx, +tcy+dy)-210+360,
-				r = 502;
-				// var tryd = Math.sqrt(Math.pow(dx,2)+Math.pow(dy,2));
-
-
-				// var tryr = Math.sqrt(Math.pow(knob.centerOfCnob.x-x,2)+Math.pow(knob.centerOfCnob.y-y,2));
-				var kk =1;
-// if ((x) <= knob.centerOfCnob.x) {kk=-1; console.log('kk='+kk)}
-
-var sy = 1220-(Math.sqrt(Math.pow(r,2)-Math.pow((parseInt(this.data("ox")) + kk*dx-knob.centerOfCnob.x),2))+knob.centerOfCnob.y);//вычисленный Y относительно cx+dx
-var sx =  Math.sqrt(Math.pow(r,2)-Math.pow((parseInt(this.data("oy")) + dy-knob.centerOfCnob.y),2))+knob.centerOfCnob.x;//вычисленный X относительно cy+dy
-
-				// console.log('dx='+dx+' ,dy='+dy+', x='+x+' ,y='+y+' sx='+sx+' sy='+sy);
-				// console.log('angel='+a+' sx='+sx+' sy='+sy);
-
- var att = this.type == "rect" ? {x: parseInt(this.data("ox")) + dx, y: parseInt( this.data("oy")) + dy} : {cx: parseInt(this.data("ox")) + dx, cy: parseInt(this.data("oy")) + dy};
-
-//========
-// if ((sy <= 200)&&(sy => 400))
-//  {att = {cx:sx, cy: parseInt(this.data("oy")) + dy}; console.log("Подставляем X - расчетный.near ver peregeus")}
-// 	  else
-//  {att = {cx:parseInt(this.data("ox")) + kk*dx, cy: sy}; console.log("Подставляем Y - расчетный. near hor peregeus")}
-
-//  if (sx !== sx) {att = {cx:parseInt(this.data("ox")) + kk*dx, cy: sy}; console.log("Подставляем Y - расчетный. sx = NaN!!!!!!!!!"+sx)} else
-   // {att = {cx:sx, cy: parseInt(this.data("oy")) + dy}; console.log("Подставляем X - расчетный.sx not NaN"+sx)};
-//========
-
-console.log(' x='+x+' ,y='+y);
- var result = limit(x*kScale, y*kScale);
-
-att = {cx: result.x,cy:result.y}
-
-             this.attr(att);
-
-{ //console.log("tryr="+tryr);
-		        // this.attr({
-		                    // transform: "r" +2+','+knob.centerOfCnob.x+','+knob.centerOfCnob.y
-		                    // transform: this.data('origTransform') + (this.data('origTransform') ? "R" : "r") +a+ ','+knob.centerOfCnob.x+','+knob.centerOfCnob.y
-		                // });
-		    }
+			if( (typeof dx == 'object') && ( dx.type == 'touchmove') ) {//touch event
+				       var x = dx.changedTouches[0].clientX;
+				       var y = dx.changedTouches[0].clientY;
+		    		  var result = limit(x*kScale, y*kScale);
+				    }
+				    else
+		    		  var result = limit(mousePos.x*kScale, mousePos.y*kScale);//mouse event
+			att = {cx: result.x,cy:result.y}
+            this.attr(att);
+            pdragableKnobC.attr(att);
+            pgrayPointer.transform( 'r'+(result.angl-knob.luftAngel+5)+','+knob.centerOfCnob.x+','+knob.centerOfCnob.y);
 		}
 
 
 
-		var tcx, tcy;
-		pdragableKnob3.drag( move,
-                function(){
-                    this.data('origTransform', this.transform().local );
-                    tcx = this.attr("cx");
-					tcy = this.attr("cy");
-                    console.log("Move started. tcx="+tcx+' tcy='+tcy);
+		var start = function(){console.log("Move start");
+					this.data("ox", this.type == "rect" ? this.attr("x") : this.attr("cx") );
+			        this.data("oy", this.type == "rect" ? this.attr("y") : this.attr("cy") );
+			        pdragableKnobC.attr({"fill":e.colorOfactivEl,opacity:"0.15"});
+			        pgrayPointer.attr({"fill":"r(0.5,0.5,0.5)"+e.colorOfactivEl+"-#eee",stroke:'transparent'});
 
 
-                            this.data("ox", this.type == "rect" ? this.attr("x") : this.attr("cx") );
-        this.data("oy", this.type == "rect" ? this.attr("y") : this.attr("cy") );
-        // this.animate({"fill-opacity": .2}, 500);
-                },
-                function(){
-                    console.log("Move stopped");
-                }
+			            if( (typeof x == 'object') && ( x.type == 'touchstart') ) {
+						        x.preventDefault();
+						        this.data('ox', x.changedTouches[0].clientX );
+						        this.data('oy', x.changedTouches[0].clientY );
+						    }
+		};
 
-        );
-
-
-;
-//=================== работает
-// var tcx, tcy;
-// pdragableKnob3.drag(function(dx, dy, x, y ){
-// 				console.log('dx='+dx+', dy='+dy+', x='+x+', y='+y+' cx='+tcx+' cy='+tcy );
-// 				this.attr({
-// 					cx: +tcx+dx,
-// 					cy: +tcy+dy
-// 					});
-// 				},
-// 				function(x, y ){
-//                     console.log('Move started, x='+x+', y='+y);
-// 				 tcx = this.attr("cx");
-// 				 tcy = this.attr("cy");
-//                 },
-//                 function(){
-//                     console.log("Move stopped");
-//                 });
-//===================
+		var stopE = function(){
+					console.log("Move stopped");
+			        pdragableKnobC.attr({fill:"transparent"});
+			        pdragableKnobC.animate({opacity: 1, }, 500);
+			        pgrayPointer.attr({"fill":"l(0,0,0,1)#eee-#888",stroke:'darkgrey'});
+		}
 
 
-var bobo = s.multitext(50, 50, "bobo bobo bobo bobo bobo bobo bobo bobo bobo", 1050,
-    {  "text-anchor": "middle","font-size": "30px" });
+		pdragableKnob3.drag( move, start, stopE);
+
+		pdragableKnob3.touchstart( start );
+		pdragableKnob3.touchmove( move );
+		pdragableKnob3.touchend( stopE );
+
+
+// var bobo = s.multitext(50, 50, "bobo bobo bobo bobo bobo bobo bobo bobo bobo", 1050,
+//     {  "text-anchor": "middle","font-size": "30px" });
 
 		return s
 	 }//end of init function
-
 };//end of knob object
 
+//===Get mouse position====
+var mousePos =undefined;
+
+(function() {
+    document.onmousemove = handleMouseMove;
+    setInterval(getMousePosition, 100); // setInterval repeats every X ms
+
+    function handleMouseMove(event) {
+        var dot, eventDoc, doc, body, pageX, pageY;
+
+        event = event || window.event; // IE-ism
+
+        if (event.pageX == null && event.clientX != null) {
+            eventDoc = (event.target && event.target.ownerDocument) || document;
+            doc = eventDoc.documentElement;
+            body = eventDoc.body;
+
+            event.pageX = event.clientX +
+              (doc && doc.scrollLeft || body && body.scrollLeft || 0) -
+              (doc && doc.clientLeft || body && body.clientLeft || 0);
+            event.pageY = event.clientY +
+              (doc && doc.scrollTop  || body && body.scrollTop  || 0) -
+              (doc && doc.clientTop  || body && body.clientTop  || 0 );
+        }
+
+        mousePos = {
+            x: event.pageX,
+            y: event.pageY
+        };
+    // console.log(mousePos);
+    }
+    function getMousePosition() {
+        var pos = mousePos;
+        if (!pos) {
+    //         // We haven't seen any movement yet
+        }
+        else {
+    //         // Use pos.x and pos.y
+        }
+    }
+})();
 
   Snap.plugin(function (Snap, Element, Paper, glob) {
      Paper.prototype.multitext = function (x, y, txt, max_width, attributes) {
@@ -315,7 +344,4 @@ var bobo = s.multitext(50, 50, "bobo bobo bobo bobo bobo bobo bobo bobo bobo", 1
         return t;
      };
   });
-
-
-
 
