@@ -77,15 +77,16 @@ var knob={
 
 			var arrayp =[];
 			var angle = 0,
-				_color = e.colorOfactivEl;
+				// _color = e.colors['active'];
+				_color = e.colors.active;
 			var angelstep = knob.endengel/126;
 			var bluePointerAngel = angelstep*parseInt(e.bluePointer)-138,
-				blueGlow = s.filter(Snap.filter.shadow(0, 0, 8, e.colorOfactivEl, 1));
+				blueGlow = s.filter(Snap.filter.shadow(0, 0, 8, e.colors.active, 1));
 			var i=0;
                 while (angle < knob.endengel) { //round scale generation
                      arrayp[i] = s.path(this.elements.elOfscale);
 					if (i >= parseInt(e.bluePointer)) {
-						_color = e.colorOfpassiveEl;
+						_color = e.colors.passive;
 						blueGlow ='';
 						arrayp[i].hover(function(el) {this.attr({fill:"LightSteelBlue",});
 										// this.stop().animate({opacity:0.6,},300, mina.elastic)
@@ -115,7 +116,7 @@ var knob={
 															opacity:0.35, stroke:"darkgrey",
 														 filter : s.filter(Snap.filter.shadow(0, -1, 4, '#aaa'))//светлый блик на краю кнопы});
 						});
-			var bluePointer  = s.path(this.elements.bluePointer).attr({fill:'transparent', stroke:"blue",  });
+			var bluePointer  = s.path(this.elements.bluePointer).attr({fill:e.colors.active, stroke:'l(1,0,0,0)#888-#eee', strokeWidth:10 });
 				 bluePointer.transform( 'r'+bluePointerAngel+','+this.centerOfCnob.x+','+this.centerOfCnob.y);
 
 			 pgrayPointer = s.path(this.elements.grayPointer).attr({fill:"l(0,0,0,1)#eee-#888", stroke:"darkgray",
@@ -126,6 +127,7 @@ var knob={
 			 pdragableKnobC = s.circle(1029, 885, 90).attr({fill:'transparent', stroke:"white",strokeWidth:2,filter : s.filter(Snap.filter.shadow(0, 3, 2, '#555', 1.0))});
 			 pdragableKnob3 = s.circle(1029, 885, 50)
 					.attr({
+						cursor:'pointer',
 						fill:'r(0.5, 0.5, 0.5)#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999',
 						 stroke:"darkgray",strokeWidth:1,
 						 filter : s.filter(Snap.filter.shadow(0, 20, 10, '#555', 0.5))
@@ -151,8 +153,9 @@ var knob={
 			// var p  = s.path(this.elements.tempPath).attr({fill:'transparent', stroke:"red",});
 
 
- var svgTextElementD = s.text(770,1100, "D").attr({ fontSize: '72px', opacity: 1, "font-family":e.knobFont });
- var svgTextElementI = s.text(598,1138, "I").attr({ fontSize: '72px', opacity: 1, "font-family":e.knobFont });
+ var svgTextElementB = s.text(400,1100, "B").attr({fontSize: '72px', strokeWidth: 5, "font-family":e.knobFont, stroke:e.colors[e.stateOfbuttont.B], fill:e.colors[e.stateOfbuttont.B]});
+ var svgTextElementD = s.text(770,1100, "D").attr({fontSize: '72px', strokeWidth: 5, "font-family":e.knobFont, stroke:e.colors[e.stateOfbuttont.D], fill:e.colors[e.stateOfbuttont.D]});
+ var svgTextElementI = s.text(600,1138, "I").attr({fontSize: '72px', strokeWidth: 5, "font-family":e.knobFont, stroke:e.colors[e.stateOfbuttont.I], fill:e.colors[e.stateOfbuttont.I]});
 
  var svgTextElementI = s.text(556,591, e.knobText1).attr({ fontSize: '38px', opacity: 1, "text-anchor": "middle", "font-family":e.knobFont });
  var svgTextElementI = s.text(588,692, e.knobText2).attr({ fontSize: '90px', opacity: 1, "text-anchor": "middle", "font-family":e.knobFont });
@@ -237,8 +240,8 @@ function distance(dot1, dot2) {
 		var start = function(event){console.log("Move start");
 					this.data("ox", this.type == "rect" ? this.attr("x") : this.attr("cx") );
 			        this.data("oy", this.type == "rect" ? this.attr("y") : this.attr("cy") );
-			        pdragableKnobC.attr({"fill":e.colorOfactivEl,opacity:"0.15"});
-			        pgrayPointer.attr({"fill":"r(0.5,0.5,0.5)"+e.colorOfactivEl+"-#eee",stroke:'transparent'});
+			        pdragableKnobC.attr({"fill":e.colors.active,opacity:"0.15"});
+			        pgrayPointer.attr({"fill":"r(0.5,0.5,0.5)"+e.colors.active+"-#eee",stroke:'transparent'});
 
 
 			            if( (typeof x == 'object') && ( x.type == 'touchstart') ) {
@@ -256,7 +259,7 @@ function distance(dot1, dot2) {
 					console.log("Move stopped");
 			        pdragableKnobC.attr({fill:"transparent"});
 			        pdragableKnobC.animate({opacity: 1, }, 500);
-			        pgrayPointer.attr({"fill":"l(0,0,0,1)#eee-#888",stroke:'darkgrey'});
+			        pgrayPointer.attr({"fill":"l(0,0,0,1)#eee-#888",stroke:e.colors.inactive});
 			  //       event.stopPropagation();
 					// event.preventDefault();
 					// event.target.className = '';

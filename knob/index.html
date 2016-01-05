@@ -38,12 +38,19 @@
             knobId : '#svgout',//ID of our SVG of KNOB
          knobWidth : '520',//user Width. Original size 1220.
         knobHeight : '520',//user Height. Original size 1220.
+       bluePointer : '22', // 126 max.
+           knobPos : 0,//in %
          knobText1 : '',//$2000
          knobText2 : '',//$700
-         bluePointer : '22', // 126 max.
-         colorOfactivEl : 'DeepSkyBlue', //color of active elements, can be setted like "#00BFFF"
-         colorOfpassiveEl : 'darkgray',//color of passive elements
-         knobPos : 0,//in %
+    stateOfbuttont : {B:'active',
+                      I:'inactive',
+                      D:'passive'},//each field can be active/inactive/passive
+            colors : {
+                active : 'DeepSkyBlue', //color of active elements, each colors can be setted like "#00BFFF"
+              inactive : 'LightSteelBlue', //color of active elements
+               passive : 'darkgray',//color of passive elements
+              }
+
       });
 
   </script>
@@ -57,13 +64,12 @@
 
         function keyup(e) {
           //setting your input text to the global Javascript Variable for every key press
-          inputTextValue = document.getElementById("getKnobVal").value;console.log(inputTextValue);
+          inputTextValue = document.getElementById("getKnobVal").value;
           knob.setKnobPos(inputTextValue);
 
         }
           var myTextArea = document.getElementById('setKnobVal');
         window.onmouseup=function(){
-          console.log('mouse up');
           myTextArea.innerHTML = knob.getKnobPos(); myTextArea.innerText = knob.getKnobPos();
 
         }
