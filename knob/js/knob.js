@@ -1,5 +1,5 @@
 var knob={
- 	centerOfCnob : {x : 611, y : 611},
+ 	centerOfCnob : {x : 610, y : 609},
 		endengel : 252,
 	   knobValue : 0,//in %
 	  luftAngel  : 37,
@@ -27,6 +27,7 @@ setInscriptions : function setInscriptions(inscription){
 					// console.dir(inscription.planamount);
 					this.textVol.planamount = inscription.planamount;
 					svgText1.attr({ text: "$"+this.textVol.planamount});
+					svgText3.attr({ text: "$"+this.textVol.planamount});
 				};
 			if (!(inscription.investmentamount === undefined || inscription.investmentamount === null)) {
 					// console.dir(inscription.investmentamount);
@@ -38,6 +39,7 @@ setInscriptions : function setInscriptions(inscription){
 	 textVol:{investmentamount : 2000, planamount : 700},
 	 svgText1:undefined,
 	 svgText2:undefined,
+	 svgText3:undefined,
 	 pgrayPointer:undefined,
      pdragableKnob3:undefined,
      pdragableKnobC:undefined, // knob elements
@@ -195,7 +197,7 @@ setInscriptions : function setInscriptions(inscription){
 			 	fill: "grey", "text-anchor": "middle", "font-family":e.knobFont,
 			});
 			 var svgText0 = s.text(265,995, "$0").attr({ fontSize: '32px',stroke:"grey",strokeWidth: 1,	fill: "grey", "text-anchor": "middle", "font-family":e.knobFont	});
-			 var svgText0 = s.text(940,995, "$"+knob.textVol.planamount).attr({ fontSize: '32px',stroke:"grey",strokeWidth: 1,	fill: "grey", "text-anchor": "middle", "font-family":e.knobFont	});
+			 svgText3 = s.text(940,995, "$"+knob.textVol.planamount).attr({ fontSize: '32px',stroke:"grey",strokeWidth: 1,	fill: "grey", "text-anchor": "middle", "font-family":e.knobFont	});
 			 var centralEllipse = s.ellipse(this.centerOfCnob.x,this.centerOfCnob.y, 250,3).attr({fill:'l(0,1,0,0)#888-#eee',strokeWidth:0});
 
 
