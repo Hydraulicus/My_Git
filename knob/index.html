@@ -16,66 +16,52 @@
       src: url("Aguda Regular.otf");
   }
    </style>
-
-
 </head>
 <body>
-
   <div style="width:100%; height:100%; margin:0 auto; background-color:#fff">
       <svg id="svgout"> </svg>
   </div>
-
-<div >Demo knob position GET/SET method </div>
-<input id='getKnobVal' placeholder="enter knob value">
-<p>Drag and see getted knob value - : <textarea id="setKnobVal" rows="2" cols="10" name="text"></textarea></p>
-
+  <p>Demo knob position GET/SET method: <input id='getKnobVal' placeholder="enter knob value" type="number" min="0" max="100 " >% </p>
+  <p>Demo plan amount GET/SET method: $<input id='planamount' type="number" min="0" placeholder="enter plan amount, Investment amount "> </p>
+  <p>Demo investment amounts GET/SET method: $<input id='invtamount' type="number" min="0" placeholder="enter investment amount "> </p>
+  <p>Getted values - : <textarea id="setKnobVal" rows="3" cols="40" name="text"></textarea></p>
   <script src="js/snap.svg-min.js"></script>
   <script src="js/knob.js"></script>
-
- <script type="text/javascript">
+  <script type="text/javascript">
     knob.init({
           knobFont : 'Agida',//font-family defined in the head
             knobId : '#svgout',//ID of our SVG of KNOB
-         knobWidth : '920',//user Width. Original size 1220.
-        knobHeight : '920',//user Height. Original size 1220.
-       bluePointer : '22', // 126 max.
-           knobPos : 0,//in %
-         knobText1 : '',//$2000
-         knobText2 : '',//$700
-    stateOfbuttont : {B:'active',
+         knobWidth : '450',//user Width. Original size 1220.
+        knobHeight : '450',//user Height. Original size 1220.
+       bluePointer : '45', // 126 max.
+           knobPos : 0,//in %,
+        planamount : '2000',//Also it could be setted by method - knob.setInscriptions({planamount:'2000'});
+  investmentamount : '700',//Also it could be setted by method - knob.setInscriptions({investmentamount:'700'});
+    stateOfbuttont : {B:'active',// or inactive or passive
                       I:'inactive',
-                      D:'passive'},//each field can be active/inactive/passive
+                      D:'passive'},//each can be active/inactive/passive
             colors : {
                 active : 'DeepSkyBlue', //color of active elements, each colors can be setted like "#00BFFF"
               inactive : 'MediumTurquoise ', //color of active elements
                passive : 'darkgray',//color of passive elements
               }
-
       });
-
   </script>
 
   <script type="text/javascript">
-        //creates a listener for when you press a key
-        window.onkeyup = keyup;
+        document.querySelector('#getKnobVal').addEventListener('input', function(){ knob.setKnobPos(this.value); });
+        document.querySelector('#planamount').addEventListener('input', function(){ knob.setInscriptions({planamount:this.value}); });
+        document.querySelector('#invtamount').addEventListener('input', function(){ knob.setInscriptions({investmentamount:this.value}); });
 
-        //creates a global Javascript variable
-        var inputTextValue;
-
-        function keyup(e) {
-          //setting your input text to the global Javascript Variable for every key press
-          inputTextValue = document.getElementById("getKnobVal").value;
-          knob.setKnobPos(inputTextValue);
-
-        }
-          var myTextArea = document.getElementById('setKnobVal');
+        var myTextArea = document.getElementById('setKnobVal');
         window.onmouseup=function(){
-          myTextArea.innerHTML = knob.getKnobPos(); myTextArea.innerText = knob.getKnobPos();
-
+          //DEMO of GET methods
+          var strng = "Drag knob please: "+ knob.getKnobPos()
+                    +"\nplan amount : $" + knob.getInscriptions().planamount
+                    +"\ninvestment amounts : $" + knob.getInscriptions().investmentamount;
+          myTextArea.innerHTML = strng;  myTextArea.innerText = strng;
         }
   </script>
-
-
 </body>
 </html>
 <!-- ================================

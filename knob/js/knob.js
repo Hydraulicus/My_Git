@@ -1,14 +1,15 @@
 var knob={
-
  	centerOfCnob : {x : 611, y : 611},
-	endengel : 252,
-	knobValue : 100,//in %
-	luftAngel  : 37,
-	getKnobPos : function getKnobPos(){console.log(knob.knobValue); return knob.knobValue.toFixed(2)+'%'},
-	setKnobPos : function setKnobPos(pos){knob.initKnobPos(pos);},
+		endengel : 252,
+	   knobValue : 0,//in %
+	  luftAngel  : 37,
+	  getKnobPos : function getKnobPos(){return knob.knobValue.toFixed(2)+'%'},
+	  setKnobPos : function setKnobPos(pos){knob.initKnobPos(pos);},
+ setInscriptions : function setInscriptions(inscription){knob.setInscriptions(inscription)},
+ getInscriptions : function getInscriptions(){return this.textVol},
 
 
-		initKnobPos : function initKnobPos(Pos) {
+	initKnobPos : function initKnobPos(Pos) {
 			if (Pos > 100) Pos=100;
 			if (Pos < 0) Pos=0;
 			knobValue = Pos;
@@ -21,6 +22,22 @@ var knob={
 		    pgrayPointer.transform( 'r'+(angelKnobPos-knob.luftAngel+5)+','+this.centerOfCnob.x+','+this.centerOfCnob.y);
 		},
 
+setInscriptions : function setInscriptions(inscription){
+			if (!(inscription.planamount === undefined || inscription.planamount === null)) {
+					// console.dir(inscription.planamount);
+					this.textVol.planamount = inscription.planamount;
+					svgText1.attr({ text: "$"+this.textVol.planamount});
+				};
+			if (!(inscription.investmentamount === undefined || inscription.investmentamount === null)) {
+					// console.dir(inscription.investmentamount);
+					this.textVol.investmentamount = inscription.investmentamount;
+					svgText2.attr({ text: "$"+this.textVol.investmentamount});
+				}
+		},
+
+	 textVol:{investmentamount : 2000, planamount : 700},
+	 svgText1:undefined,
+	 svgText2:undefined,
 	 pgrayPointer:undefined,
      pdragableKnob3:undefined,
      pdragableKnobC:undefined, // knob elements
@@ -64,57 +81,60 @@ var knob={
 			viewBox: "0 0 1220 1220",//Original size 1220 х 1220.
 			width:e.knobWidth,
 			height:e.knobHeight,
-			 fill: 'red',
+			  fill: 'red',
 			stroke:"DodgerBlue",
 			strokeWidth:1});
-
+			var outCrclP = s.circle(this.centerOfCnob.x,this.centerOfCnob.y,605).attr({fill:'transparent',fill:'#eee', stroke:"gray"});
 			var canvas = {
 				center : [knob.centerOfCnob.x, knob.centerOfCnob.y],
 				radius : 502
 			};
 
-			var outCrclP = s.circle(this.centerOfCnob.x,this.centerOfCnob.y,605).attr({fill:'transparent',fill:'#eee', stroke:"gray"});
-
 			var arrayp =[];
 			var angle = 0,
-				// _color = e.colors['active'];
 				_color = e.colors.active;
 			var angelstep = knob.endengel/126;
 			var bluePointerAngel = angelstep*parseInt(e.bluePointer)-138,
 				blueGlow = s.filter(Snap.filter.shadow(0, 0, 8, e.colors.active, 1));
 			var i=0;
+
                 while (angle < knob.endengel) { //round scale generation
                      arrayp[i] = s.path(this.elements.elOfscale);
 					if (i >= parseInt(e.bluePointer)) {
 						_color = e.colors.passive;
 						blueGlow ='';
 						arrayp[i].hover(function(el) {this.attr({fill:"LightSteelBlue",});
-										// this.stop().animate({opacity:0.6,},300, mina.elastic)
 											},
-										function(el) {//this.attr({fill:_color,});
-										this.stop().animate({fill:_color,},1000, mina.elastic)
+										function(el) {
+												this.stop().animate({fill:_color,},1000, mina.elastic)
 											}
 										)
 					}
-					arrayp[i].attr({fill:_color, stroke:_color, transform: "r" + angle+','+this.centerOfCnob.x+','+this.centerOfCnob.y, filter :blueGlow
-				                 });
+					arrayp[i].attr({fill:_color, stroke:_color, transform: "r" + angle+','+this.centerOfCnob.x+','+this.centerOfCnob.y, filter :blueGlow});
                     angle += angelstep;
                     i++
                 }
+			//=== check whether entered text  of  planamount and investmentamount
+			if (!(e.planamount === undefined || e.planamount === null)) {
+					knob.textVol.planamount = e.planamount;
+				};
+			if (!(e.investmentamount === undefined || e.investmentamount === null)) {
+					knob.textVol.investmentamount = e.investmentamount;
+				}
+			//========================================================================
 
-
-
-			// var p  = s.path(this.elements.outCircle2).attr({fill:'transparent'});
-			var p  = s.path(this.elements.medCircle1).attr({fill:'#ddd', stroke:"darkgrey",});
-			var p  = s.path(this.elements.medCircle2).attr({fill:'#ddd', stroke:"darkgrey",});
-			var p  = s.path(this.elements.medCircle3).attr({fill:'l(0,0,0,1)#888-#eee-#eee', stroke:"darkgrey",});
-			var p  = s.path(this.elements.medCircle4).attr({fill:'transparent', stroke:"darkgrey",});
-			var p  = s.path(this.elements.innerCircle1).attr({fill:"l(0,0,0,1)#eee-#888", stroke:"darkgrey",
-								filter : s.filter(Snap.filter.shadow(0, 50, 20, '#555'))//основная тень от кнопы
+			var p0  = s.path(this.elements.medCircle1).attr({fill:'#ddd', stroke:"darkgrey",});
+			var p1  = s.path(this.elements.medCircle2).attr({fill:'#ddd', stroke:"darkgrey",});
+			var p2  = s.path(this.elements.medCircle3).attr({fill:'l(0,0,0,1)#888-#eee-#eee', stroke:"darkgrey",});
+			var p3  = s.path(this.elements.medCircle4).attr({fill:'transparent', stroke:"darkgrey",});
+			var big1  = s.path(this.elements.innerCircle1).attr({fill:"l(0,0,0,0.9)#fff-#999",
+					strokeWidth:5, stroke:"l(0,0,0,1)#fff-#555",
+					filter : s.filter(Snap.filter.shadow(0, 50, 20, '#555'))//основная тень от кнопы
 						});
-			var p  = s.path(this.elements.innerCircle2).attr({fill:'r(0.5, 0.5, 0.95)#fff-#555', //придаем легкую выпуклость основной кнопе
-															opacity:0.35, stroke:"darkgrey",
-														 filter : s.filter(Snap.filter.shadow(0, -1, 4, '#aaa'))//светлый блик на краю кнопы});
+			var big2  = s.path(this.elements.innerCircle2).attr({fill:'r(0.5, 0.5, 0.95)#fff-#999', //придаем легкую выпуклость большой кнопе
+					opacity:0.4,
+					stroke:"darkgrey",strokeWidth:0,
+					filter : s.filter(Snap.filter.shadow(0, -2, 5, '#eee'))//светлый блик на краю кнопы});
 						});
 			var bluePointer  = s.path(this.elements.bluePointer).attr({fill:e.colors.active, stroke:'l(1,0,0,0)#888-#eee', strokeWidth:10 });
 				 bluePointer.transform( 'r'+bluePointerAngel+','+this.centerOfCnob.x+','+this.centerOfCnob.y);
@@ -137,85 +157,84 @@ var knob={
 			// dragableGroup.transform( 'r-150,'+this.centerOfCnob.x+','+this.centerOfCnob.y);
 			if (e.knobPos != undefined) {knob.initKnobPos(e.knobPos, pdragableKnobC, pdragableKnob3 );}
 
-
-			var pb2  = s.path(this.elements.circleB2).attr({fill:'transparent',strokeWidth:15,stroke:'r(0.5, 1, 1)#eee-#888'});
+			var pb2  = s.path(this.elements.circleB2).attr({fill:'transparent',strokeWidth:10,stroke:'r(0.5, 1, 1)#eee-#aaa'});
 			var pb3  = s.path(this.elements.circleB3).attr({fill:'#eee',stroke:'transparent',filter : s.filter(Snap.filter.shadow(0, 0, 14, e.colors[e.stateOfbuttont.B]))
 				, strokeWidth:3});
 
-			var pI2  = s.path(this.elements.circleI2).attr({fill:'transparent', strokeWidth:15,stroke:'r(0.5, 1, 1)#eee-#888'});
+			var pI2  = s.path(this.elements.circleI2).attr({fill:'transparent', strokeWidth:10,stroke:'r(0.5, 1, 1)#eee-#aaa'});
 			var pI3  = s.path(this.elements.circleI3).attr({fill:'#eee',stroke:'transparent',filter : s.filter(Snap.filter.shadow(0, 0, 14, e.colors[e.stateOfbuttont.I])), strokeWidth:3,})
 
-			var pD2  = s.path(this.elements.circleD2).attr({fill:'transparent', strokeWidth:15,stroke:'r(0.5, 1, 1)#eee-#888'});
+			var pD2  = s.path(this.elements.circleD2).attr({fill:'transparent', strokeWidth:10,stroke:'r(0.5, 1, 1)#eee-#aaa'});
 			var pD3  = s.path(this.elements.circleD3).attr({fill:'#eee',stroke:'transparent',filter : s.filter(Snap.filter.shadow(0, 0, 14, e.colors[e.stateOfbuttont.D])), strokeWidth:3,})
 			// var p  = s.path(this.elements.tempPath).attr({fill:'transparent', stroke:"red",});
 
 
- var svgTextElementB = s.text(400,1100, "B").attr({fontSize: '72px', strokeWidth: 5, "font-family":e.knobFont, stroke:e.colors[e.stateOfbuttont.B], fill:e.colors[e.stateOfbuttont.B]});
- var svgTextElementD = s.text(770,1100, "D").attr({fontSize: '72px', strokeWidth: 5, "font-family":e.knobFont, stroke:e.colors[e.stateOfbuttont.D], fill:e.colors[e.stateOfbuttont.D]});
- var svgTextElementI = s.text(600,1138, "I").attr({fontSize: '72px', strokeWidth: 5, "font-family":e.knobFont, stroke:e.colors[e.stateOfbuttont.I], fill:e.colors[e.stateOfbuttont.I]});
+			 var svgTextElementB = s.text(400,1100, "B").attr({fontSize: '72px', strokeWidth: 2, "font-family":e.knobFont, stroke:e.colors[e.stateOfbuttont.B], fill:e.colors[e.stateOfbuttont.B]});
+			 var circleB = s.circle(425,1075,50).attr({strokeWidth: 2,fill:'transparent', stroke:'#aaa'});
+			 var svgTextElementD = s.text(770,1100, "D").attr({fontSize: '72px', strokeWidth: 2, "font-family":e.knobFont, stroke:e.colors[e.stateOfbuttont.D], fill:e.colors[e.stateOfbuttont.D]});
+			 var circleB = s.circle(795,1075,50).attr({strokeWidth: 2,fill:'transparent', stroke:'#aaa'});
+			 var svgTextElementI = s.text(this.centerOfCnob.x-8,1138, "I").attr({fontSize: '72px', strokeWidth: 2, "font-family":e.knobFont, stroke:e.colors[e.stateOfbuttont.I], fill:e.colors[e.stateOfbuttont.I]});
+			 var circleB = s.circle(this.centerOfCnob.x,1113,50).attr({strokeWidth: 2,fill:'transparent', stroke:'#aaa'});
 
- var svgTextElementI = s.text(556,591, e.knobText1).attr({ fontSize: '38px', opacity: 1, "text-anchor": "middle", "font-family":e.knobFont });
- var svgTextElementI = s.text(588,692, e.knobText2).attr({ fontSize: '90px', opacity: 1, "text-anchor": "middle", "font-family":e.knobFont });
-
-  // <text x="598" y="1138"  class="fil1 str0 fnt0">I</text>
-  // <g transform="matrix(0.999994 0 0 1 -342.455 395.437)">
-  //  <text x="588" y="610"  class="fil1 str0 fnt1">$0</text>
-  // </g>
-  // <g transform="matrix(0.999994 0 0 1 322.24 395.437)">
-  //  <text x="556" y="610"  class="fil1 str0 fnt1">$2000</text>
-  // </g>
-  // <g transform="matrix(0.999997 0 0 1 -5.23928 197.391)">
-  //  <text x="460" y="610"  class="fil1 str0 fnt2">INVESTMENT</text>
-  // </g>
-  // <g transform="matrix(0.999997 0 0 1 -5.23928 -137.809)">
-  //  <text x="549" y="610"  class="fil1 str0 fnt2">PLAN</text>
-  // </g>
-  // <text x="486" y="557"  class="fil1 str0 fnt3">$2000</text>
-  // <g transform="matrix(0.999999 0 0 1 -4.79 136.481)">
-  //  <text x="442" y="610"  class="fil1 str0 fnt4">$2000</text>
-
-
-
-
+			 svgText1 = s.text(this.centerOfCnob.x,550, '$'+knob.textVol.planamount).attr({ fontSize: '70px', strokeWidth: 0,
+			 	// stroke:"l(0,1,0,0)#888-#eee",
+			 	fill: "gray", "text-anchor": "middle", "font-family":e.knobFont,
+			  filter : s.filter(Snap.filter.shadow(0, 3, 3, "#fff")),
+			});
+			 var svgTextPlan = s.text(this.centerOfCnob.x,470, "PLAN").attr({ fontSize: '45px',
+			 	stroke:"grey",strokeWidth: 1,
+			 	fill: "grey", "text-anchor": "middle", "font-family":e.knobFont,
+			});
+			 svgText2 = s.text(this.centerOfCnob.x,750, '$'+knob.textVol.investmentamount).attr({ fontSize: '105px', strokeWidth: 3, stroke:'l(0,0,0,1)'+e.colors.active+'-DodgerBlue ',
+			 	fill:'l(0,0,0,1)'+e.colors.active+'-DodgerBlue ', "text-anchor": "middle", "font-family":e.knobFont,
+			  // filter : s.filter(Snap.filter.shadow(0, -3, 2, "#000")),
+			  filter : s.filter(Snap.filter.shadow(0, 2, 2, "#eee")),
+			  });
+			 var svgTextINVESTMENT = s.text(this.centerOfCnob.x,810, "INVESTMENT").attr({ fontSize: '45px',
+			 	stroke:"grey",strokeWidth: 1,
+			 	fill: "grey", "text-anchor": "middle", "font-family":e.knobFont,
+			});
+			 var svgText0 = s.text(265,995, "$0").attr({ fontSize: '32px',stroke:"grey",strokeWidth: 1,	fill: "grey", "text-anchor": "middle", "font-family":e.knobFont	});
+			 var svgText0 = s.text(940,995, "$"+knob.textVol.planamount).attr({ fontSize: '32px',stroke:"grey",strokeWidth: 1,	fill: "grey", "text-anchor": "middle", "font-family":e.knobFont	});
+			 var centralEllipse = s.ellipse(this.centerOfCnob.x,this.centerOfCnob.y, 250,3).attr({fill:'l(0,1,0,0)#888-#eee',strokeWidth:0});
 
 
-function limit(x, y) {
-		var radians;
-        x = x - canvas.center[0];
-        y = y - canvas.center[1];
-        radians = Math.atan2(y, x);
-//check reaching ends of scale
-         console.log("radians befor comparisation  "+radians);
-        if (2.04>radians && radians>knob.luftAngel/57.3) {radians=0.99*knob.luftAngel/57.3; console.log(" radians AFTER 1 comparisation  "+radians);}
-          else
-          if (2.54>radians && radians>2.04 ) {radians=2.53; console.log(" radians AFTER 2 comparisation  "+radians);}
 
-//calculate % at the scale
-		if (radians < 0) {
-			knob.knobValue = (knob.luftAngel+((-1)*radians*57.3))/knob.endengel*100;
-			// knob.knobValue = radians*57.3 -knob.luftAngel;
+	function limit(x, y) {
+			var radians;
+	        x = x - canvas.center[0];
+	        y = y - canvas.center[1];
+	        radians = Math.atan2(y, x);
+			//check reaching ends of scale
+	         console.log("radians befor comparisation  "+radians);
+	        if (2.04>radians && radians>knob.luftAngel/57.3) {radians=0.99*knob.luftAngel/57.3; console.log(" radians AFTER 1 comparisation  "+radians);}
+	          else
+	          if (2.54>radians && radians>2.04 ) {radians=2.53; console.log(" radians AFTER 2 comparisation  "+radians);}
+
+			//calculate % at the scale
+			if (radians < 0) {
+				knob.knobValue = (knob.luftAngel+((-1)*radians*57.3))/knob.endengel*100;
+			}
+			else {
+				if ((radians*57.3) < knob.luftAngel) {knob.knobValue =  Math.abs((radians*57.3 -knob.luftAngel)/knob.endengel*100);}
+					else
+					 {knob.knobValue = Math.abs((180 - radians*57.3 + 180 + knob.luftAngel)/knob.endengel*100);}
+			}
+	        // console.log(Snap.deg(Math.abs(radians))+'From limit fun - knob.knobValue='+knob.knobValue);
+	           return {
+	               x: Math.cos(radians) * canvas.radius + canvas.center[0],
+	               y: Math.sin(radians) * canvas.radius + canvas.center[1],
+	               angl: radians*57.3
+	           }
+	    }
+
+		function distance(dot1, dot2) {
+		    var x1 = dot1[0],
+		        y1 = dot1[1],
+		        x2 = dot2[0],
+		        y2 = dot2[1];
+		    return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
 		}
-		else {
-			if ((radians*57.3) < knob.luftAngel) {knob.knobValue =  Math.abs((radians*57.3 -knob.luftAngel)/knob.endengel*100);}
-				else
-			// if ((radians*57.3) < 180)
-				 {knob.knobValue = Math.abs((180 - radians*57.3 + 180 + knob.luftAngel)/knob.endengel*100);}
-		}
-        // console.log(Snap.deg(Math.abs(radians))+'From limit fun - knob.knobValue='+knob.knobValue);
-           return {
-               x: Math.cos(radians) * canvas.radius + canvas.center[0],
-               y: Math.sin(radians) * canvas.radius + canvas.center[1],
-               angl: radians*57.3
-           }
-    }
-
-function distance(dot1, dot2) {
-    var x1 = dot1[0],
-        y1 = dot1[1],
-        x2 = dot2[0],
-        y2 = dot2[1];
-    return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
-}
 
 
 		var move = function(dx, dy, x, y) {
@@ -239,24 +258,22 @@ function distance(dot1, dot2) {
 			        this.data("oy", this.type == "rect" ? this.attr("y") : this.attr("cy") );
 			        pdragableKnobC.attr({"fill":e.colors.active,opacity:"0.15"});
 			        pgrayPointer.attr({"fill":"r(0.5,0.5,0.5)"+e.colors.active+"-#eee",stroke:'transparent'});
+		            if( (typeof x == 'object') && ( x.type == 'touchstart') ) {
+					        x.preventDefault();
+					        this.data('ox', x.changedTouches[0].clientX );
+					        this.data('oy', x.changedTouches[0].clientY );
 
-
-			            if( (typeof x == 'object') && ( x.type == 'touchstart') ) {
-						        x.preventDefault();
-						        this.data('ox', x.changedTouches[0].clientX );
-						        this.data('oy', x.changedTouches[0].clientY );
-
-						         event.stopPropagation();
-								 event.preventDefault();
-								 event.target.className = 'selected';
-						    }
+					         event.stopPropagation();
+							 event.preventDefault();
+							 event.target.className = 'selected';
+					    }
 		};
 
 		var stopE = function(event){
 					console.log("Move stopped");
 			        pdragableKnobC.attr({fill:"transparent"});
 			        pdragableKnobC.animate({opacity: 1, }, 500);
-			        pgrayPointer.attr({"fill":"l(0,0,0,1)#eee-#888",stroke:e.colors.inactive});
+			        pgrayPointer.attr({"fill":"l(0,0,0,1)#eee-#888",stroke:"#888"});
 			  //       event.stopPropagation();
 					// event.preventDefault();
 					// event.target.className = '';
