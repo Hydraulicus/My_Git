@@ -1,3 +1,4 @@
+ // "use strict";
 var knob={
  	centerOfCnob : {x : 610, y : 609},
 		endengel : 252,
@@ -7,9 +8,16 @@ var knob={
 	  setKnobPos : function setKnobPos(pos){knob.initKnobPos(pos);},
  setInscriptions : function setInscriptions(inscription){knob.setInscriptions(inscription)},
  getInscriptions : function getInscriptions(){return this.textVol},
+	getBIDstatus : function getBIDstatus(){return this.BIDstatus},
+	setBIDstatus : function setBIDstatus(stat){knob.setStatuses=stat;},
 
+			   s : undefined, //var of main canvas
+		knobFont : undefined, //font
+	   BIDgroup1 : undefined,
+	   BIDgroup2 : undefined,
+	   BIDgroup3 : undefined,
 
-	initKnobPos : function initKnobPos(Pos) {
+	 initKnobPos : function initKnobPos(Pos) {
 			if (Pos > 100) Pos=100;
 			if (Pos < 0) Pos=0;
 			knobValue = Pos;
@@ -37,6 +45,15 @@ setInscriptions : function setInscriptions(inscription){
 		},
 
 	 textVol:{investmentamount : 2000, planamount : 700},
+	 statusColors:{ active : 'DeepSkyBlue',
+	              inactive : 'MediumTurquoise ',
+	               passive : 'darkgray',
+	           },
+	 BIDstatus:{ Bstatus:"active",
+				 Istatus:"active",
+				 Dstatus:"active",
+				},
+
 	 svgText1:undefined,
 	 svgText2:undefined,
 	 svgText3:undefined,
@@ -55,55 +72,43 @@ setInscriptions : function setInscriptions(inscription){
 	 bluePointer:"M666 327c5,10 3,22 -8,27 -10,6 -21,3 -27,-7 -6,-9 -3,-22 7,-27 10,-6 22,-3 28,7z",
 	 grayPointer:"M936 791c3,8 1,17 -5,21 -8,3 -17,1 -21,-6 -3,-7 -2,-16 6,-20 7,-4 16,-2 20,5z",
 
-	 // circleB1:"M392 1153c-11,-4 -20,-10 -27,-18 -8,-8 -14,-17 -19,-27 -4,-11 -6,-22 -6,-34 0,-11 2,-22 6,-32 5,-11 11,-20 19,-27 7,-9 16,-15 27,-19 10,-4 21,-6 33,-6 11,0 23,2 34,6 9,4 18,10 26,19 8,7 14,16 18,27 5,10 7,21 7,32 0,12 -2,23 -7,34 -4,10 -10,19 -18,27 -8,8 -17,14 -26,18 -11,5 -23,7 -34,7 -12,0 -23,-2 -33,-7l0 0z",
-	 circleB2:"M425 991c46,0 84,37 84,83 0,47 -38,84 -84,84 -47,0 -83,-37 -83,-84 0,-46 36,-83 83,-83z",
-	 circleB3:"M425 1009c36,0 66,30 66,65 0,37 -30,66 -66,66 -36,0 -66,-29 -66,-66 0,-35 30,-65 66,-65z",
-	 // circleB4:"M400 1134c-8,-3 -15,-8 -21,-14 -6,-6 -10,-12 -13,-20 -4,-8 -5,-17 -5,-26 0,-8 1,-16 5,-25 3,-7 7,-14 13,-20 6,-6 13,-11 21,-14 7,-3 16,-5 25,-5 8,0 17,2 25,5 8,3 14,8 20,14 7,6 11,13 15,20 3,9 5,17 5,25 0,9 -2,18 -5,26 -4,8 -8,14 -15,20 -6,6 -12,11 -20,14 -8,4 -17,5 -25,5 -9,0 -18,-1 -25,-5l0 0z",
-
-	 // circleI1:"M577 1192c-10,-4 -19,-10 -27,-18 -8,-8 -14,-17 -18,-27 -5,-10 -7,-22 -7,-33 0,-12 2,-23 7,-34 4,-10 10,-19 18,-27 8,-7 17,-13 27,-18 10,-4 22,-6 33,-6 12,0 23,2 33,6 10,5 20,11 27,18 8,8 14,17 19,27 4,11 7,22 7,34 0,11 -3,23 -7,33 -5,10 -11,19 -19,27 -7,8 -17,14 -27,18 -10,4 -21,7 -33,7 -11,0 -23,-3 -33,-7l0 0z",
-	 circleI2:"M610 1030c47,0 84,37 84,84 0,46 -37,83 -84,83 -46,0 -84,-37 -84,-83 0,-47 38,-84 84,-84z",
-	 circleI3:"M610 1048c36,0 66,29 66,66 0,36 -30,66 -66,66 -36,0 -65,-30 -65,-66 0,-37 29,-66 65,-66z",
-	 // circleI4:"M585 1173c-7,-3 -14,-8 -21,-14 -6,-6 -10,-13 -14,-20 -2,-8 -4,-17 -4,-25 0,-9 2,-17 4,-25 4,-8 8,-15 14,-21 7,-6 14,-10 21,-14 8,-3 17,-5 25,-5 9,0 17,2 26,5 7,4 14,8 20,14 6,6 11,13 14,21 3,8 4,16 4,25 0,8 -1,17 -4,25 -3,7 -8,14 -14,20 -6,6 -13,11 -20,14 -9,3 -17,5 -26,5 -8,0 -17,-2 -25,-5l0 0z",
-
-		// circleD1:"M762 1153c-10,-4 -19,-10 -27,-18 -7,-8 -14,-17 -18,-27 -5,-11 -7,-22 -7,-34 0,-11 2,-22 7,-32 4,-11 11,-20 18,-27 8,-9 17,-15 27,-19 11,-4 22,-6 33,-6 12,0 23,2 33,6 11,4 20,10 27,19 8,7 15,16 19,27 4,10 6,21 6,32 0,12 -2,23 -6,34 -4,10 -11,19 -19,27 -7,8 -16,14 -27,18 -10,5 -21,7 -33,7 -11,0 -22,-2 -33,-7l0 0z",
-		circleD2:"M795 991c47,0 84,37 84,83 0,47 -37,84 -84,84 -46,0 -84,-37 -84,-84 0,-46 38,-83 84,-83z",
-		circleD3:"M795 1009c37,0 66,30 66,65 0,37 -29,66 -66,66 -36,0 -66,-29 -66,-66 0,-35 30,-65 66,-65z",
-		// circleD4:"M770 1134c-8,-3 -14,-8 -20,-14 -6,-6 -11,-12 -14,-20 -4,-8 -6,-17 -6,-26 0,-8 2,-16 6,-25 3,-7 8,-14 14,-20 6,-6 12,-11 20,-14 8,-3 17,-5 25,-5 9,0 18,2 25,5 8,3 15,8 21,14 6,6 10,13 14,20 3,9 5,17 5,25 0,9 -2,18 -5,26 -4,8 -8,14 -14,20 -6,6 -13,11 -21,14 -7,4 -16,5 -25,5 -8,0 -17,-1 -25,-5l0 0z",
-
-		      elOfscale:"M224 873l-60 40c3,4 5,8 8,12l58 -43c-2,-3 -4,-6 -6,-9z",
+     elOfscale:"M224 873l-60 40c3,4 5,8 8,12l58 -43c-2,-3 -4,-6 -6,-9z",
 		},//end of elements
 
 	init : function  (e) {
-		console.dir('Init');
-		var s = Snap(e.knobId);
-		var mainshadow = s.filter(Snap.filter.shadow(0, 20, 4, 'black'));
+		knob.s = Snap(e.knobId);
+		console.dir('Init'+knob.s);
+		var mainshadow = knob.s.filter(Snap.filter.shadow(0, 20, 4, 'black'));
 
 		var kScale = 1220/e.knobWidth;
-		s.attr({
+		knob.s.attr({
 			viewBox: "0 0 1220 1220",//Original size 1220 х 1220.
 			width:e.knobWidth,
 			height:e.knobHeight,
 			  fill: 'red',
 			stroke:"DodgerBlue",
 			strokeWidth:1});
-			var outCrclP = s.circle(this.centerOfCnob.x,this.centerOfCnob.y,605).attr({fill:'transparent',fill:'#eee', stroke:"gray"});
+			var outCrclP = knob.s.circle(this.centerOfCnob.x,this.centerOfCnob.y,605).attr({fill:'transparent',fill:'#eee', stroke:"gray"});
 			var canvas = {
 				center : [knob.centerOfCnob.x, knob.centerOfCnob.y],
 				radius : 502
 			};
 
 			var arrayp =[];
-			var angle = 0,
-				_color = e.colors.active;
+			var angle = 0;
+
+				knob.statusColors=e.colors;
+				knobFont = e.knobFont;
+				_color = knob.statusColors.active;
 			var angelstep = knob.endengel/126;
 			var bluePointerAngel = angelstep*parseInt(e.bluePointer)-138,
-				blueGlow = s.filter(Snap.filter.shadow(0, 0, 8, e.colors.active, 1));
+				blueGlow = knob.s.filter(Snap.filter.shadow(0, 0, 8, knob.statusColors.active, 1));
 			var i=0;
 
                 while (angle < knob.endengel) { //round scale generation
-                     arrayp[i] = s.path(this.elements.elOfscale);
+                     arrayp[i] = knob.s.path(this.elements.elOfscale);
 					if (i >= parseInt(e.bluePointer)) {
-						_color = e.colors.passive;
+						_color = knob.statusColors.passive;
 						blueGlow ='';
 						arrayp[i].hover(function(el) {this.attr({fill:"LightSteelBlue",});
 											},
@@ -124,81 +129,65 @@ setInscriptions : function setInscriptions(inscription){
 					knob.textVol.investmentamount = e.investmentamount;
 				}
 			//========================================================================
+			knob.BIDstatus=e.stateOfbuttont;//console.log(knob.BIDstatus);
+			//========================================================================
 
-			var p0  = s.path(this.elements.medCircle1).attr({fill:'#ddd', stroke:"darkgrey",});
-			var p1  = s.path(this.elements.medCircle2).attr({fill:'#ddd', stroke:"darkgrey",});
-			var p2  = s.path(this.elements.medCircle3).attr({fill:'l(0,0,0,1)#888-#eee-#eee', stroke:"darkgrey",});
-			var p3  = s.path(this.elements.medCircle4).attr({fill:'transparent', stroke:"darkgrey",});
-			var big1  = s.path(this.elements.innerCircle1).attr({fill:"l(0,0,0,0.9)#fff-#999",
+			var p0  = knob.s.path(this.elements.medCircle1).attr({fill:'#ddd', stroke:"darkgrey",});
+			var p1  = knob.s.path(this.elements.medCircle2).attr({fill:'#ddd', stroke:"darkgrey",});
+			var p2  = knob.s.path(this.elements.medCircle3).attr({fill:'l(0,0,0,1)#888-#eee-#eee', stroke:"darkgrey",});
+			var p3  = knob.s.path(this.elements.medCircle4).attr({fill:'transparent', stroke:"darkgrey",});
+			var big1  = knob.s.path(this.elements.innerCircle1).attr({fill:"l(0,0,0,0.9)#fff-#999",
 					strokeWidth:5, stroke:"l(0,0,0,1)#fff-#555",
-					filter : s.filter(Snap.filter.shadow(0, 50, 20, '#555'))//основная тень от кнопы
+					filter : knob.s.filter(Snap.filter.shadow(0, 50, 20, '#555'))//основная тень от кнопы
 						});
-			var big2  = s.path(this.elements.innerCircle2).attr({fill:'r(0.5, 0.5, 0.95)#fff-#999', //придаем легкую выпуклость большой кнопе
+			var big2  = knob.s.path(this.elements.innerCircle2).attr({fill:'r(0.5, 0.5, 0.95)#fff-#999', //придаем легкую выпуклость большой кнопе
 					opacity:0.4,
 					stroke:"darkgrey",strokeWidth:0,
-					filter : s.filter(Snap.filter.shadow(0, -2, 5, '#eee'))//светлый блик на краю кнопы});
+					filter : knob.s.filter(Snap.filter.shadow(0, -2, 5, '#eee'))//светлый блик на краю кнопы});
 						});
-			var bluePointer  = s.path(this.elements.bluePointer).attr({fill:e.colors.active, stroke:'l(1,0,0,0)#888-#eee', strokeWidth:10 });
+			var bluePointer  = knob.s.path(this.elements.bluePointer).attr({fill:knob.statusColors.active, stroke:'l(1,0,0,0)#888-#eee', strokeWidth:10 });
 				 bluePointer.transform( 'r'+bluePointerAngel+','+this.centerOfCnob.x+','+this.centerOfCnob.y);
 
-			 pgrayPointer = s.path(this.elements.grayPointer).attr({fill:"l(0,0,0,1)#eee-#888", stroke:"darkgray",
-			 	// filter : s.filter(Snap.filter.shadow(0, 0, 10, 'red'))
+			 pgrayPointer = knob.s.path(this.elements.grayPointer).attr({fill:"l(0,0,0,1)#eee-#888", stroke:"darkgray",
 			 		});
 			 // pgrayPointer.transform( 'r-10,'+this.centerOfCnob.x+','+this.centerOfCnob.y);
 
-			 pdragableKnobC = s.circle(1029, 885, 90).attr({fill:'transparent', stroke:"white",strokeWidth:2,filter : s.filter(Snap.filter.shadow(0, 3, 2, '#555', 1.0))});
-			 pdragableKnob3 = s.circle(1029, 885, 50)
+			 pdragableKnobC = knob.s.circle(1029, 885, 90).attr({fill:'transparent', stroke:"white",strokeWidth:2,filter : knob.s.filter(Snap.filter.shadow(0, 3, 2, '#555', 1.0))});
+			 pdragableKnob3 = knob.s.circle(1029, 885, 50)
 					.attr({
 						cursor:'pointer',
 						fill:'r(0.5, 0.5, 0.5)#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999',
 						 stroke:"darkgray",strokeWidth:1,
-						 filter : s.filter(Snap.filter.shadow(0, 20, 10, '#555', 0.5))
+						 filter : knob.s.filter(Snap.filter.shadow(0, 20, 10, '#555', 0.5))
 						});
 					// pdragableKnob3.transform( 'r-150,'+this.centerOfCnob.x+','+this.centerOfCnob.y);
-			// var dragableGroup = s.g(pdragableKnobC,  pdragableKnob3);//grouping
+			// var dragableGroup = knob.s.g(pdragableKnobC,  pdragableKnob3);//grouping
 			// dragableGroup.transform( 'r-150,'+this.centerOfCnob.x+','+this.centerOfCnob.y);
 			if (e.knobPos != undefined) {knob.initKnobPos(e.knobPos, pdragableKnobC, pdragableKnob3 );}
 
-			var pb2  = s.path(this.elements.circleB2).attr({fill:'transparent',strokeWidth:10,stroke:'r(0.5, 1, 1)#eee-#aaa'});
-			var pb3  = s.path(this.elements.circleB3).attr({fill:'#eee',stroke:'transparent',filter : s.filter(Snap.filter.shadow(0, 0, 14, e.colors[e.stateOfbuttont.B]))
-				, strokeWidth:3});
-
-			var pI2  = s.path(this.elements.circleI2).attr({fill:'transparent', strokeWidth:10,stroke:'r(0.5, 1, 1)#eee-#aaa'});
-			var pI3  = s.path(this.elements.circleI3).attr({fill:'#eee',stroke:'transparent',filter : s.filter(Snap.filter.shadow(0, 0, 14, e.colors[e.stateOfbuttont.I])), strokeWidth:3,})
-
-			var pD2  = s.path(this.elements.circleD2).attr({fill:'transparent', strokeWidth:10,stroke:'r(0.5, 1, 1)#eee-#aaa'});
-			var pD3  = s.path(this.elements.circleD3).attr({fill:'#eee',stroke:'transparent',filter : s.filter(Snap.filter.shadow(0, 0, 14, e.colors[e.stateOfbuttont.D])), strokeWidth:3,})
-			// var p  = s.path(this.elements.tempPath).attr({fill:'transparent', stroke:"red",});
 
 
-			 var svgTextElementB = s.text(400,1100, "B").attr({fontSize: '72px', strokeWidth: 2, "font-family":e.knobFont, stroke:e.colors[e.stateOfbuttont.B], fill:e.colors[e.stateOfbuttont.B]});
-			 var circleB = s.circle(425,1075,50).attr({strokeWidth: 2,fill:'transparent', stroke:'#aaa'});
-			 var svgTextElementD = s.text(770,1100, "D").attr({fontSize: '72px', strokeWidth: 2, "font-family":e.knobFont, stroke:e.colors[e.stateOfbuttont.D], fill:e.colors[e.stateOfbuttont.D]});
-			 var circleB = s.circle(795,1075,50).attr({strokeWidth: 2,fill:'transparent', stroke:'#aaa'});
-			 var svgTextElementI = s.text(this.centerOfCnob.x-8,1138, "I").attr({fontSize: '72px', strokeWidth: 2, "font-family":e.knobFont, stroke:e.colors[e.stateOfbuttont.I], fill:e.colors[e.stateOfbuttont.I]});
-			 var circleB = s.circle(this.centerOfCnob.x,1113,50).attr({strokeWidth: 2,fill:'transparent', stroke:'#aaa'});
-
-			 svgText1 = s.text(this.centerOfCnob.x,550, '$'+knob.textVol.planamount).attr({ fontSize: '70px', strokeWidth: 0,
+			 svgText1 = knob.s.text(this.centerOfCnob.x,550, '$'+knob.textVol.planamount).attr({ fontSize: '70px', strokeWidth: 0,
 			 	// stroke:"l(0,1,0,0)#888-#eee",
 			 	fill: "gray", "text-anchor": "middle", "font-family":e.knobFont,
-			  filter : s.filter(Snap.filter.shadow(0, 3, 3, "#fff")),
+			  filter : knob.s.filter(Snap.filter.shadow(0, 3, 3, "#fff")),
 			});
-			 var svgTextPlan = s.text(this.centerOfCnob.x,470, "PLAN").attr({ fontSize: '45px',
+			 var svgTextPlan = knob.s.text(this.centerOfCnob.x,470, "PLAN").attr({ fontSize: '45px',
 			 	stroke:"grey",strokeWidth: 1,
 			 	fill: "grey", "text-anchor": "middle", "font-family":e.knobFont,
 			});
-			 svgText2 = s.text(this.centerOfCnob.x,750, '$'+knob.textVol.investmentamount).attr({ fontSize: '105px', strokeWidth: 3, stroke:'l(0,0,0,1)'+e.colors.active+'-DodgerBlue ',
-			 	fill:'l(0,0,0,1)'+e.colors.active+'-DodgerBlue ', "text-anchor": "middle", "font-family":e.knobFont,
-			  // filter : s.filter(Snap.filter.shadow(0, -3, 2, "#000")),
-			  filter : s.filter(Snap.filter.shadow(0, 2, 2, "#eee")),
+			 svgText2 = knob.s.text(this.centerOfCnob.x,750, '$'+knob.textVol.investmentamount).attr({ fontSize: '105px', strokeWidth: 3, stroke:'l(0,0,0,1)'+knob.statusColors.active+'-DodgerBlue ',
+			 	fill:'l(0,0,0,1)'+knob.statusColors.active+'-DodgerBlue ', "text-anchor": "middle", "font-family":e.knobFont,
+			  // filter : knob.s.filter(Snap.filter.shadow(0, -3, 2, "#000")),
+			  filter : knob.s.filter(Snap.filter.shadow(0, 2, 2, "#eee")),
 			  });
-			 var svgTextINVESTMENT = s.text(this.centerOfCnob.x,810, "INVESTMENT").attr({ fontSize: '45px',
+			 var svgTextINVESTMENT = knob.s.text(this.centerOfCnob.x,810, "INVESTMENT").attr({ fontSize: '45px',
 			 	stroke:"grey",strokeWidth: 1,
 			 	fill: "grey", "text-anchor": "middle", "font-family":e.knobFont,
 			});
-			 var svgText0 = s.text(265,995, "$0").attr({ fontSize: '32px',stroke:"grey",strokeWidth: 1,	fill: "grey", "text-anchor": "middle", "font-family":e.knobFont	});
-			 svgText3 = s.text(940,995, "$"+knob.textVol.planamount).attr({ fontSize: '32px',stroke:"grey",strokeWidth: 1,	fill: "grey", "text-anchor": "middle", "font-family":e.knobFont	});
-			 var centralEllipse = s.ellipse(this.centerOfCnob.x,this.centerOfCnob.y, 250,3).attr({fill:'l(0,1,0,0)#888-#eee',strokeWidth:0});
+			 var svgText0 = knob.s.text(265,995, "$0").attr({ fontSize: '32px',stroke:"grey",strokeWidth: 1,	fill: "grey", "text-anchor": "middle", "font-family":e.knobFont	});
+			 svgText3 = knob.s.text(940,995, "$"+knob.textVol.planamount).attr({ fontSize: '32px',stroke:"grey",strokeWidth: 1,	fill: "grey", "text-anchor": "middle", "font-family":e.knobFont	});
+			 var centralEllipse = knob.s.ellipse(this.centerOfCnob.x,this.centerOfCnob.y, 250,3).attr({fill:'l(0,1,0,0)#888-#eee',strokeWidth:0});
 
 
 
@@ -258,8 +247,8 @@ setInscriptions : function setInscriptions(inscription){
 		var start = function(event){console.log("Move start");
 					this.data("ox", this.type == "rect" ? this.attr("x") : this.attr("cx") );
 			        this.data("oy", this.type == "rect" ? this.attr("y") : this.attr("cy") );
-			        pdragableKnobC.attr({"fill":e.colors.active,opacity:"0.15"});
-			        pgrayPointer.attr({"fill":"r(0.5,0.5,0.5)"+e.colors.active+"-#eee",stroke:'transparent'});
+			        pdragableKnobC.attr({"fill":knob.statusColors.active,opacity:"0.15"});
+			        pgrayPointer.attr({"fill":"r(0.5,0.5,0.5)"+knob.statusColors.active+"-#eee",stroke:'transparent'});
 		            if( (typeof x == 'object') && ( x.type == 'touchstart') ) {
 					        x.preventDefault();
 					        this.data('ox', x.changedTouches[0].clientX );
@@ -288,13 +277,90 @@ setInscriptions : function setInscriptions(inscription){
 		pdragableKnob3.touchmove( move );
 		pdragableKnob3.touchend( stopE );
 
+		knob.drawBID();
+	 },//end of init function
 
-// var bobo = s.multitext(50, 50, "bobo bobo bobo bobo bobo bobo bobo bobo bobo", 1050,
-//     {  "text-anchor": "middle","font-size": "30px" });
+	drawBID : function (){
 
-		return s
-	 }//end of init function
+	 	var elements= {
+	 		 circleB2:"M425 991c46,0 84,37 84,83 0,47 -38,84 -84,84 -47,0 -83,-37 -83,-84 0,-46 36,-83 83,-83z",
+			 circleB3:"M425 1009c36,0 66,30 66,65 0,37 -30,66 -66,66 -36,0 -66,-29 -66,-66 0,-35 30,-65 66,-65z",
+			 circleI2:"M610 1030c47,0 84,37 84,84 0,46 -37,83 -84,83 -46,0 -84,-37 -84,-83 0,-47 38,-84 84,-84z",
+			 circleI3:"M610 1048c36,0 66,29 66,66 0,36 -30,66 -66,66 -36,0 -65,-30 -65,-66 0,-37 29,-66 65,-66z",
+			circleD2:"M795 991c47,0 84,37 84,83 0,47 -37,84 -84,84 -46,0 -84,-37 -84,-84 0,-46 38,-83 84,-83z",
+			circleD3:"M795 1009c37,0 66,30 66,65 0,37 -29,66 -66,66 -36,0 -66,-29 -66,-66 0,-35 30,-65 66,-65z"
+	};
+
+			var pb2  = knob.s.path(elements.circleB2).attr({fill:'transparent',strokeWidth:10,stroke:'r(0.5, 1, 1)#eee-#aaa'});
+			var pb3  = knob.s.path(elements.circleB3).attr({fill:'#eee',stroke:'transparent',filter : knob.s.filter(Snap.filter.shadow(0, 0, 14, knob.statusColors[this.BIDstatus.Bstatus]))});
+			console.log(knob.statusColors[this.BIDstatus.Bstatus]);
+
+			var pI2  = knob.s.path(elements.circleI2).attr({fill:'transparent', strokeWidth:10,stroke:'r(0.5, 1, 1)#eee-#aaa'});
+			var pI3  = knob.s.path(elements.circleI3).attr({fill:'#eee',stroke:'transparent',filter : knob.s.filter(Snap.filter.shadow(0, 0, 14, knob.statusColors[this.BIDstatus.Istatus])), strokeWidth:3,})
+
+			var pD2  = knob.s.path(elements.circleD2).attr({fill:'transparent', strokeWidth:10,stroke:'r(0.5, 1, 1)#eee-#aaa'});
+			var pD3  = knob.s.path(elements.circleD3).attr({fill:'#eee',stroke:'transparent',filter : knob.s.filter(Snap.filter.shadow(0, 0, 14, knob.statusColors[this.BIDstatus.Dstatus])), strokeWidth:3,})
+
+			var circle4hiverB = knob.s.circle(425,1075, 1).attr({fill:'transparent',strokeWidth:0,stroke:'transparent',opacity:0.25});//circle which will be animated when hover on button
+			 var  svgTextElementB = knob.s.text(400,1100, "B").attr({fontSize: '72px', strokeWidth: 2, "font-family":knobFont, stroke:knob.statusColors[this.BIDstatus.Bstatus], fill:knob.statusColors[this.BIDstatus.Bstatus]});
+			 var circleB = knob.s.circle(425,1075,50).attr({strokeWidth: 2,fill:'transparent', stroke:'#aaa'});
+
+			var circle4hiverD = knob.s.circle(795,1075, 1).attr({fill:'transparent',strokeWidth:0,stroke:'transparent',opacity:0.25});//circle which will be animated when hover on button
+			 var svgTextElementD = knob.s.text(770,1100, "D").attr({fontSize: '72px', strokeWidth: 2, "font-family":knobFont, stroke:knob.statusColors[this.BIDstatus.Dstatus], fill:knob.statusColors[this.BIDstatus.Dstatus]});
+			 var circleD = knob.s.circle(795,1075,50).attr({strokeWidth: 2,fill:'transparent', stroke:'#aaa'});
+
+
+			var circle4hiverI = knob.s.circle(this.centerOfCnob.x,1113, 1).attr({fill:'transparent',strokeWidth:0,stroke:'transparent',opacity:0.25});//circle which will be animated when hover on button
+			 var svgTextElementI = knob.s.text(this.centerOfCnob.x-8,1138, "I").attr({fontSize: '72px', strokeWidth: 2, "font-family":knobFont, stroke:knob.statusColors[this.BIDstatus.Istatus], fill:knob.statusColors[this.BIDstatus.Istatus]});
+			 var circleI = knob.s.circle(this.centerOfCnob.x,1113,50).attr({strokeWidth: 2,fill:'transparent', stroke:'#aaa'});
+
+knob.BIDgroup1 = knob.s.group(pb2, pb3, circle4hiverB, svgTextElementB, circleB);
+knob.BIDgroup2 = knob.s.group(pI2, pI3, circle4hiverI, svgTextElementI, circleI);
+knob.BIDgroup3 = knob.s.group(pD2, pD3, circle4hiverD, svgTextElementD, circleD);
+//=================== Buttons B I D handlers ===================================
+knob.BIDgroup1.hover(function() {
+								circle4hiverB.stop().attr({r:2,fill:knob.statusColors[knob.BIDstatus.Bstatus]});
+								circle4hiverB.stop().animate({r:70},400,mina.easeinout);
+							},
+					function() {circle4hiverB.stop().attr({fill:'transparent'})
+				})
+			.click(function() {console.log('Button B clicked!')})
+			.touchend(function() {console.log('Button B touched!')});
+
+knob.BIDgroup2.hover(function() {
+								circle4hiverI.stop().attr({r:2,fill:knob.statusColors[knob.BIDstatus.Istatus]});
+								circle4hiverI.stop().animate({r:70},400,mina.easeinout);
+							},
+					function() {circle4hiverI.stop().attr({fill:'transparent'})
+				})
+			.click(function() {console.log('Button I clicked!')})
+			.touchend(function() {console.log('Button I touched!')});
+
+knob.BIDgroup3.hover(function() {
+								circle4hiverD.stop().attr({r:2,fill:knob.statusColors[knob.BIDstatus.Dstatus]});
+								circle4hiverD.stop().animate({r:70},400,mina.easeinout);
+							},
+					function() {circle4hiverD.stop().attr({fill:'transparent'})
+				})
+			.click(function() {console.log('Button D clicked!')})
+			.touchend(function() {console.log('Button D touched!')});
+
+//=================== End of B I D handlers ===================================
+	 }
+
+
 };//end of knob object
+
+Object.defineProperties(knob, {
+	"setStatuses" : { set: function (val) {
+		knob.BIDstatus = val;
+		knob.BIDgroup1.remove();
+		knob.BIDgroup2.remove();
+		knob.BIDgroup3.remove();
+		knob.drawBID();
+	} }
+
+});
 
 //===Get mouse position====
 var mousePos =undefined;
@@ -338,36 +404,4 @@ var mousePos =undefined;
     }
 })();
 
-  Snap.plugin(function (Snap, Element, Paper, glob) {
-     Paper.prototype.multitext = function (x, y, txt, max_width, attributes) {
-
-        var svg = Snap();
-        var abc = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        var temp = svg.text(0, 0, abc);
-        temp.attr(attributes);
-        var letter_width = temp.getBBox().width / abc.length;
-        svg.remove();
-
-        var words = txt.split(" ");
-        var width_so_far = 0, current_line=0, lines=[''];
-        for (var i = 0; i < words.length; i++) {
-
-           var l = words[i].length;
-           if (width_so_far + (l * letter_width) > max_width) {
-              lines.push('');
-              current_line++;
-              width_so_far = 0;
-           }
-           width_so_far += l * letter_width;
-           lines[current_line] += words[i] + " ";
-        }
-
-        var t = this.text(x,y,lines).attr(attributes);
-        t.selectAll("tspan:nth-child(n+2)").attr({
-           dy: "1.2em",
-           x: x
-        });
-        return t;
-     };
-  });
 
