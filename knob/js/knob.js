@@ -73,6 +73,8 @@ setInscriptions : function setInscriptions(inscription){
 	 grayPointer:"M936 791c3,8 1,17 -5,21 -8,3 -17,1 -21,-6 -3,-7 -2,-16 6,-20 7,-4 16,-2 20,5z",
 
      elOfscale:"M224 873l-60 40c3,4 5,8 8,12l58 -43c-2,-3 -4,-6 -6,-9z",
+
+     whiteCountur:"M609 38c316,0 571,255 571,570 0,136 -49,241 -94,312 -1,1 -1,3 -2,4 -13,19 -34,31 -59,31 -38,0 -70,-31 -70,-70 0,-16 6,-31 15,-43 47,-68 70,-144 70,-234 0,-238 -194,-430 -432,-430 -238,0 -432,192 -432,430 1,92 32,176 79,248 4,9 7,19 7,29 0,39 -32,69 -70,70 -22,1 -44,-12 -58,-31 -63,-91 -96,-197 -96,-316 0,-315 255,-570 571,-570z"
 		},//end of elements
 
 	init : function  (e) {
@@ -132,15 +134,17 @@ setInscriptions : function setInscriptions(inscription){
 			knob.BIDstatus=e.stateOfbuttont;//console.log(knob.BIDstatus);
 			//========================================================================
 
-			var p0  = knob.s.path(this.elements.medCircle1).attr({fill:'#ddd', stroke:"darkgrey",});
-			var p1  = knob.s.path(this.elements.medCircle2).attr({fill:'#ddd', stroke:"darkgrey",});
-			var p2  = knob.s.path(this.elements.medCircle3).attr({fill:'l(0,0,0,1)#888-#eee-#eee', stroke:"darkgrey",});
-			var p3  = knob.s.path(this.elements.medCircle4).attr({fill:'transparent', stroke:"darkgrey",});
-			var big1  = knob.s.path(this.elements.innerCircle1).attr({fill:"l(0,0,0,0.9)#fff-#999",
+			var pw0 = knob.s.path(this.elements.whiteCountur).attr({fill:'transparent', stroke:"white",strokeWidth:3,opacity:1}).transform('s 1.005 1.0075');
+			var pw1 = knob.s.path(this.elements.whiteCountur).attr({fill:'transparent', stroke:knob.statusColors.active,strokeWidth:3,opacity:0}).transform('s 1.005 1.0075');
+			var p0 = knob.s.path(this.elements.medCircle1).attr({fill:'#ddd', stroke:"darkgrey",});
+			var p1 = knob.s.path(this.elements.medCircle2).attr({fill:'#ddd', stroke:"darkgrey",});
+			var p2 = knob.s.path(this.elements.medCircle3).attr({fill:'l(0,0,0,1)#888-#eee-#eee', stroke:"darkgrey",});
+			var p3 = knob.s.path(this.elements.medCircle4).attr({fill:'transparent', stroke:"darkgrey",});
+			var big1 = knob.s.path(this.elements.innerCircle1).attr({fill:"l(0,0,0,0.9)#fff-#999",
 					strokeWidth:5, stroke:"l(0,0,0,1)#fff-#555",
 					filter : knob.s.filter(Snap.filter.shadow(0, 50, 20, '#555'))//основная тень от кнопы
 						});
-			var big2  = knob.s.path(this.elements.innerCircle2).attr({fill:'r(0.5, 0.5, 0.95)#fff-#999', //придаем легкую выпуклость большой кнопе
+			var big2 = knob.s.path(this.elements.innerCircle2).attr({fill:'r(0.5, 0.5, 0.95)#fff-#999', //придаем легкую выпуклость большой кнопе
 					opacity:0.4,
 					stroke:"darkgrey",strokeWidth:0,
 					filter : knob.s.filter(Snap.filter.shadow(0, -2, 5, '#eee'))//светлый блик на краю кнопы});
@@ -258,6 +262,9 @@ setInscriptions : function setInscriptions(inscription){
 							 event.preventDefault();
 							 event.target.className = 'selected';
 					    }
+					   setTimeout(function(){ pw0.animate({opacity: 0 }, 500);
+											  pw1.animate({opacity: 0.5 }, 500);}
+								    , 100);
 		};
 
 		var stopE = function(event){
@@ -265,9 +272,12 @@ setInscriptions : function setInscriptions(inscription){
 			        pdragableKnobC.attr({fill:"transparent"});
 			        pdragableKnobC.animate({opacity: 1, }, 500);
 			        pgrayPointer.attr({"fill":"l(0,0,0,1)#eee-#888",stroke:"#888"});
+			        pw0.animate({opacity: 1 }, 500);
+					pw1.animate({opacity: 0 }, 500);
 			  //       event.stopPropagation();
 					// event.preventDefault();
 					// event.target.className = '';
+
 		}
 
 
