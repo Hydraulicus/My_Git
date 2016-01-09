@@ -24,10 +24,12 @@ var knob={
 			var angelKnobPos = (-1)*Pos*0.01*knob.endengel+knob.luftAngel;//in grd
 			var radians = Snap.rad(angelKnobPos);//in rad
 			// console.log(radians);
-			var att = {cx: Math.cos(radians) * 502 + knob.centerOfCnob.x,cy: Math.sin(radians) * 502 + knob.centerOfCnob.y}
+			var att = {cx: Math.cos(radians) * 502 + knob.centerOfCnob.x,cy: Math.sin(radians) * 502 + knob.centerOfCnob.y};
 		    pdragableKnob3.attr(att);
 		    pdragableKnobC.attr(att);
-		    pgrayPointer.transform( 'r'+(angelKnobPos-knob.luftAngel+5)+','+this.centerOfCnob.x+','+this.centerOfCnob.y);
+		    //-0.038
+		    pgrayPointerCircle1.attr({cx: Math.cos(radians) * 366 + knob.centerOfCnob.x,cy: Math.sin(radians) * 366 + knob.centerOfCnob.y} );
+		    pgrayPointer.attr({cx: Math.cos(radians) * 366 + knob.centerOfCnob.x,cy: Math.sin(radians) * 366 + knob.centerOfCnob.y} );
 		},
 
 setInscriptions : function setInscriptions(inscription){
@@ -58,6 +60,7 @@ setInscriptions : function setInscriptions(inscription){
 	 svgText2:undefined,
 	 svgText3:undefined,
 	 pgrayPointer:undefined,
+	 pgrayPointerCircle1:undefined,
      pdragableKnob3:undefined,
      pdragableKnobC:undefined, // knob elements
 
@@ -70,7 +73,6 @@ setInscriptions : function setInscriptions(inscription){
 	 innerCircle2:"M610 297c171,0 310,139 310,311 0,172 -139,311 -310,311 -173,0 -312,-139 -312,-311 0,-172 139,-311 312,-311z",
 
 	 bluePointer:"M666 327c5,10 3,22 -8,27 -10,6 -21,3 -27,-7 -6,-9 -3,-22 7,-27 10,-6 22,-3 28,7z",
-	 grayPointer:"M936 791c3,8 1,17 -5,21 -8,3 -17,1 -21,-6 -3,-7 -2,-16 6,-20 7,-4 16,-2 20,5z",
 
      elOfscale:"M224 873l-60 40c3,4 5,8 8,12l58 -43c-2,-3 -4,-6 -6,-9z",
 
@@ -149,12 +151,14 @@ setInscriptions : function setInscriptions(inscription){
 					stroke:"darkgrey",strokeWidth:0,
 					filter : knob.s.filter(Snap.filter.shadow(0, -2, 5, '#eee'))//светлый блик на краю кнопы});
 						});
-			var bluePointer  = knob.s.path(this.elements.bluePointer).attr({fill:knob.statusColors.active, stroke:'l(1,0,0,0)#888-#eee', strokeWidth:10 });
+			var bluePointer  = knob.s.path(this.elements.bluePointer).attr({fill:knob.statusColors.active,  strokeWidth:10,
+				stroke:'l(1,0,0,0)#888-#eee', });
 				 bluePointer.transform( 'r'+bluePointerAngel+','+this.centerOfCnob.x+','+this.centerOfCnob.y);
 
-			 pgrayPointer = knob.s.path(this.elements.grayPointer).attr({fill:"l(0,0,0,1)#eee-#888", stroke:"darkgray",
-			 		});
-			 // pgrayPointer.transform( 'r-10,'+this.centerOfCnob.x+','+this.centerOfCnob.y);
+
+			 pgrayPointer = knob.s.circle(923, 799, 15).attr({fill:"l(0,0,0,0.9)#999-#fff",strokeWidth:1, stroke:"#bbb"});
+			pgrayPointerCircle1 =  knob.s.circle(923, 799, 7).attr({fill:"#888", stroke:"transparent",strokeWidth:2,
+										});
 
 			 pdragableKnobC = knob.s.circle(1029, 885, 90).attr({fill:'transparent', stroke:"white",strokeWidth:2,filter : knob.s.filter(Snap.filter.shadow(0, 3, 2, '#555', 1.0))});
 			 pdragableKnob3 = knob.s.circle(1029, 885, 50)
@@ -164,9 +168,6 @@ setInscriptions : function setInscriptions(inscription){
 						 stroke:"darkgray",strokeWidth:1,
 						 filter : knob.s.filter(Snap.filter.shadow(0, 20, 10, '#555', 0.5))
 						});
-					// pdragableKnob3.transform( 'r-150,'+this.centerOfCnob.x+','+this.centerOfCnob.y);
-			// var dragableGroup = knob.s.g(pdragableKnobC,  pdragableKnob3);//grouping
-			// dragableGroup.transform( 'r-150,'+this.centerOfCnob.x+','+this.centerOfCnob.y);
 			if (e.knobPos != undefined) {knob.initKnobPos(e.knobPos, pdragableKnobC, pdragableKnob3 );}
 
 
@@ -194,6 +195,17 @@ setInscriptions : function setInscriptions(inscription){
 			 var centralEllipse = knob.s.ellipse(this.centerOfCnob.x,this.centerOfCnob.y, 250,3).attr({fill:'l(0,1,0,0)#888-#eee',strokeWidth:0});
 
 
+
+	function greyPointerCoords(x, y) {
+			var radians;
+	        x = x - canvas.center[0];
+	        y = y - canvas.center[1];
+	        var radians_ = Math.atan2(y, x)-0.038;
+	           return {
+	               cx: Math.cos(radians_) * 366 + canvas.center[0],
+	               cy: Math.sin(radians_) * 366 + canvas.center[1],
+	           }
+	    }
 
 	function limit(x, y) {
 			var radians;
@@ -231,7 +243,6 @@ setInscriptions : function setInscriptions(inscription){
 		    return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
 		}
 
-
 		var move = function(dx, dy, x, y) {
 			if( (typeof dx == 'object') && ( dx.type == 'touchmove') ) {//touch event
 				       var x = dx.changedTouches[0].clientX;
@@ -239,11 +250,13 @@ setInscriptions : function setInscriptions(inscription){
 		    		  var result = limit(x*kScale, y*kScale);
 				    }
 				    else
-		    		  var result = limit(mousePos.x*kScale, mousePos.y*kScale);//mouse event
-			att = {cx: result.x,cy:result.y}
+		    		var result = limit(mousePos.x*kScale, mousePos.y*kScale);//mouse event
+
+			att = {cx: result.x,cy:result.y};
             this.attr(att);
             pdragableKnobC.attr(att);
-            pgrayPointer.transform( 'r'+(result.angl-knob.luftAngel+5)+','+knob.centerOfCnob.x+','+knob.centerOfCnob.y);
+            pgrayPointerCircle1.attr(greyPointerCoords(result.x,result.y));
+            pgrayPointer.attr(greyPointerCoords(result.x,result.y));
 		}
 
 
@@ -253,6 +266,7 @@ setInscriptions : function setInscriptions(inscription){
 			        this.data("oy", this.type == "rect" ? this.attr("y") : this.attr("cy") );
 			        pdragableKnobC.attr({"fill":knob.statusColors.active,opacity:"0.15"});
 			        pgrayPointer.attr({"fill":"r(0.5,0.5,0.5)"+knob.statusColors.active+"-#eee",stroke:'transparent'});
+			        pgrayPointerCircle1.attr({opacity:0});
 		            if( (typeof x == 'object') && ( x.type == 'touchstart') ) {
 					        x.preventDefault();
 					        this.data('ox', x.changedTouches[0].clientX );
@@ -271,13 +285,13 @@ setInscriptions : function setInscriptions(inscription){
 					console.log("Move stopped");
 			        pdragableKnobC.attr({fill:"transparent"});
 			        pdragableKnobC.animate({opacity: 1, }, 500);
-			        pgrayPointer.attr({"fill":"l(0,0,0,1)#eee-#888",stroke:"#888"});
+			        pgrayPointer.attr({fill:"l(0,0,0,0.9)#999-#fff"});
+			        pgrayPointerCircle1.attr({opacity:1});
 			        pw0.animate({opacity: 1 }, 500);
 					pw1.animate({opacity: 0 }, 500);
 			  //       event.stopPropagation();
 					// event.preventDefault();
 					// event.target.className = '';
-
 		}
 
 
@@ -324,38 +338,38 @@ setInscriptions : function setInscriptions(inscription){
 			 var svgTextElementI = knob.s.text(this.centerOfCnob.x-8,1138, "I").attr({fontSize: '72px', strokeWidth: 2, "font-family":knobFont, stroke:knob.statusColors[this.BIDstatus.Istatus], fill:knob.statusColors[this.BIDstatus.Istatus]});
 			 var circleI = knob.s.circle(this.centerOfCnob.x,1113,50).attr({strokeWidth: 2,fill:'transparent', stroke:'#aaa'});
 
-knob.BIDgroup1 = knob.s.group(pb2, pb3, circle4hiverB, svgTextElementB, circleB);
-knob.BIDgroup2 = knob.s.group(pI2, pI3, circle4hiverI, svgTextElementI, circleI);
-knob.BIDgroup3 = knob.s.group(pD2, pD3, circle4hiverD, svgTextElementD, circleD);
-//=================== Buttons B I D handlers ===================================
-knob.BIDgroup1.hover(function() {
-								circle4hiverB.stop().attr({r:2,fill:knob.statusColors[knob.BIDstatus.Bstatus]});
-								circle4hiverB.stop().animate({r:70},400,mina.easeinout);
-							},
-					function() {circle4hiverB.stop().attr({fill:'transparent'})
-				})
-			.click(function() {console.log('Button B clicked!')})
-			.touchend(function() {console.log('Button B touched!')});
+			knob.BIDgroup1 = knob.s.group(pb2, pb3, circle4hiverB, svgTextElementB, circleB);
+			knob.BIDgroup2 = knob.s.group(pI2, pI3, circle4hiverI, svgTextElementI, circleI);
+			knob.BIDgroup3 = knob.s.group(pD2, pD3, circle4hiverD, svgTextElementD, circleD);
+			//=================== Buttons B I D handlers ===================================
+			knob.BIDgroup1.hover(function() {
+											circle4hiverB.stop().attr({r:2,fill:knob.statusColors[knob.BIDstatus.Bstatus]});
+											circle4hiverB.stop().animate({r:70},400,mina.easeinout);
+										},
+								function() {circle4hiverB.stop().attr({fill:'transparent'})
+							})
+						.click(function() {console.log('Button B clicked!')})
+						.touchend(function() {console.log('Button B touched!')});
 
-knob.BIDgroup2.hover(function() {
-								circle4hiverI.stop().attr({r:2,fill:knob.statusColors[knob.BIDstatus.Istatus]});
-								circle4hiverI.stop().animate({r:70},400,mina.easeinout);
-							},
-					function() {circle4hiverI.stop().attr({fill:'transparent'})
-				})
-			.click(function() {console.log('Button I clicked!')})
-			.touchend(function() {console.log('Button I touched!')});
+			knob.BIDgroup2.hover(function() {
+											circle4hiverI.stop().attr({r:2,fill:knob.statusColors[knob.BIDstatus.Istatus]});
+											circle4hiverI.stop().animate({r:70},400,mina.easeinout);
+										},
+								function() {circle4hiverI.stop().attr({fill:'transparent'})
+							})
+						.click(function() {console.log('Button I clicked!')})
+						.touchend(function() {console.log('Button I touched!')});
 
-knob.BIDgroup3.hover(function() {
-								circle4hiverD.stop().attr({r:2,fill:knob.statusColors[knob.BIDstatus.Dstatus]});
-								circle4hiverD.stop().animate({r:70},400,mina.easeinout);
-							},
-					function() {circle4hiverD.stop().attr({fill:'transparent'})
-				})
-			.click(function() {console.log('Button D clicked!')})
-			.touchend(function() {console.log('Button D touched!')});
+			knob.BIDgroup3.hover(function() {
+											circle4hiverD.stop().attr({r:2,fill:knob.statusColors[knob.BIDstatus.Dstatus]});
+											circle4hiverD.stop().animate({r:70},400,mina.easeinout);
+										},
+								function() {circle4hiverD.stop().attr({fill:'transparent'})
+							})
+						.click(function() {console.log('Button D clicked!')})
+						.touchend(function() {console.log('Button D touched!')});
 
-//=================== End of B I D handlers ===================================
+			//=================== End of B I D handlers ===================================
 	 }
 
 
