@@ -130,7 +130,7 @@ setInscriptions : function setInscriptions(inscription){
 			var p3 = knob.s.path(this.elements.medCircle4).attr({fill:'transparent', stroke:"l(0,0,0,1)#eee-#555",strokeWidth:2});
 			var big1 = knob.s.path(this.elements.innerCircle1).attr({fill:"l(0,0,0,0.9)#fff-#999",
 					strokeWidth:5, stroke:"l(0,0,0,1)#fff-#555",
-					filter : knob.s.filter(Snap.filter.shadow(0, 95, 14, '#888',0.75))//основная тень от кнопы
+					filter : knob.s.filter(Snap.filter.shadow(0, 95, 14, '#555',0.75))//основная тень от кнопы
 						});
 			var big2 = knob.s.path(this.elements.innerCircle2).attr({fill:'r(0.5, 0.5, 0.95)#fff-#999', //придаем легкую выпуклость большой кнопе
 					opacity:0.4,
