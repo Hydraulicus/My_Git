@@ -36,7 +36,8 @@ setInscriptions : function setInscriptions(inscription){
 			if (!(inscription.planamount === undefined || inscription.planamount === null)) {
 					// console.dir(inscription.planamount);
 					this.textVol.planamount = inscription.planamount;
-					svgText1.attr({ text: "$"+this.textVol.planamount});
+					svgText10.attr({ text: "$"+this.textVol.planamount});
+					svgText11.attr({ text: "$"+this.textVol.planamount});
 					svgText3.attr({ text: "$"+this.textVol.planamount});
 				};
 			if (!(inscription.investmentamount === undefined || inscription.investmentamount === null)) {
@@ -47,7 +48,7 @@ setInscriptions : function setInscriptions(inscription){
 		},
 
 	 textVol:{investmentamount : 2000, planamount : 700},
-	 statusColors:{ active : 'DeepSkyBlue',
+	 statusColors:{ active : 'Aqua',
 	              inactive : 'MediumTurquoise ',
 	               passive : 'darkgray',
 	           },
@@ -56,7 +57,8 @@ setInscriptions : function setInscriptions(inscription){
 				 Dstatus:"active",
 				},
 
-	 svgText1:undefined,
+	 svgText10:undefined,
+	 svgText11:undefined,
 	 svgText2:undefined,
 	 svgText3:undefined,
 	 pgrayPointer:undefined,
@@ -82,7 +84,6 @@ setInscriptions : function setInscriptions(inscription){
 	init : function  (e) {
 		knob.s = Snap(e.knobId);
 		console.dir('Init'+knob.s);
-		var mainshadow = knob.s.filter(Snap.filter.shadow(0, 20, 4, 'black'));
 
 		var kScale = 1220/e.knobWidth;
 		knob.s.attr({
@@ -92,7 +93,7 @@ setInscriptions : function setInscriptions(inscription){
 			  fill: 'red',
 			stroke:"DodgerBlue",
 			strokeWidth:1});
-			var outCrclP = knob.s.circle(this.centerOfCnob.x,this.centerOfCnob.y,605).attr({fill:'transparent',fill:'#eee', stroke:"gray"});
+			var outCrclP = knob.s.circle(this.centerOfCnob.x,this.centerOfCnob.y,605).attr({fill:'transparent',fill:'l(0,0,0,1)#ddd-#eee', stroke:"gray"});
 			var canvas = {
 				center : [knob.centerOfCnob.x, knob.centerOfCnob.y],
 				radius : 502
@@ -106,8 +107,40 @@ setInscriptions : function setInscriptions(inscription){
 				_color = knob.statusColors.active;
 			var angelstep = knob.endengel/126;
 			var bluePointerAngel = angelstep*parseInt(e.bluePointer)-138,
-				blueGlow = knob.s.filter(Snap.filter.shadow(0, 0, 8, knob.statusColors.active, 1));
+				blueGlow = knob.s.filter(Snap.filter.shadow(0, 0, 10, knob.statusColors.active, 1));
 			var i=0;
+
+
+			//=== check whether entered text  of  planamount and investmentamount
+			if (!(e.planamount === undefined || e.planamount === null)) {
+					knob.textVol.planamount = e.planamount;
+				};
+			if (!(e.investmentamount === undefined || e.investmentamount === null)) {
+					knob.textVol.investmentamount = e.investmentamount;
+				}
+			//========================================================================
+			knob.BIDstatus=e.stateOfbuttont;//console.log(knob.BIDstatus);
+			//========================================================================
+
+			var pw0 = knob.s.path(this.elements.whiteCountur).attr({fill:'transparent', stroke:"white",strokeWidth:3,opacity:1}).transform('s 1.005 1.0075');
+			var pw1 = knob.s.path(this.elements.whiteCountur).attr({fill:'transparent', stroke:knob.statusColors.active,strokeWidth:3,opacity:0}).transform('s 1.005 1.0075');
+			var p0 = knob.s.path(this.elements.medCircle1).attr({fill:'l(0,0,0,1)#fff-#aaa', stroke:"#888",});
+			var p1 = knob.s.path(this.elements.medCircle2).attr({fill:'#ddd', stroke:"#888",});
+			var p2 = knob.s.path(this.elements.medCircle3).attr({fill:'l(0,0,0,1)#888-#eee-#eee', stroke:"l(0,0,0,1)#eee-#555",strokeWidth:2});
+			var p3 = knob.s.path(this.elements.medCircle4).attr({fill:'transparent', stroke:"l(0,0,0,1)#eee-#555",strokeWidth:2});
+			var big1 = knob.s.path(this.elements.innerCircle1).attr({fill:"l(0,0,0,0.9)#fff-#999",
+					strokeWidth:5, stroke:"l(0,0,0,1)#fff-#555",
+					filter : knob.s.filter(Snap.filter.shadow(0, 95, 14, '#888',0.75))//основная тень от кнопы
+						});
+			var big2 = knob.s.path(this.elements.innerCircle2).attr({fill:'r(0.5, 0.5, 0.95)#fff-#999', //придаем легкую выпуклость большой кнопе
+					opacity:0.4,
+					stroke:"darkgrey",strokeWidth:0,
+					filter : knob.s.filter(Snap.filter.shadow(0, -2, 5, '#eee'))//светлый блик на краю кнопы});
+						});
+			var bluePointer  = knob.s.path(this.elements.bluePointer).attr({fill:knob.statusColors.active,  strokeWidth:12,
+				stroke:'l(1,0,0,0)#888-#eee', });
+				 bluePointer.transform( 'r'+bluePointerAngel+','+this.centerOfCnob.x+','+this.centerOfCnob.y+' s0.725');
+
 
                 while (angle < knob.endengel) { //round scale generation
                      arrayp[i] = knob.s.path(this.elements.elOfscale);
@@ -125,36 +158,6 @@ setInscriptions : function setInscriptions(inscription){
                     angle += angelstep;
                     i++
                 }
-			//=== check whether entered text  of  planamount and investmentamount
-			if (!(e.planamount === undefined || e.planamount === null)) {
-					knob.textVol.planamount = e.planamount;
-				};
-			if (!(e.investmentamount === undefined || e.investmentamount === null)) {
-					knob.textVol.investmentamount = e.investmentamount;
-				}
-			//========================================================================
-			knob.BIDstatus=e.stateOfbuttont;//console.log(knob.BIDstatus);
-			//========================================================================
-
-			var pw0 = knob.s.path(this.elements.whiteCountur).attr({fill:'transparent', stroke:"white",strokeWidth:3,opacity:1}).transform('s 1.005 1.0075');
-			var pw1 = knob.s.path(this.elements.whiteCountur).attr({fill:'transparent', stroke:knob.statusColors.active,strokeWidth:3,opacity:0}).transform('s 1.005 1.0075');
-			var p0 = knob.s.path(this.elements.medCircle1).attr({fill:'#ddd', stroke:"darkgrey",});
-			var p1 = knob.s.path(this.elements.medCircle2).attr({fill:'#ddd', stroke:"darkgrey",});
-			var p2 = knob.s.path(this.elements.medCircle3).attr({fill:'l(0,0,0,1)#888-#eee-#eee', stroke:"darkgrey",});
-			var p3 = knob.s.path(this.elements.medCircle4).attr({fill:'transparent', stroke:"darkgrey",});
-			var big1 = knob.s.path(this.elements.innerCircle1).attr({fill:"l(0,0,0,0.9)#fff-#999",
-					strokeWidth:5, stroke:"l(0,0,0,1)#fff-#555",
-					filter : knob.s.filter(Snap.filter.shadow(0, 50, 20, '#555'))//основная тень от кнопы
-						});
-			var big2 = knob.s.path(this.elements.innerCircle2).attr({fill:'r(0.5, 0.5, 0.95)#fff-#999', //придаем легкую выпуклость большой кнопе
-					opacity:0.4,
-					stroke:"darkgrey",strokeWidth:0,
-					filter : knob.s.filter(Snap.filter.shadow(0, -2, 5, '#eee'))//светлый блик на краю кнопы});
-						});
-			var bluePointer  = knob.s.path(this.elements.bluePointer).attr({fill:knob.statusColors.active,  strokeWidth:10,
-				stroke:'l(1,0,0,0)#888-#eee', });
-				 bluePointer.transform( 'r'+bluePointerAngel+','+this.centerOfCnob.x+','+this.centerOfCnob.y);
-
 
 			 pgrayPointer = knob.s.circle(923, 799, 15).attr({fill:"l(0,0,0,0.9)#999-#fff",strokeWidth:1, stroke:"#bbb"});
 			pgrayPointerCircle1 =  knob.s.circle(923, 799, 7).attr({fill:"#888", stroke:"transparent",strokeWidth:2,
@@ -166,29 +169,40 @@ setInscriptions : function setInscriptions(inscription){
 						cursor:'pointer',
 						fill:'r(0.5, 0.5, 0.5)#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999-#fff-#999',
 						 stroke:"darkgray",strokeWidth:1,
-						 filter : knob.s.filter(Snap.filter.shadow(0, 20, 10, '#555', 0.5))
+						 filter : knob.s.filter(Snap.filter.shadow(0, 30, 8, '#555', 0.55))
 						});
 			if (e.knobPos != undefined) {knob.initKnobPos(e.knobPos, pdragableKnobC, pdragableKnob3 );}
 
 
 
-			 svgText1 = knob.s.text(this.centerOfCnob.x,550, '$'+knob.textVol.planamount).attr({ fontSize: '70px', strokeWidth: 0,
+			 svgText10 = knob.s.text(this.centerOfCnob.x,550, '$'+knob.textVol.planamount).attr({ fontSize: '70px', strokeWidth: 1,
 			 	// stroke:"l(0,1,0,0)#888-#eee",
+			 	stroke:"gray",
 			 	fill: "gray", "text-anchor": "middle", "font-family":e.knobFont,
-			  filter : knob.s.filter(Snap.filter.shadow(0, 3, 3, "#fff")),
+			  filter : knob.s.filter(Snap.filter.shadow(0, 5, 2, "#fff")),
+			});
+			 svgText11 = knob.s.text(this.centerOfCnob.x,550, '$'+knob.textVol.planamount).attr({ fontSize: '70px', strokeWidth: 1,
+			 	// stroke:"l(0,1,0,0)#888-#eee",
+			 	stroke:"gray",
+			 	fill: "gray", "text-anchor": "middle", "font-family":e.knobFont,
+			  filter : knob.s.filter(Snap.filter.shadow(0, -3, 2, "#bbb")),
 			});
 			 var svgTextPlan = knob.s.text(this.centerOfCnob.x,470, "PLAN").attr({ fontSize: '45px',
-			 	stroke:"grey",strokeWidth: 1,
-			 	fill: "grey", "text-anchor": "middle", "font-family":e.knobFont,
+			 	stroke:"#888",strokeWidth: 1,
+			 	fill: "#888", "text-anchor": "middle", "font-family":e.knobFont,
 			});
-			 svgText2 = knob.s.text(this.centerOfCnob.x,750, '$'+knob.textVol.investmentamount).attr({ fontSize: '105px', strokeWidth: 3, stroke:'l(0,0,0,1)'+knob.statusColors.active+'-DodgerBlue ',
-			 	fill:'l(0,0,0,1)'+knob.statusColors.active+'-DodgerBlue ', "text-anchor": "middle", "font-family":e.knobFont,
-			  // filter : knob.s.filter(Snap.filter.shadow(0, -3, 2, "#000")),
-			  filter : knob.s.filter(Snap.filter.shadow(0, 2, 2, "#eee")),
+			 svgText20 = knob.s.text(this.centerOfCnob.x,750, '$'+knob.textVol.investmentamount).attr({ fontSize: '105px', strokeWidth: 3, stroke:knob.statusColors.active,
+			 	fill:knob.statusColors.active, "text-anchor": "middle", "font-family":e.knobFont,
+			  filter : knob.s.filter(Snap.filter.shadow(0, 6, 2, "#ddd")),
 			  });
+ 			 svgText21 = knob.s.text(this.centerOfCnob.x,750, '$'+knob.textVol.investmentamount).attr({ fontSize: '105px', strokeWidth: 3, stroke:'l(0,0,0,1) white-'+knob.statusColors.active, opacity:0.45,
+			 	fill:'l(0,0,0,1) white-'+knob.statusColors.active, "text-anchor": "middle", "font-family":e.knobFont,
+			  filter : knob.s.filter(Snap.filter.shadow(0, -5, 2, "#bbb")),
+			  });
+
 			 var svgTextINVESTMENT = knob.s.text(this.centerOfCnob.x,810, "INVESTMENT").attr({ fontSize: '45px',
-			 	stroke:"grey",strokeWidth: 1,
-			 	fill: "grey", "text-anchor": "middle", "font-family":e.knobFont,
+			 	stroke:"#666",strokeWidth: 1,
+			 	fill: "#666", "text-anchor": "middle", "font-family":e.knobFont,
 			});
 			 var svgText0 = knob.s.text(265,995, "$0").attr({ fontSize: '32px',stroke:"grey",strokeWidth: 1,	fill: "grey", "text-anchor": "middle", "font-family":e.knobFont	});
 			 svgText3 = knob.s.text(940,995, "$"+knob.textVol.planamount).attr({ fontSize: '32px',stroke:"grey",strokeWidth: 1,	fill: "grey", "text-anchor": "middle", "font-family":e.knobFont	});
@@ -276,8 +290,8 @@ setInscriptions : function setInscriptions(inscription){
 							 event.preventDefault();
 							 event.target.className = 'selected';
 					    }
-					   setTimeout(function(){ pw0.animate({opacity: 0 }, 500);
-											  pw1.animate({opacity: 0.5 }, 500);}
+					   setTimeout(function(){ pw0.animate({opacity: 0.5 }, 1500);
+											  pw1.animate({opacity: 0.5 }, 1500);}
 								    , 100);
 		};
 
@@ -288,7 +302,7 @@ setInscriptions : function setInscriptions(inscription){
 			        pgrayPointer.attr({fill:"l(0,0,0,0.9)#999-#fff"});
 			        pgrayPointerCircle1.attr({opacity:1});
 			        pw0.animate({opacity: 1 }, 500);
-					pw1.animate({opacity: 0 }, 500);
+					pw1.animate({opacity: 0 }, 300);
 			  //       event.stopPropagation();
 					// event.preventDefault();
 					// event.target.className = '';
@@ -316,26 +330,26 @@ setInscriptions : function setInscriptions(inscription){
 	};
 
 			var pb2  = knob.s.path(elements.circleB2).attr({fill:'transparent',strokeWidth:10,stroke:'r(0.5, 1, 1)#eee-#aaa'});
-			var pb3  = knob.s.path(elements.circleB3).attr({fill:'#eee',stroke:'transparent',filter : knob.s.filter(Snap.filter.shadow(0, 0, 14, knob.statusColors[this.BIDstatus.Bstatus]))});
+			var pb3  = knob.s.path(elements.circleB3).attr({fill:'l(0,1,0,0)#ccc-#fff',stroke:'transparent',filter : knob.s.filter(Snap.filter.shadow(0, 0, 14, knob.statusColors[this.BIDstatus.Bstatus]))});
 			console.log(knob.statusColors[this.BIDstatus.Bstatus]);
 
 			var pI2  = knob.s.path(elements.circleI2).attr({fill:'transparent', strokeWidth:10,stroke:'r(0.5, 1, 1)#eee-#aaa'});
-			var pI3  = knob.s.path(elements.circleI3).attr({fill:'#eee',stroke:'transparent',filter : knob.s.filter(Snap.filter.shadow(0, 0, 14, knob.statusColors[this.BIDstatus.Istatus])), strokeWidth:3,})
+			var pI3  = knob.s.path(elements.circleI3).attr({fill:'l(0,1,0,0)#ccc-#fff',stroke:'transparent',filter : knob.s.filter(Snap.filter.shadow(0, 0, 14, knob.statusColors[this.BIDstatus.Istatus])), strokeWidth:3,})
 
 			var pD2  = knob.s.path(elements.circleD2).attr({fill:'transparent', strokeWidth:10,stroke:'r(0.5, 1, 1)#eee-#aaa'});
-			var pD3  = knob.s.path(elements.circleD3).attr({fill:'#eee',stroke:'transparent',filter : knob.s.filter(Snap.filter.shadow(0, 0, 14, knob.statusColors[this.BIDstatus.Dstatus])), strokeWidth:3,})
+			var pD3  = knob.s.path(elements.circleD3).attr({fill:'l(0,1,0,0)#ccc-#fff',stroke:'transparent',filter : knob.s.filter(Snap.filter.shadow(0, 0, 14, knob.statusColors[this.BIDstatus.Dstatus])), strokeWidth:3,})
 
 			var circle4hiverB = knob.s.circle(425,1075, 1).attr({fill:'transparent',strokeWidth:0,stroke:'transparent',opacity:0.25});//circle which will be animated when hover on button
-			 var  svgTextElementB = knob.s.text(400,1100, "B").attr({fontSize: '72px', strokeWidth: 2, "font-family":knobFont, stroke:knob.statusColors[this.BIDstatus.Bstatus], fill:knob.statusColors[this.BIDstatus.Bstatus]});
+			 var  svgTextElementB = knob.s.text(400,1100, "B").attr({fontSize: '72px', strokeWidth: 3, "font-family":knobFont, stroke:knob.statusColors[this.BIDstatus.Bstatus], fill:knob.statusColors[this.BIDstatus.Bstatus]});
 			 var circleB = knob.s.circle(425,1075,50).attr({strokeWidth: 2,fill:'transparent', stroke:'#aaa'});
 
 			var circle4hiverD = knob.s.circle(795,1075, 1).attr({fill:'transparent',strokeWidth:0,stroke:'transparent',opacity:0.25});//circle which will be animated when hover on button
-			 var svgTextElementD = knob.s.text(770,1100, "D").attr({fontSize: '72px', strokeWidth: 2, "font-family":knobFont, stroke:knob.statusColors[this.BIDstatus.Dstatus], fill:knob.statusColors[this.BIDstatus.Dstatus]});
+			 var svgTextElementD = knob.s.text(770,1100, "D").attr({fontSize: '72px', strokeWidth: 3, "font-family":knobFont, stroke:knob.statusColors[this.BIDstatus.Dstatus], fill:knob.statusColors[this.BIDstatus.Dstatus]});
 			 var circleD = knob.s.circle(795,1075,50).attr({strokeWidth: 2,fill:'transparent', stroke:'#aaa'});
 
 
 			var circle4hiverI = knob.s.circle(this.centerOfCnob.x,1113, 1).attr({fill:'transparent',strokeWidth:0,stroke:'transparent',opacity:0.25});//circle which will be animated when hover on button
-			 var svgTextElementI = knob.s.text(this.centerOfCnob.x-8,1138, "I").attr({fontSize: '72px', strokeWidth: 2, "font-family":knobFont, stroke:knob.statusColors[this.BIDstatus.Istatus], fill:knob.statusColors[this.BIDstatus.Istatus]});
+			 var svgTextElementI = knob.s.text(this.centerOfCnob.x-8,1138, "I").attr({fontSize: '72px', strokeWidth: 3, "font-family":knobFont, stroke:knob.statusColors[this.BIDstatus.Istatus], fill:knob.statusColors[this.BIDstatus.Istatus]});
 			 var circleI = knob.s.circle(this.centerOfCnob.x,1113,50).attr({strokeWidth: 2,fill:'transparent', stroke:'#aaa'});
 
 			knob.BIDgroup1 = knob.s.group(pb2, pb3, circle4hiverB, svgTextElementB, circleB);
