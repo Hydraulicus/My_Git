@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/html1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us">
 
@@ -25,6 +23,7 @@
   <div style="width:100%; height:100%; margin:0 auto; background-color:#fff">
       <svg id="svgout"  xmlns="http://www.w3.org/2000/svg" version="1.1"> </svg>
   </div>
+  <p>Get knob position and statuses:  <input type="button" onclick="logOut()" value="Get statuses"/></p>
   <p>Set another BID statuses: B-passive, I-active, D-inactive.  <input type="button" onclick="setstat(
    {Bstatus:'passive', Istatus:'active', Dstatus:'inactive'})" value="Set statuses"/></p>
   <p>Demo knob position GET/SET method: <input id='getKnobVal' placeholder="enter knob value" type="number" min="0" max="100 " >% </p>
@@ -37,10 +36,10 @@
     knob.init({
           knobFont : 'Agida',//font-family defined in the head
             knobId : '#svgout',//ID of our SVG of KNOB
-         knobWidth : '300',//user Width. Original size 1220.
-        knobHeight : '300',//user Height. Original size 1220.
+         knobWidth : '200',//user Width. Original size 1220.
+        knobHeight : '200',//user Height. Original size 1220.
        bluePointer : '45', // 126 max.
-           knobPos : 1.5,//in %,
+           knobPos : 0.0,//in %,
         planamount : '2000',//Also it could be setted by method - knob.setInscriptions({planamount:'2000'});
   investmentamount : '700',//Also it could be setted by method - knob.setInscriptions({investmentamount:'700'});
     stateOfbuttont : {Bstatus:'active',// or inactive or passive
@@ -66,7 +65,6 @@
                     +"\ninvestment amounts : $" + knob.getInscriptions().investmentamount
                     +"\nBID buttons status : " + knob.getBIDstatus().Bstatus+", "+knob.getBIDstatus().Istatus+", "+knob.getBIDstatus().Dstatus;
           myTextArea.innerHTML = strng;  myTextArea.innerText = strng;};
-        window.onmouseup=logOut();
         function setstat(stat){knob.setBIDstatus(stat); logOut();}
   </script>
 </body>

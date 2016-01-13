@@ -36,16 +36,17 @@ quantityOfCircle : 20, // quantity of circls at knob
 
 setInscriptions : function setInscriptions(inscription){
 			if (!(inscription.planamount === undefined || inscription.planamount === null)) {
-					// console.dir(inscription.planamount);
+					console.dir(inscription.planamount);
 					this.textVol.planamount = inscription.planamount;
 					svgText10.attr({ text: "$"+this.textVol.planamount});
 					svgText11.attr({ text: "$"+this.textVol.planamount});
 					svgText3.attr({ text: "$"+this.textVol.planamount});
 				};
 			if (!(inscription.investmentamount === undefined || inscription.investmentamount === null)) {
-					// console.dir(inscription.investmentamount);
+					console.dir(inscription.investmentamount);
 					this.textVol.investmentamount = inscription.investmentamount;
-					svgText2.attr({ text: "$"+this.textVol.investmentamount});
+					svgText20.attr({ text: "$"+this.textVol.investmentamount});
+					svgText21.attr({ text: "$"+this.textVol.investmentamount});
 				}
 		},
 
@@ -158,7 +159,7 @@ setInscriptions : function setInscriptions(inscription){
 						// 				)
 					}
 					arrayp[i].attr({fill:_color, stroke:_color, transform: "r" + angle+','+this.centerOfCnob.x+','+this.centerOfCnob.y,
-						// filter :blueGlow
+						filter :blueGlow
 					});
                     angle += angelstep;
                     i++
@@ -449,7 +450,7 @@ Object.defineProperties(knob, {
 });
 
 //===Get mouse position====
-var mousePos =undefined;
+var mousePos = undefined;
 
 (function() {
     document.onmousemove = handleMouseMove;
