@@ -9,7 +9,6 @@ var map = {
             bBox : {}, //size of our SVG image
 		viewPort : {}, //size of our SVG viewport
 
-
     setMapScale : function setMapScale(s){this.scal = s*0.01; map.zoom0(this.SVG,this.scal)},
 
 	getUserCoord : function getUserCoord(s){
@@ -154,7 +153,7 @@ function DragMove(dx, dy, x, y) {
     var dy1 = (vewboxArr[1]-dy*sc);
     var limx1 = vewboxArr[2]+dx1;
     var limy1 = vewboxArr[3]+dy1;
-        console.log('limy1 = vewboxArr[3]+dy1'+' '+vewboxArr[3]+' + ' +dy1);
+        // console.log('limy1 = vewboxArr[3]+dy1'+' '+vewboxArr[3]+' + ' +dy1);
 
 
             if (limx1 >= map.bBox.w) {
@@ -176,7 +175,6 @@ function DragMove(dx, dy, x, y) {
 
 function start(el){
 		console.clear();
-        // this.data('ot', this.transform().local );
 		this.data('box', PsvgId.getAttribute('viewBox'));
 	};
 
