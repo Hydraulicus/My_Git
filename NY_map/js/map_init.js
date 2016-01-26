@@ -59,7 +59,7 @@ function initialisation(id){
     PsvgId = document.getElementById(map.svgId);
 	map.SVG = Snap('#'+map.svgId);//attach viewport
     map.viewPort={w : document.getElementById(id).offsetWidth, h : document.getElementById(id).offsetHeight};
-    console.log( map.viewPort);
+    // console.log( map.viewPort);
 	map.mapa=map.SVG.select('#'+map.mapId);//connect group of map elements
     map.mapa.drag(DragMove,start,stopE);
 
@@ -84,7 +84,7 @@ function touchStart(e){
     };
 
 function touchMove(evt){//touch event
-        evt.preventDefault();
+        // evt.preventDefault();
     var x = evt.changedTouches[0].clientX;
     var y = evt.changedTouches[0].clientY;
        // console.log(x,y);
