@@ -1,0 +1,21 @@
+p {margin:0.5rem;}
+
+
+.flex_container{
+	display: -webkit-flex;
+	display: flex;
+	flex-wrap: wrap;
+	box-sizing: border-box;
+	justify-content: space-around;
+}
+
+.flex_block{
+	display: -webkit-flex;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+
+
+
