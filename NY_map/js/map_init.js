@@ -58,9 +58,14 @@ function initialisation(id){
     map.svgId = id;
     PsvgId = document.getElementById(map.svgId);
 	map.SVG = Snap('#'+map.svgId);//attach viewport
-    map.viewPort={w : document.getElementById(id).offsetWidth, h : document.getElementById(id).offsetHeight};
-    // console.log( map.viewPort);
-	map.mapa=map.SVG.select('#'+map.mapId);//connect group of map elements
+
+        //Farefox can get size only from parent div.
+        map.viewPort={w : document.getElementById(id).clientWidth || document.getElementById(map.svgId).parentNode.clientWidth,
+                      h : document.getElementById(id).clientHeight || document.getElementById(map.svgId).parentNode.clientHeight };
+    console.log( map.viewPort);
+
+
+    map.mapa=map.SVG.select('#'+map.mapId);//connect group of map elements
     map.mapa.drag(DragMove,start,stopE);
 
     map.mapa.touchstart( touchStart );

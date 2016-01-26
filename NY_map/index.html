@@ -12,6 +12,10 @@
   <title>Map controls by Alexei Zababurin</title>
   <link href="css/flex.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href='https://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic-ext,cyrillic' rel='stylesheet' type='text/css'>
+  <style type="text/css">
+    .svgMap { width:80%; height:80%;}
+  </style>
+
 </head>
 <body>
   <div class="flex_container" style="">
@@ -36,11 +40,11 @@
         </div >
     </div >
   </div >
+            <!-- sadly, but 'svgWrapper' need for correctly get size in FireFox. All other browsers could work without this wrapper  -->
+            <div id='svgWrapper' class="flex_block" class='svgMap' style="background-color: lightgray; padding:1em; flex: 0 0 80vw; height:80vh">
 
-            <div class="flex_block" style="background-color: lightgray; padding:1em; flex: 0 0 80vw; height:80vh">
-
-                <svg id="svgout" width="80%" height="80%" xmlns="http://www.w3.org/2000/svg" version="1.20"  xmlns:xlink="http://www.w3.org/1999/xlink" style='border: 2px solid black' > <!--viewBox="0 0 2187 3591" -->
-
+                <svg id="svgout" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" version="1.20"  xmlns:xlink="http://www.w3.org/1999/xlink" style='border: 2px solid black' >
+<!--viewBox="0 0 2187 3591" -->
                   <g id='map'>
                           <path d="M 0,3591 L 2187,3591 L 2187,0 L 0,0 L 0,3591 Z" stroke="none" style='stroke: black; stroke-width:10px; fill:BurlyWood'  id="Shape"/>
 
@@ -62,7 +66,12 @@
   <script src="js/map_init.js"></script>
 
   <script type="text/javascript">
-      initialisation('svgout');//insert id
+      document.addEventListener("DOMContentLoaded", function(event) {
+        setTimeout(
+        initialisation('svgout')//insert id
+          ,250)
+      });
+
       document.querySelector('#getScale').addEventListener('input', function(){ map.setMapScale(this.value); });
       document.querySelector('#getUserX').addEventListener('input', function(){ map.getUserCoord({x:this.value}); });
       document.querySelector('#getUserY').addEventListener('input', function(){ map.getUserCoord({y:this.value}); });
@@ -70,6 +79,7 @@
       document.querySelector('#fixed33').addEventListener('click', function(){map.setMapScale(33); });
       document.querySelector('#fixed66').addEventListener('click', function(){map.setMapScale(66); });
       document.querySelector('#fixed100').addEventListener('click', function(){map.setMapScale(100); });
+
 
   </script>
 </body>
