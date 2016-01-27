@@ -67,9 +67,13 @@
 
   <script type="text/javascript">
       document.addEventListener("DOMContentLoaded", function(event) {
-        setTimeout(
-        initialisation('svgout')//insert id
-          ,250)
+        initialisation({
+               coord : {x : 450, y : 1450}, //set wanted coords , or call method anytime you want - map.getUserCoord({x : 450, y : 1450})
+              marker : 'true', //whether to show marker at wanted coords
+                scal : 1, //initial  scale,, or call method anytime you want - map.setMapScale()
+               mapId : 'map',//id of map group
+               svgId : 'svgout', //insert id
+        })
       });
 
       document.querySelector('#getScale').addEventListener('input', function(){ map.setMapScale(this.value); });

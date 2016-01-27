@@ -3,9 +3,9 @@ var map = {
             coord : {x : 450, y : 1450}, //wanted coords
 			marker: 'true', //whether to show marker in (coord.x , coord.y)
 			scal : 1, //initial  scale
-            svgId : '', //svg tag there is map
-		   PsvgId : '', //pointer 2 svg tag there is map
             mapId : 'map',//id of map group
+            svgId : '', //svg tag there is map
+           PsvgId : '', //pointer 2 svg tag there is map
             bBox : {}, //size of our SVG image
 		viewPort : {}, //size of our SVG viewport
 
@@ -54,14 +54,18 @@ zoom0 : function zoom0(canva, s){ //zoom all objects in viewbox
           });
 
 
-function initialisation(id){
-    map.svgId = id;
+function initialisation(par){
+    map.coord = par.coord;
+    map.marker = par.marker;
+    map.scal = par.scal;
+    map.svgId = par.mapId;
+    map.svgId = par.svgId;
     PsvgId = document.getElementById(map.svgId);
 	map.SVG = Snap('#'+map.svgId);//attach viewport
 
         //Farefox can get size only from parent div.
-        map.viewPort={w : document.getElementById(id).clientWidth || document.getElementById(map.svgId).parentNode.clientWidth,
-                      h : document.getElementById(id).clientHeight || document.getElementById(map.svgId).parentNode.clientHeight };
+        map.viewPort={w : document.getElementById(map.svgId).clientWidth || document.getElementById(map.svgId).parentNode.clientWidth,
+                      h : document.getElementById(map.svgId).clientHeight || document.getElementById(map.svgId).parentNode.clientHeight };
     console.log( map.viewPort);
 
 
