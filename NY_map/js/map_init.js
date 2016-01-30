@@ -89,7 +89,7 @@ function touchStart(e){
         prevCoord.y = parseInt(touchobj.clientY) // get y position of touch point relative to left edge of browser
         this.data('prevCoordX', prevCoord.x);
         this.data('prevCoordY', prevCoord.y);
-        // e.preventDefault()
+        e.preventDefault()
     };
 
 function touchMove(evt){//touch event
