@@ -93,7 +93,7 @@ function touchStart(e){
     };
 
 function touchMove(evt){//touch event
-        // evt.preventDefault();
+
     var x = evt.changedTouches[0].clientX;
     var y = evt.changedTouches[0].clientY;
        // console.log(x,y);
@@ -140,6 +140,7 @@ function touchMove(evt){//touch event
 
             var shift = dx1+' '+dy1+' '+(vewboxArr[2])+' ' +(vewboxArr[3]);
             map.SVG.attr({"viewBox": shift});
+            evt.preventDefault();
 }
 
 function DragMove(dx, dy, x, y) {
