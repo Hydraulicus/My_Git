@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta name="author" content="Alexei Zababurin" />
+  <meta name="description" content="Frontend developer. Personal website.CSS. CSS3. HTML5. JS. SVG. animation. CSS-animation. SVG-animation. Vector. scroll"/>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2.0"/>
+  <meta property="og:title" content="Map controls by Alexei Zababurin"/>
+  <meta property="og:site_name" content="Map controls by Alexei Zababurin"/>
+  <meta property="og:description" content="Map controls by Alexei Zababurin"/>
+  <title>Map controls by Alexei Zababurin</title>
+  <link href="css/flex.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href='https://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic-ext,cyrillic' rel='stylesheet' type='text/css'>
+  <style type="text/css">
+    .svgMap { width:80%; height:80%;}
+  </style>
+
+</head>
+<body>
+  <div class="flex_container" style="">
+  <div class="flex_block" style="background-color: white; padding:0.2em; flex: 0 0 80vw; height:auto">
+
+    <div class="flex_container" style="">
+        <div class="flex_block" style="flex: 0 0 100%">
+           <h3>Demo of map control API </h3>
+        </div >
+        <div class="flex_block" style="flex: 0 0 auto">
+           <p>Mouse: <textarea id="setKnobVal" rows="1" cols="10" name="text"></textarea></p>
+           <p>Insert X of desirable point<input id='getUserX' placeholder="enter X" type="number" min="1" max="2187"  step="50" ></p>
+           <p>Insert Y of desirable point%<input id='getUserY' placeholder="enter Y" type="number" min="1" max="3591"  step="50" ></p>
+        </div >
+
+        <div class="flex_block" style="flex: 0 0 auto">
+           <p>  <input id='fixed100' type="button" value='inscibed in window' onclick="map.setMapScale(100)"></p>
+           <p>Fine ajastment scale 1-100%<input id='getScale' placeholder="enter scale" type="range" step="9" min="1" max="100" value="100" ></p>
+        </div >
+    </div >
+  </div >
+            <!-- sadly, but 'svgWrapper' need for correctly get size in FireFox. All other browsers could work without this wrapper  -->
+            <div id='svgWrapper' class="flex_block" class='svgMap' style="background-color: lightgray; padding:1em; flex: 0 0 80vw; height:80vh">
+
+                <svg id="svgout" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" version="1.20"  xmlns:xlink="http://www.w3.org/1999/xlink" style='border: 2px solid black' >
+<!--viewBox="0 0 2187 3591" -->
+                  <g id='map'>
+                          <path d="M 0,3591 L 2187,3591 L 2187,0 L 0,0 L 0,3591 Z" stroke="none" style='stroke: black; stroke-width:10px; fill:BurlyWood'  id="Shape"/>
+
+                         <rect x="219" y="359"  width="1763" height="2873" style="fill:BlanchedAlmond;stroke-width:10;stroke:Coral " />
+
+                          <text x="500" y="1200" font-size="500px" font-weight="bold" stroke="black" stroke-width="10" fill="none"> SVG </text>
+                          <text x="500" y="1800" font-size="500px" font-weight="bold" stroke="black" stroke-width="10" fill="none"> SVG </text>
+                          <text x="500" y="2200" font-size="150px" font-weight="bold" stroke="black" stroke-width="5" fill="gray"> SVG any size </text>
+                          <text x="500" y="2400" font-size="150px" font-weight="bold" stroke="black" stroke-width="5" fill="gray"> should be included  </text>
+                          <text x="500" y="2600" font-size="150px" font-weight="bold" stroke="black" stroke-width="5" fill="gray"> inline in 'svg'-tag  </text>
+                  </g>
+                </svg>
+            </div >
+     </div> <!-- end of flex_container -->
+
+  <!--  Scripts-->
+
+  <script src="js/snap.svg-min.js"></script>
+  <script src="js/map_init.js"></script>
+
+  <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function(event) {
+        initialisation({
+               coord : {x : 450, y : 1450}, //set wanted coords , or call method anytime you want - map.getUserCoord({x : 450, y : 1450})
+              marker : 'true', //whether to show marker at wanted coords
+                scal : 1, //initial  scale,, or call method anytime you want - map.setMapScale()
+               mapId : 'map',//id of map group
+               svgId : 'svgout', //insert id
+        })
+      });
+
+      document.querySelector('#getScale').addEventListener('input', function(){ map.setMapScale(this.value); });
+      document.querySelector('#getUserX').addEventListener('input', function(){ map.getUserCoord({x:this.value}); });
+      document.querySelector('#getUserY').addEventListener('input', function(){ map.getUserCoord({y:this.value}); });
+      document.querySelector('#fixed100').addEventListener('click', function(){map.setMapScale(100); });
+
+
+  </script>
+</body>
+</html>
+<!-- ================================
+Free for hire
+Skype: zababurinalex;
+Emails:  852gin@gmail.com, alexei.zababurin@gmail.com
+Phone number:+38(050)800-5770
+ ===================================== -->
