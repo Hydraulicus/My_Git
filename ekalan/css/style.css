@@ -39,14 +39,18 @@ body {
 
 
 
-    .item .sector{transition:all .1s linear;fill:#fff;stroke:gold;cursor:pointer;outline:none;}
-    .item:hover .sector,.item:focus .sector{fill:#eee;}.menu-trigger{fill:gold;pointer-events:auto;}
+    .item .sector{transition:all .1s linear;fill:#fff;stroke:DarkTurquoise;cursor:pointer;outline:none;}
+
+    .item:hover .sector,.item:focus .sector{fill:#eee;}
+
+    .menu-trigger{fill:DarkTurquoise;pointer-events:auto;}
+
     .menu-trigger:hover,.menu-trigger:focus{cursor:pointer;}symbol{overflow:visible;}
 
     .menu-wrapper {
     position: relative;
     height: 0;
     width: 250px;
-    /*padding-top: 50%;*/ /* if the menu is in full circle mode. 50% if it is in semi-circle mode. */
+    padding-top: 50%; /* if the menu is in full circle mode. 50% if it is in semi-circle mode.
 }
 /*============================================*/

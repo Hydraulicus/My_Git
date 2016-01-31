@@ -1,12 +1,13 @@
 
 var TableTop = {//prototipe
-	constructor: function(X0, Y0, W, L, aD){
+	constructor: function(X0, Y0, W, L, aD, name){
 		this.W = W;
 		this.L = L;
 		this.X0= X0;
 		this.Y0= Y0;
 		this.aD= aD;//array of N dragable sides [2,3]
 		this.S = 0; //area in sq m
+
 
 		console.dir(wholeTable.S);
 
@@ -15,9 +16,26 @@ var TableTop = {//prototipe
 		      return this.W * this.L * 0.000001; //area in sq m
 		    }
 		  });
+
+		// wholeTable.S[this.data().infl4][this.data().infl2]+=tdx;
+		// wholeTable.S[this.data().infl4][this.data().infl2]+=tdy;
+
+		  Object.defineProperty(this, "ST", {// ST - contain string of table of this element
+		    get: function() {
+		var l = wholeTable.S.length;
+
+		return '<tr id="'+l+'"><td>'+name+'</td><td id="'+l+'L">'+L+'</td><td id="'+l+'W">'+W+'</td><td>'+this.S+'</td><td>'+0+'</td></tr>' ; //string in price table
+
+		    }
+		  });
+
+		 $('#priceTable').append(this.ST);
+
 		return this
 	},
 }//end of TableTop constructor
+
+
 
 var wholeTable = {
 				S : [],
@@ -211,7 +229,7 @@ function initialisation(){
 	graphModel.views.front = Snap("#frontView");//connect 2-nd viewport with front view
 	console.log(graphModel.views.izometr);
 
-	wholeTable.S[0]=Object.create(TableTop).constructor(0, 0, 600, 2500, [2,3]);
+	wholeTable.S[0]=Object.create(TableTop).constructor(0, 0, 600, 2500, [2,3], 'Центральная');
 	// wholeTable.S[1]=Object.create(TableTop).constructor(wholeTable.S[0].L, wholeTable.S[0].W, 450, 2500, [2,3]);
 	// wholeTable.S[2]=Object.create(TableTop).constructor(0, wholeTable.S[0].W, 600,1200, [2,3]);
 
@@ -233,12 +251,11 @@ function initialisation(){
 	graphModel.drawCircles(graphModel.views.front, wholeTable.aC);
 	zoom0(graphModel.views.front);
 	zoom0(graphModel.views.izometr);
-
+// generateTablic();
 }
-function underWinGrow(){
+function underWinGrow(){// Should appire windowsill
 	console.log('dblclick '+this);
 	var rec;
-
 	wholeTable.underWins.push();
 }
 
@@ -264,41 +281,72 @@ function zoom0(canva){ //zoom all objects in viewbox
 	// document.querySelector('#frontView').setAttribute("viewBox", ' '+bBox.x+' '+bBox.y+' '+bBox.w+' ' +bBox.h);
 }
 
-			var tdx=0, tdy=0, oldMatrix;
+			var tdx=0, tdy=0, vk, oldMatrix, oldX, oldY;
   function dragMove(dx, dy, x, y) {//GOOD WORKING
             var snapInvMatrix = this.transform().diffMatrix.invert();
             snapInvMatrix.e = snapInvMatrix.f = 0;
 			if (this.attr('cursor') == 'n-resize') {
 		            tdx = 0;
-		            tdy = snapInvMatrix.y( dx,dy );
+		            tdy = Math.round(snapInvMatrix.y( dx,dy ));
+					wholeTable.S[this.data().infl4][this.data().infl2] = oldY + tdy;
+					$('#'+this.data().infl4+this.data().infl2).text(oldY + tdy);
 	            }
 	            else {
-		            tdx = snapInvMatrix.x( dx,dy );
+		            tdx = Math.round(snapInvMatrix.x( dx,dy ));
 		            tdy = 0;
+					wholeTable.S[this.data().infl4][this.data().infl2] = oldX + vk * tdx;
+					$('#'+this.data().infl4+this.data().infl2).text(oldX + vk * tdx);
 	            }
-            this.transform( "t" + [ tdx, tdy ] + this.data('ot')  );
+            this.transform( "t" + [ vk * tdx, tdy ] + this.data('ot')  );
+
+
+					// console.log(wholeTable.S[this.data().infl4][this.data().infl2]);
+
     }
 
 function start(el){
 		console.clear();
 		oldMatrix = this.transform().localMatrix;
 		this.data('ot', this.transform().local );
+		$('#'+this.data().infl4+this.data().infl2).css("background-color",'DarkSalmon');
 		tdx=0;	 tdy=0;
+		oldX = wholeTable.S[this.data().infl4][this.data().infl2]
+		oldY = wholeTable.S[this.data().infl4][this.data().infl2]
+		vk = ((this.data().infl4 == 1) && (this.data().infl2 == 'W')) ? -1 : 1;//
 	};
 
 function stopE(el){
 		var that = this;
-		console.log(this.data().infl4,this.data().infl2);
-		if ((this.data().infl4 == 1) && (this.data().infl2 == 'W')) {tdx*=(-1); console.log('cetch')};
-		wholeTable.S[this.data().infl4][this.data().infl2]+=tdx;
-		wholeTable.S[this.data().infl4][this.data().infl2]+=tdy;
+
 		mainCountur.front.animate({'d':wholeTable.tableCountur}, 750, mina.bounce, function(){
 								that.transform( oldMatrix	);
 								graphModel.reDrawDragCountuor(graphModel.views.front, wholeTable.array4Drag);
 								zoom0(graphModel.views.front);
 								graphModel.reDrawCircles(graphModel.views.front, wholeTable.aC);});
 		mainCountur.izometr.animate({'d':wholeTable.tableCountur}, 750, mina.elastic, function(){ zoom0(graphModel.views.izometr);});
+		$('#'+this.data().infl4+this.data().infl2).css("background-color",'white');
 	};
+
+//========================================================================================================================
+//======================================= TABLIC ====== HANDLING =========================================================
+
+
+function generateTablic(){ console.log('generateTablic');
+	var tbl=''
+	for (var i in wholeTable.S) {
+		tbl+=wholeTable.S[i].ST;
+	}
+		 $('#priceTable').append(tbl);
+
+}
+
+
+
+
+
+
+
+//========================================================================================================================
 
 //===Get mouse position====
 var mousePos = undefined;
@@ -337,7 +385,7 @@ var mousePos = undefined;
     //         // We haven't seen any movement yet
         }
         else {
-        	 document.getElementById('setKnobVal').innerHTML='x:'+pos.x+' y:'+pos.y
+        	 // document.getElementById('setKnobVal').innerHTML='x:'+pos.x+' y:'+pos.y
         }
     }
 })();

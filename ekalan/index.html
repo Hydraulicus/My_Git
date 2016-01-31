@@ -22,79 +22,86 @@
 </head>
 <body>
 
-
-            <p> </p><p> Getted values - : <textarea id="setKnobVal" rows="1" cols="10" name="text"></textarea></p>
+<!--
+            <p> </p><p> Getted values - : <textarea id="setKnobVal" rows="1" cols="10" name="text"></textarea></p> -->
     <div class="flex_container" style="height:50vh;">
 
-            <div class="flex_block" style="background-color: #eee; padding:1em; flex: 0 0 250px; height:100%">
-              <p> </p>
-                <svg id="svgout" class="flex_block"   width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" version="1.20"  xmlns:xlink="http://www.w3.org/1999/xlink" style='border: 1px solid #aaa'  viewBox="0 0 3000 3000"><!-- preserveAspectRatio="xMinYMin meet" -->
-
-                </svg>
-            </div >
 <!-- ===================== FRONT ====================== -->
-            <div class="flex_block" style=" padding:1em; flex: 0 1 590px; align-items:flex-start; ">
-  <div class="flex_svg-menu_container"  style="background-color: #eee; width:100%; height:590px;">
+            <div class="flex_block" style="background-color: #deefef; flex: 0 0 590px; height:590px;padding:1em ">
+  <!-- <div class="flex_svg-menu_container"  style=" padding:1em; background-color: #eee; width:100%; height:590px;"   float: left;> -->
 
-            <div class=" flex_block " style=" flex: 0 1 590px; justify-content: flex-start; ">
+            <!-- <div class=" flex_block " style=" flex: 0 1 590px; justify-content: flex-start; "> -->
+<div style='position: absolute;'><!-- block for radial menus-->
 
+<div class="menu-wrapper" style=" left:63%;  "><!--  style="width:20em; height:20em; padding:-5em" -->
 
-<div class="menu-wrapper" style=""><!--  style="width:20em; height:20em; padding:-5em" -->
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-2 -2 504 252" id="menu" style="transform-origin: 50% 50% 0px; transform: matrix3d(-0.999997, 0.00242827, 0, 0, -0.00242827, -0.999997, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); touch-action: none; -webkit-user-select: none;">
 
-    <svg xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" viewBox="-2 -2 504 252" id="menu" style="transform-origin: 50% 50% 0px; transform: matrix3d(-0.999997, 0.00242827, 0, 0, -0.00242827, -0.999997, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); touch-action: none; -webkit-user-select: none;">
-    <!-- transform-origin: 50% 50% 0px; transform: matrix3d(-0.999997, 0.00242827, 0, 0, -0.00242827, -0.999997, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); touch-action: none; -webkit-user-select: none; -->
+    <g id="symbolsContainer">    <symbol class="icon icon-" id="icon-1" viewBox="0 0 39 39"><!--Replace the contents of this symbol with the content of your icon-->
+    <!-- <rect fill="none" stroke="#bbb" stroke-width="1" width="100%" height="100%"></rect> -->
+    <text fill="#222" x="50%" y="50%" dy=".3em" text-anchor="middle" font-size="2.02em">L</text></symbol>
 
-    <g id="symbolsContainer">    <symbol class="icon icon-" id="icon-1" viewBox="0 0 39 39"><!--Replace the contents of this symbol with the content of your icon--><rect fill="none" stroke="#bbb" stroke-width="1" width="100%" height="100%"></rect><text fill="#222" x="50%" y="50%" dy=".3em" text-anchor="middle" font-size="1.2em">L</text></symbol>
+        <symbol class="icon icon-" id="icon-2" viewBox="0 0 39 39"><!--Replace the contents of this symbol with the content of your icon-->
+        <!-- <rect fill="none" stroke="#bbb" stroke-width="1" width="100%" height="100%"></rect> -->
+        <text fill="#222" x="50%" y="50%" dy=".3em" text-anchor="middle" font-size="2.02em">|</text></symbol>
 
-        <symbol class="icon icon-" id="icon-2" viewBox="0 0 39 39"><!--Replace the contents of this symbol with the content of your icon--><rect fill="none" stroke="#bbb" stroke-width="1" width="100%" height="100%"></rect><text fill="#222" x="50%" y="50%" dy=".3em" text-anchor="middle" font-size="1.2em">|</text></symbol>
-
-        <symbol class="icon icon-" id="icon-3" viewBox="0 0 39 39"><!--Replace the contents of this symbol with the content of your icon--><rect fill="none" stroke="#bbb" stroke-width="1" width="100%" height="100%"></rect><text fill="#222" x="50%" y="50%" dy=".3em" text-anchor="middle" font-size="1.2em">U</text></symbol>
+        <symbol class="icon icon-" id="icon-3" viewBox="0 0 39 39"><!--Replace the contents of this symbol with the content of your icon-->
+        <!-- <rect fill="none" stroke="#bbb" stroke-width="1" width="100%" height="100%"></rect> -->
+        <text fill="#222" x="50%" y="50%" dy=".3em" text-anchor="middle" font-size="2.02em">U</text></symbol>
 
     </g>
   <g id="itemsContainer">
     <g id="item-1" class='item' transform="matrix(1,0,0,1,0,0)" >
-      <path    fill="coral" stroke="#111" d="M330,250 l170,0 A250,250 0 0,0 399.28964792569656,49.46920181123906 l-101.51696058947368,136.36094276835743 A80,80 0 0,1 330,250" class="sector"/>
-      <use xlink:href="#icon-1" width="69" height="69" x="374.5666198730469" y="135.61375427246094" transform="rotate(63.33333333333333 409.0666198730469 170.11375427246094)"/>
+      <path    fill="coral" stroke="#111" d="M330,250 l170,0 A250,250 0 0,0 399.28964792569656,49.46920181123906 l-101.51696058947368,136.36094276835743 A80,80 0 0,1 330,250" class="sector"></path>
+      <use xlink:href="#icon-1" width="69" height="69" x="374.5666198730469" y="135.61375427246094" transform="rotate(63.33333333333333 409.0666198730469 170.11375427246094)"></use>
     </g>
 
     <g id="item-2" class='item' transform="matrix(0.44879,-0.89363,0.89363,0.44879,-85.60795513096855,361.2083650307376)">
-      <path fill="none" stroke="#111" d="M330,250 l170,0 A250,250 0 0,0 399.28964792569656,49.46920181123906 l-101.51696058947368,136.36094276835743 A80,80 0 0,1 330,250" class="sector"/>
-      <use xlink:href="#icon-2" width="69" height="69" x="374.5666198730469" y="135.61375427246094" transform="rotate(63.33333333333333 409.0666198730469 170.11375427246094)"/>
+      <path fill="none" stroke="#111" d="M330,250 l170,0 A250,250 0 0,0 399.28964792569656,49.46920181123906 l-101.51696058947368,136.36094276835743 A80,80 0 0,1 330,250" class="sector"></path>
+      <use xlink:href="#icon-2" width="69" height="69" x="374.5666198730469" y="135.61375427246094" transform="rotate(63.33333333333333 409.0666198730469 170.11375427246094)"></use>
     </g>
     <g id="item-3" class='item' transform="matrix(-0.59715,-0.80212,0.80212,-0.59715,198.7588497369357,599.8204461144576)" >
-      <path fill="none" stroke="#111" d="M330,250 l170,0 A250,250 0 0,0 399.28964792569656,49.46920181123906 l-101.51696058947368,136.36094276835743 A80,80 0 0,1 330,250" class="sector"/>
-      <use xlink:href="#icon-3" width="69" height="69" x="374.5666198730469" y="135.61375427246094" transform="rotate(63.33333333333333 409.0666198730469 170.11375427246094)"/>
+      <path fill="none" stroke="#111" d="M330,250 l170,0 A250,250 0 0,0 399.28964792569656,49.46920181123906 l-101.51696058947368,136.36094276835743 A80,80 0 0,1 330,250" class="sector"></path>
+      <use xlink:href="#icon-3" width="69" height="69" x="374.5666198730469" y="135.61375427246094" transform="rotate(63.33333333333333 409.0666198730469 170.11375427246094)"></use>
     </g>
   </g>
     <g id="trigger" class="trigger menu-trigger" role="button">
-    <circle cx="250" cy="250" r="62"></circle>
+    <circle cx="250" cy="250" r="62" ></circle>
 <!-- <symbol class="icon icon-" id="icon-0" viewBox="0 0 39 39"></symbol> -->
 <text  id="label" fill="#222" x="50%" y="50%" dy=".3em" text-anchor="middle" font-size="1.75em"  transform="translate(500, 380) rotate(180)">Тип</text>
     </g>
     </svg>
 </div> <!-- end of menu-wrapper -->
-            </div ><!-- end of flex svg-menu block -->
+</div> <!-- end block for radial menus-->
+      <!--  </div > --><!-- end of flex svg-menu block -->
 
-            <div class="flex_block" style=" padding:1em; flex: 0 1 590px; width:590px; height:590px;">
-                  <svg id="frontView" class="flex_block"  width="100%"  height="100%" xmlns="http://www.w3.org/2000/svg" version="1.20"  xmlns:xlink="http://www.w3.org/1999/xlink" style='border: 1px solid #aaa'  viewBox="0 0 3000 3000">
+            <!-- <div class="flex_block" style=" padding:1em; flex: 0 0 590px; width:590px; height:590px;"> -->
+            <!-- <div style=" position: relative; "> -->
+                  <svg id="frontView" class="flex_block"  width="590px"  height="590px" xmlns="http://www.w3.org/2000/svg" version="1.20"  xmlns:xlink="http://www.w3.org/1999/xlink" style='border: 1px solid #aaa'  viewBox="0 0 3000 3000">
                   </svg>
-            </div >
+            <!-- </div > -->
 
 
 
-            </div ><!-- end of flex svg-menu container -->
+            <!-- </div > --><!-- end of flex svg-menu container -->
 
  </div ><!-- ================================ end of FRONT ========================================================= -->
+
+            <div class="flex_block" style="background-color: #eee; padding:1em; flex: 0 0 590px; height:590px">
+              <p> </p>
+                <svg id="svgout" class="flex_block"   width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" version="1.20"  xmlns:xlink="http://www.w3.org/1999/xlink" style='border: 1px solid #aaa'  viewBox="0 0 3000 3000"><!-- preserveAspectRatio="xMinYMin meet" -->
+
+                </svg>
+            </div
 
              <div class="flex_block" style="flex: 1 1 590px; background-color: #eee; opacity: 0.5; padding:1em;">
           <!-- <p>  Price table</p> -->
            <table id='priceTable'>
              <tr>
-              <th>&nbsp;</th><th>L</th><th>W</th><th></th>
+              <th>&nbsp;</th><th>L, мм</th><th>W, мм</th><th>S, м.кв.</th><th>Цена,$</th>
              </tr>
-             <tr>
-              <td>Столешница</td><td>43</td><td>51</td><td>79</td>
-             </tr>
+             <!-- <tr><td>Столешница</td><td>43</td><td>51</td><td>79</td></tr> -->
+
 
         </table>
           </div >
@@ -109,6 +116,7 @@
   <!--  Scripts-->
 
   <script src="js/snap.svg-min.js"></script>
+  <script src="js/jquery-2.2.0.min.js"></script>
 <!--
   <script src="js/path-data-polyfill.js"></script>
    -->
@@ -118,30 +126,7 @@
   <script type="text/javascript">
       initialisation();
 
-document.querySelector('#item-1').addEventListener('click', function(){
-      console.log('addTableTop');
-      wholeTable.S[1]=Object.create(TableTop).constructor(wholeTable.S[0].L, wholeTable.S[0].W, 450, 2500, [2,3]); console.dir(wholeTable.S);   mainCountur.front.animate({'d':wholeTable.tableCountur}, 750, mina.bounce, function(){
-                // that.transform( oldMatrix );
-                graphModel.drawDragCountuor(graphModel.views.front, wholeTable.array4Drag);
-                zoom0(graphModel.views.front);
-                graphModel.drawCircles(graphModel.views.front, wholeTable.aC);});
-      mainCountur.izometr.animate({'d':wholeTable.tableCountur}, 750, mina.elastic, function(){ zoom0(graphModel.views.izometr);});
-    }, false);
 
-document.querySelector('#item-2').addEventListener('click', function(){ window.location.reload() });
-
-document.querySelector('#item-3').addEventListener('click', function(){
-      console.log('addTableTop');
-      wholeTable.S[1]=Object.create(TableTop).constructor(wholeTable.S[0].L, wholeTable.S[0].W, 450, 2500, [2,3]);
-      wholeTable.S[2]=Object.create(TableTop).constructor(0, wholeTable.S[0].W, 600,1200, [2,3]);
-      console.dir(wholeTable.S);
-      mainCountur.front.animate({'d':wholeTable.tableCountur}, 750, mina.bounce, function(){
-                // that.transform( oldMatrix );
-                graphModel.drawDragCountuor(graphModel.views.front, wholeTable.array4Drag);
-                zoom0(graphModel.views.front);
-                graphModel.drawCircles(graphModel.views.front, wholeTable.aC);});
-      mainCountur.izometr.animate({'d':wholeTable.tableCountur}, 750, mina.elastic, function(){ zoom0(graphModel.views.izometr);});
-    }, false);
 
   </script>
 

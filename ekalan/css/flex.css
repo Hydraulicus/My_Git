@@ -12,7 +12,7 @@
 .flex_block{
 	display: -webkit-flex;
 	display: flex;
-	/*align-items: center;*/
+	/*align-item: ;s: center;*/
 	justify-content: center;
 }
 
