@@ -185,11 +185,7 @@ function $_GET(key) {
         data4 : $(this).data('4'),
       }
       // console.dir(target);
-      // editCell($(this))});
 
-console.log($(this));
-
-  // function editCell(){console.log('dblclick');console.log(this);
             var OriginalContent = $(this).text();
             $(this).addClass("cellEditing");
             $(this).html("<input type='number' min='0' value='" + OriginalContent + "' />");
@@ -198,9 +194,11 @@ console.log($(this));
                 if (e.which == 13) {
                     var newContent = $(this).val();
                     $(this).parent().text(newContent);
-                    wholeTable.S[target.data4][target.data2] = parseInt(newContent);
-                    // console.log(wholeTable.S[target.data4][target.data2]);
                     // console.log(this);
+                    wholeTable.S[target.data4][target.data2] = parseInt(newContent);
+                    // $(this).parent().find("td:eq(3)").text(wholeTable.S[1].S);
+                    $("#"+target.data4+"S").text(wholeTable.S[target.data4].S);
+                    console.log(wholeTable.S[target.data4].S);
                     redraw_mainCountur();
                     $(this).parent().removeClass("cellEditing");
                 }

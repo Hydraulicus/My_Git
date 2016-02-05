@@ -18,7 +18,7 @@ var TableTop = {//prototipe
 		  Object.defineProperty(this, "ST", {// ST - contain string of table of this element
 		    get: function() {
 				var l = wholeTable.S.length;
-				return '<tr id="'+l+'"><td>'+name+'</td><td id="'+l+'L" data-editable="1" data-2="L" data-4="'+l+'" class="editable">'+L+'</td><td id="'+l+'W" class="editable" data-editable="1" data-2="W" data-4="'+l+'" >'+W+'</td><td>'+this.S+'</td><td>'+0+'</td></tr>' ; //string in price table
+				return '<tr id="'+l+'"><td>'+name+'</td><td id="'+l+'L" data-editable="1" data-2="L" data-4="'+l+'" class="editable">'+L+'</td><td id="'+l+'W" class="editable" data-editable="1" data-2="W" data-4="'+l+'" >'+W+'</td><td id="'+l+'S">'+this.S+'</td><td>'+0+'</td></tr>' ; //string in price table
 		    }
 		  });
 
@@ -166,8 +166,14 @@ Object.defineProperty(wholeTable, "dDimLines", {
 		var arr = {},
 			backD = wholeTable.backD;
 				for (var i in wholeTable.array4Drag) {//console.log(wholeTable.array4Drag);
-					var dist = {to : wholeTable.distance4DimLines[i].shift + ' ' + (backD * (-1)),
+					var dist = {to : wholeTable.distance4DimLines[i].shift + ' ' + (backD * (-1)),//размерные линии с хвостиками
 							  back : backD + ' ' + wholeTable.distance4DimLines[i].shift * (-1)},
+
+
+					// var dist = {to : wholeTable.distance4DimLines[i].shift,
+					// 		  back : wholeTable.distance4DimLines[i].shift * (-1)},
+
+
 							  dim = (wholeTable.array4Drag[i].cur == 'e-resize') ? (wholeTable.array4Drag[i].y1-wholeTable.array4Drag[i].y) : (wholeTable.array4Drag[i].x1-wholeTable.array4Drag[i].x);
 					var shift = 'M'+wholeTable.array4Drag[i].x+' '+wholeTable.array4Drag[i].y;
 					// if side vertical- marked L - shift for dimline plase - horisontal on 400 return 50 then draw dimline
@@ -214,6 +220,7 @@ drawDimLines : function (canva, array4Drag, matrix) {//Draw dimlines to dragable
 			var infl = wholeTable.dDimLines[i].infl4+wholeTable.dDimLines[i].infl2;
 			var texT = canva.text(coordX, coordY, dimText)
 							.attr({'id' : 'target', cursor : 'pointer', fontSize : '120px', 'text-anchor' : 'middle', 'letter-spacing' : 2, stroke : '#bbb', strokeWidth :1, fill : 'black'})
+
 							// .attr({'data-i':i,'data-infl2' : wholeTable.dDimLines[i].infl2,'data-infl4' : wholeTable.dDimLines[i].infl4,'data-toggle' : 'modal-popover', 'data-target' : "#dimInputModal"})
 							.data('infl' , infl)
 							.hover(function(){twoWawe(); $('.editableTable').find('#' + this.data('infl')).css("background-color",'DarkSalmon'); this.attr({stroke : 'tomato',strokeWidth :8, fill : 'red' })}, function(){this.attr({stroke : '#bbb',strokeWidth :2, fill : 'black'});  $('.editableTable').find('#' + this.data('infl')).css("background-color",'');})
