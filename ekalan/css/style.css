@@ -27,6 +27,13 @@ body {
     text-align: center;
    }
 
+.editable{
+
+  cursor: pointer;
+}
+
+.cellEditing{
+}
 
    /*============== SVG menu =====================*/
    #menu {
@@ -51,6 +58,6 @@ body {
     position: relative;
     height: 0;
     width: 250px;
-    padding-top: 50%; /* if the menu is in full circle mode. 50% if it is in semi-circle mode.
+    padding-top: 50%; /* if the menu is in full circle mode. 50% if it is in semi-circle mode.*/
 }
 /*============================================*/

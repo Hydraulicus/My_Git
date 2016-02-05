@@ -59,28 +59,3 @@ document.onclick = function () {
 
 
 
-
-document.querySelector('#item-1').addEventListener('click', function(){
-      console.log('addTableTop');
-      wholeTable.S[1]=Object.create(TableTop).constructor(wholeTable.S[0].L, wholeTable.S[0].W, 450, 2500, [2,3], 'Левое крыло'); console.dir(wholeTable.S);   mainCountur.front.animate({'d':wholeTable.tableCountur}, 750, mina.bounce, function(){
-                // that.transform( oldMatrix );
-                graphModel.drawDragCountuor(graphModel.views.front, wholeTable.array4Drag);
-                zoom0(graphModel.views.front);
-                graphModel.drawCircles(graphModel.views.front, wholeTable.aC);});
-      mainCountur.izometr.animate({'d':wholeTable.tableCountur}, 750, mina.elastic, function(){ zoom0(graphModel.views.izometr);});
-    }, false);
-
-document.querySelector('#item-2').addEventListener('click', function(){ window.location.reload() });
-
-document.querySelector('#item-3').addEventListener('click', function(){
-      console.log('addTableTop');
-      wholeTable.S[1]=Object.create(TableTop).constructor(wholeTable.S[0].L, wholeTable.S[0].W, 450, 2500, [2,3], 'Правое крыло');
-      wholeTable.S[2]=Object.create(TableTop).constructor(0, wholeTable.S[0].W, 600,1200, [2,3]);
-      console.dir(wholeTable.S);
-      mainCountur.front.animate({'d':wholeTable.tableCountur}, 750, mina.bounce, function(){
-                // that.transform( oldMatrix );
-                graphModel.drawDragCountuor(graphModel.views.front, wholeTable.array4Drag);
-                zoom0(graphModel.views.front);
-                graphModel.drawCircles(graphModel.views.front, wholeTable.aC);});
-      mainCountur.izometr.animate({'d':wholeTable.tableCountur}, 750, mina.elastic, function(){ zoom0(graphModel.views.izometr);});
-    }, false);
