@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="author" content="Alexei Zababurin" />
+  <meta name="description" content="Frontend developer. Personal website.CSS. CSS3. HTML5. JS. SVG. animation. CSS-animation. SVG-animation. Vector. scroll"/>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2.0"/>
+  <meta property="og:title" content="Alexei Zababurin - frontend developer"/>
+  <meta property="og:site_name" content="Alexei Zababurin - frontend developer"/>
+  <meta property="og:description" content="Started in 1999, I'm a self-taught 39 years old frontend developer."/>
+  <title>Alexei Zababurin - frontend developer</title>
+  <!-- CSS  -->
+  <link href='http://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>
+  <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+
+
+
+  <div class="row navbar-fixed " style="opacity: 0.85 ">
+
+    <nav>
+      <div class="nav-wrapper z-depth-2"> <div class="col" >
+        <svg id="header" class="brand-logo"  width="100%" height="100%"
+xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1000 100"
+xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+          <polygon class="fil113 " points="68,75 74,86 103,39 96,28 "/>
+          <polygon class="fil113 " points="68,39 68,28 96,28 103,39 "/>
+          <polygon class="fil113 " points="74,86 68,75 103,75 103,86 "/>
+          <polygon class="fil113 " points="212,86 200,62 206,51 224,86 "/>
+          <polygon class="fil113 " points="188,86 200,86 200,28 188,39 "/>
+          <polygon class="fil113 " points="224,51 212,62 200,62 206,51 "/>
+          <polygon class="fil113 " points="212,28 224,39 224,51 212,62 212,62 "/>
+          <polygon class="fil113 " points="212,39 224,39 212,28 200,28 188,39 212,39 "/>
+          <polygon class="fil113 " points="228,86 240,86 240,28 228,39 "/>
+          <polygon class="fil113 " points="252,28 264,39 264,86 252,86 "/>
+          <polygon class="fil113 " points="252,39 264,39 252,28 240,28 228,39 252,39 "/>
+          <polygon class="fil113 " points="183,62 171,51 161,51 161,62 "/>
+          <polygon class="fil113 " points="148,86 159,86 160,28 148,39 "/>
+          <polygon class="fil113 " points="171,28 183,39 183,51 171,62 "/>
+          <polygon class="fil113 " points="171,39 183,39 171,28 160,28 148,39 172,39 "/>
+          <polygon class="fil113 " points="171,86 183,75 183,62 171,51 "/>
+          <polygon class="fil113 " points="143,62 131,51 121,51 121,62 "/>
+          <polygon class="fil113 " points="171,75 183,75 171,86 159,86 159,75 172,75 "/>
+
+          <polygon class="fil113 " points="131,28 143,39 143,51 131,62 "/>
+          <polygon class="fil113 " points="131,86 143,75 143,62 131,51 "/>
+          <polygon class="fil113 " points="108,86 119,86 119,28 108,39 "/>
+          <polygon class="fil113 " points="131,75 143,75 131,86 119,86 119,75 132,75 "/>
+          <polygon class="fil113 " points="131,39 143,39 131,28 119,28 108,39 132,39 "/>
+        </svg>  </div>
+        <div class="col s12 offset-m2 offset-l3 center" > <p class="col text3 flow-text">DEMO of SVG-animation</p>
+
+        </div>
+     </div>
+   </nav>
+  </div>
+
+  <a class="mouse_scroll" href="#"></a> <!-- draw a mouse  -->
+  <!--
+ -->
+  <svg id="curves" class="anim_lay"  style="left: 50%;  margin-left: -500px; " width="1000" height="3000" xmlns="http://www.w3.org/2000/svg" version="1.20" viewBox="0 0 1000 3000" xmlns:xlink="http://www.w3.org/1999/xlink"  ><!-- xMidYMin -->
+  <!-- preserveAspectRatio="xMidYMin meet" -->
+  <!-- none -->
+  <!-- meet - Preserves aspect ratio and scales view box to fit within viewport -->
+  <!-- slice - Preserves aspect ratio and slices off any part of the image that does not fit inside the viewport. -->
+    <!-- <rect width="100%" height="100%" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0); opacity:0.15" /> -->
+
+    <path  id="animpath" class="fil1 str0" d="M467 1c-12,33 -24,66 -20,96 3,30 21,59 35,68 13,10 22,2 22,-9 0,-10 -8,-23 -20,-26 -11,-2 -27,5 -37,25 -11,20 -17,52 -16,87 0,34 6,71 17,100 12,29 29,50 43,68 13,18 24,34 31,52 7,19 10,40 5,58 -5,18 -18,32 -33,40 -15,8 -31,10 -45,5 -13,-5 -24,-16 -27,-32 -3,-15 1,-35 16,-52 14,-16 39,-30 56,-13 17,17 28,66 25,123 -2,56 -16,120 -27,159 -11,38 -17,50 -25,65 -8,16 -17,34 -23,67 -5,33 -6,80 2,111 9,31 27,46 43,40 17,-6 32,-33 30,-54 -3,-21 -22,-38 -51,-29 -28,9 -66,43 -88,93 -22,51 -28,118 -22,169 6,50 23,85 40,114 17,30 35,55 44,87 10,33 12,73 6,107 -5,35 -19,63 -37,85 -18,21 -41,36 -59,35 -19,-2 -33,-19 -40,-41 -7,-21 -7,-48 7,-72 14,-24 42,-46 72,-29 30,16 61,70 79,116 18,46 21,84 20,123 -1,38 -6,77 -16,117 -10,40 -25,81 -40,120 -14,40 -28,78 -38,116 -10,39 -16,77 -17,117 0,39 5,78 15,102 10,24 24,34 33,18 8,-15 10,-55 -7,-84 -18,-28 -54,-44 -64,-17 -10,27 7,98 27,143 20,46 43,67 62,100 19,34 33,80 36,124 2,43 -7,84 -14,115 -7,32 -12,55 -16,67 -5,11 -9,10 -13,10"/>
+  </svg>
+
+  <br>
+
+  <div class="row table center" style=" margin-top: 2em">
+    <div class="col s12 m10 offset-m1 l8 offset-l4">
+      <div class="container ">
+        <p class="blockquote flow-text">
+          The way in which you design your homepage can have a big effect
+        </p>
+        <p class="author_">Talia Stroud</p>
+        <p class="text1 flow-text">
+          The director of the Engaging News Project and a professor at the University of Texas
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row table left " >
+    <div class="col s12 m10  l9">
+      <div class="container ">
+        <p class="text2 flow-text">
+          Modern CSS3 features allow creating animations and interactivity entirely in CSS markup, without going near Flash, Silverlight or After Effects. You no longer need Flash to create web-based animations and interactivity. Here are the example of HTML5 and CSS3 animation which can inspire web designers and developers
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row table right " style="min-height: 40em;  " >
+    <div class="col s12 m8 offset-m1 l9 offset-l3 ">
+      <div class="container " style=" z-index:0" >
+        <p class="blockquote flow-text">
+          HTML5 contains some exciting new elements, like SVG integration, that can help you to create faster, more responsive sites that use the devices that they're on to create a great UI and awesome UX
+        </p>
+        <p class="author_">Jerry Cao</p>
+        <p class="text1 flow-text">A content strategist at UXPin</p>
+      </div>
+    </div>
+  </div>
+  <div class="row table center ">
+    <div class="col s12 m8 offset-m3 l8">
+      <div class="container">
+        <p class="text2 flow-text">
+          CSS3 animation with bit of JavaScript is now capable of work in the latest versions of web browsers. It can be used to create games, APIs, scrolling abilities and much more.
+There are JavaScript libraries that will not only make our job easier, but allow to handle cross browser differences
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row  center ">
+    <div class="col s12 m10 offset-m2 l8 offset-l4">
+      <div class="container ">
+
+        <p class="blockquote flow-text">
+          SVGs are great for responsive design because you can create a scalable image that won't pixelate no matter the resolution of the browser
+        </p>
+        <p class="author_">
+          <a href="http://www.uxpin.com/web-ui-design-best-practices.html">Web UI Best Practices</a>
+
+        </p>
+        <p class="text2"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================ FOOTER ==================================== -->
+
+  <footer class="page-footer" >
+<svg style="position: absolute; width: 0; height: 0;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+
+      <symbol id="icon-skype" viewBox="0 0 1024 1024">
+        <title>skype</title>
+        <path class="path1" d="M952.64 590.944c4.544-25.664 7.36-51.936 7.36-78.944 0-247.424-200.576-448-448-448-27.008 0-53.28 2.816-78.944 7.36-45.984-44.096-108.32-71.36-177.056-71.36-141.376 0-256 114.624-256 256 0 68.736 27.264 131.072 71.36 177.056-4.544 25.664-7.36 51.936-7.36 78.944 0 247.424 200.576 448 448 448 27.008 0 53.28-2.784 78.944-7.36 45.984 44.096 108.32 71.36 177.056 71.36 141.376 0 256-114.624 256-256 0-68.736-27.264-131.072-71.36-177.056zM709.28 691.328c-17.728 24.128-43.84 43.264-77.728 56.768-33.568 13.408-73.76 20.224-119.456 20.224-54.944 0-100.992-9.312-136.928-27.616-25.696-13.376-46.88-31.392-62.976-53.856-16.256-22.528-24.48-44.896-24.48-66.528 0-13.472 5.344-25.12 15.936-34.72 10.464-9.536 23.904-14.272 39.904-14.272 13.152 0 24.512 3.744 33.696 11.264 8.8 7.264 16.352 17.888 22.432 31.552 6.784 14.976 14.144 27.552 21.952 37.44 7.52 9.632 18.304 17.664 32.096 23.936 13.856 6.304 32.576 9.536 55.552 9.536 31.584 0 57.536-6.496 77.024-19.328 19.040-12.512 28.288-27.552 28.288-45.984 0-14.528-4.832-25.984-14.752-34.912-10.432-9.376-24.16-16.672-40.768-21.696-17.408-5.184-41.024-10.912-70.208-16.736-39.68-8.192-73.376-17.888-100.224-28.832-27.424-11.264-49.536-26.848-65.696-46.272-16.416-19.84-24.736-44.608-24.736-73.824 0-27.808 8.736-52.896 25.984-74.496 17.088-21.504 42.080-38.208 74.24-49.632 31.712-11.328 69.472-17.024 112.192-17.024 34.112 0 64.192 3.808 89.248 11.328 25.216 7.52 46.432 17.76 63.2 30.304 16.768 12.672 29.312 26.144 37.152 40.256 7.904 14.144 11.968 28.32 11.968 41.984 0 13.184-5.28 25.12-15.68 35.552-10.496 10.464-23.68 15.776-39.296 15.776-14.144 0-25.248-3.328-32.928-9.856-7.168-6.112-14.592-15.616-22.816-29.28-9.568-17.44-21.088-31.2-34.336-40.896-12.8-9.44-34.304-14.144-63.84-14.144-27.392 0-49.728 5.28-66.24 15.744-15.968 10.048-23.712 21.6-23.712 35.296 0 8.416 2.496 15.392 7.648 21.408 5.408 6.464 13.088 12 22.784 16.704 10.016 4.832 20.416 8.704 30.784 11.456 10.624 2.848 28.448 7.040 52.896 12.48 30.944 6.432 59.392 13.6 84.544 21.344 25.504 7.872 47.424 17.504 65.44 28.768 18.304 11.456 32.8 26.176 43.136 43.808 10.304 17.696 15.52 39.488 15.52 64.832-0.064 30.24-9.024 58.016-26.816 82.144z"></path>
+      </symbol>
+      <symbol id="icon-mail4" viewBox="0 0 1024 1024">
+        <title>mail4</title>
+        <path class="path1" d="M512 0c-282.77 0-512 229.23-512 512s229.23 512 512 512 512-229.23 512-512-229.23-512-512-512zM256 256h512c9.138 0 18.004 1.962 26.144 5.662l-282.144 329.168-282.144-329.17c8.14-3.696 17.006-5.66 26.144-5.66zM192 704v-384c0-1.34 0.056-2.672 0.14-4l187.664 218.942-185.598 185.598c-1.444-5.336-2.206-10.886-2.206-16.54zM768 768h-512c-5.654 0-11.202-0.762-16.54-2.208l182.118-182.118 90.422 105.498 90.424-105.494 182.116 182.12c-5.34 1.44-10.886 2.202-16.54 2.202zM832 704c0 5.654-0.762 11.2-2.206 16.54l-185.6-185.598 187.666-218.942c0.084 1.328 0.14 2.66 0.14 4v384z"></path>
+      </symbol>
+      <symbol id="icon-facebook3" viewBox="0 0 1024 1024">
+        <title>facebook3</title>
+        <path class="path1" d="M512 0c-282.77 0-512 229.23-512 512s229.23 512 512 512v-384h-128v-128h128v-96c0-88.366 71.632-160 160-160h160v128h-160c-17.674 0-32 14.328-32 32v96h176l-32 128h-144v367.87c220.828-56.838 384-257.3 384-495.87 0-282.77-229.23-512-512-512z"></path>
+      </symbol>
+      <symbol id="icon-github" viewBox="0 0 1024 1024">
+        <title>github</title>
+        <path class="path1" d="M512.008 12.642c-282.738 0-512.008 229.218-512.008 511.998 0 226.214 146.704 418.132 350.136 485.836 25.586 4.738 34.992-11.11 34.992-24.632 0-12.204-0.48-52.542-0.696-95.324-142.448 30.976-172.504-60.41-172.504-60.41-23.282-59.176-56.848-74.916-56.848-74.916-46.452-31.778 3.51-31.124 3.51-31.124 51.4 3.61 78.476 52.766 78.476 52.766 45.672 78.27 119.776 55.64 149.004 42.558 4.588-33.086 17.852-55.68 32.506-68.464-113.73-12.942-233.276-56.85-233.276-253.032 0-55.898 20.004-101.574 52.76-137.428-5.316-12.9-22.854-64.972 4.952-135.5 0 0 43.006-13.752 140.84 52.49 40.836-11.348 84.636-17.036 128.154-17.234 43.502 0.198 87.336 5.886 128.256 17.234 97.734-66.244 140.656-52.49 140.656-52.49 27.872 70.528 10.35 122.6 5.036 135.5 32.82 35.856 52.694 81.532 52.694 137.428 0 196.654-119.778 239.95-233.79 252.624 18.364 15.89 34.724 47.046 34.724 94.812 0 68.508-0.596 123.644-0.596 140.508 0 13.628 9.222 29.594 35.172 24.566 203.322-67.776 349.842-259.626 349.842-485.768 0-282.78-229.234-511.998-511.992-511.998z"></path>
+      </symbol>
+
+    </defs>
+  </svg>
+    <div class="row">
+
+      <div class="col l5 offset-l1 s12">
+        <h4 class="white-text thin">To stay connected:</h4>
+        <h5 class="white-text text-lighten-4 thin">Alexei Zababurin, Ukraine</h5>
+        <ul>
+          <li>
+            <h5 class=" grey-text text-lighten-3 ">
+              <a href="mailto:alexei.zababurin@gmail.com" class="grey-text text-lighten-3" title="E-mail me:">
+                <svg class="icon icon-mail4" >
+                  <use xlink:href="#icon-mail4"></use>
+                </svg>
+                <span class="mls thin">alexei.zababurin@gmail.com</span>
+              </a>
+            </h5>
+          </li>
+          <li>
+            <h5 class=" grey-text text-lighten-3">
+              <svg class="icon icon-skype">
+                <use xlink:href="#icon-skype"></use>
+              </svg>
+              <span class="mls thin">zababurinalex</span>
+            </h5>
+          </li>
+          <li>
+            <h5>
+              <a href="https://www.facebook.com/alexei.hydraulic?fref=nf" class="grey-text text-lighten-2  " title=" my Facecebook:">
+                <svg class="icon icon-facebook3 ">
+                  <use xlink:href="#icon-facebook3"></use>
+                </svg>
+                <span class="mls thin grey-text text-lighten-3">my Facecebook</span>
+              </a>
+            </h5>
+          </li>
+
+        </ul>
+      </div>
+
+      <div class="col l4  m5 s12">
+        <h4 class="white-text thin">This website</h4>
+        <h5 class="white-text text-lighten-4 thin">is powered by:</h5>
+        <ul>
+          <li>
+            <span class=" thin grey-text text-lighten-3">JavaScript</span>
+          </li>
+          <li>
+            <span class=" thin grey-text text-lighten-3">JQuery</span>
+          </li>
+          <li>
+            <span class=" thin grey-text text-lighten-3">SNAP.SVG</span>
+          </li>
+          <li>
+            <a href="http://materializecss.com/about.html">
+              <span class=" thin grey-text text-lighten-3">MaterializeCSS</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-copyright">
+      <div class="container ">© 2015 by Alexei Zababurin</div>
+    </div>
+  </footer>
+
+  <!--  Scripts-->
+  <script src="js/jquery-2.1.4.min.js"></script>
+  <script src="js/jquery.mousewheel.min.js"></script> <!-- for smooth scroll -->
+  <script src="js/detect-zoom.min.js"></script> <!-- https://github.com/tombigel/detect-zoom -->
+  <script src="js/materialize.min.js"></script>
+  <script src="js/snap.svg-min.js"></script>
+  <script src="js/init.js"></script>
+
+</body>
+</html>
